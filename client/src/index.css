@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --ink: #1E293B;
+  /* slate-800 */
+  --ink-2: #3b485b;
+  /* slate-700 */
+  --paper: #F8FAFC;
+  /* slate-50 */
+  --paper-2: #F1F5F9;
+  /* slate-100 */
+  --white: #FFFFFF;
+  --brass: #C58A38;
+  --brass-light: #E4B876;
+  --teal: #10B981;
+  /* emerald-500 */
+  --alert: #EF4444;
+  /* red-500 */
+  --text: #0F172A;
+  /* slate-900 */
+  --text-muted: #64748B;
+  /* slate-500 */
+  --line: #cedcee;
+  /* slate-200 */
+  --line-dark: #475569;
+  /* slate-600 */
+
+  /* Layout */
+  --container: 1180px;
+  --pad-x: 32px;
+  --section-y: 112px;
+
+  /* Radius */
+  --radius-card: 18px;
+  --radius-sm: 10px;
+  --radius-btn: 100px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pad-x: 20px;
+    --section-y: 76px;
+  }
+}
+
+
+@theme {
+
+  /* Define custom marquee animation keyframes */
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Bind the keyframes to a utility class name */
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+
+@layer base {
+
+  /* ─── Base Reset ────────────────────────────────────────────── */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Typography ────────────────────────────────────────────── */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    color: inherit;
+  }
+
+  h1 {
+    font-size: clamp(38px, 5.2vw, 58px);
+  }
+
+  h2 {
+    font-size: clamp(28px, 4vw, 42px);
+  }
+
+  h3 {
+    font-size: clamp(19px, 2vw, 22px);
+  }
+
+  /* ─── Focus ring ────────────────────────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ─── Scrollbar (subtle) ────────────────────────────────────── */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 10px;
+  }
+
+  /* ─── Reduced motion ────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ─── Selection ─────────────────────────────────────────────── */
+  ::selection {
+    background: var(--brass);
+    color: white;
+  }
+}
+
+@layer components {
+
+  .mono,
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ─── Container ─────────────────────────────────────────────── */
+  .container {
+    max-width: var(--container);
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--pad-x);
+  }
+
+  /* ─── Section rhythm ────────────────────────────────────────── */
+  .section {
+    padding-block: var(--section-y);
+  }
+
+  /* ─── Surface colors ────────────────────────────────────────── */
+  .bg-ink {
+    background-color: var(--ink);
+  }
+
+  .bg-ink-2 {
+    background-color: var(--ink-2);
+  }
+
+  .bg-paper {
+    background-color: var(--paper);
+  }
+
+  .bg-paper-2 {
+    background-color: var(--paper-2);
+  }
+}
