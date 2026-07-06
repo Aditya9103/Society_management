@@ -39,12 +39,12 @@ const rowVariants = {
 
 export default function CompareTable() {
   return (
-    <div className="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-900/40 backdrop-blur-xl shadow-2xl shadow-black/20">
+    <div className="rounded-2xl overflow-hidden border border-bd-subtle/50 bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-lg shadow-md backdrop-blur-xl shadow-2xl shadow-black/20">
       {/* Header */}
-      <div className="grid grid-cols-3 bg-slate-800/80 px-6 py-4 border-b border-slate-700/50">
-        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-slate-400">Feature</div>
-        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-[#E4B876] text-center">Parapet</div>
-        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-slate-500 text-center">Others</div>
+      <div className="grid grid-cols-3 bg-bg-subtle px-6 py-4 border-b border-bd-subtle/50">
+        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-tx-secondary font-medium">Feature</div>
+        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-primary-light text-center">Parapet</div>
+        <div className="font-mono text-[12px] uppercase font-bold tracking-[0.1em] text-tx-secondary font-medium text-center">Others</div>
       </div>
 
       {/* Rows */}
@@ -59,11 +59,11 @@ export default function CompareTable() {
             key={row.feature}
             variants={rowVariants}
             className={cn(
-              'grid grid-cols-3 px-6 py-4 border-b border-slate-700/50 last:border-0 hover:bg-slate-800/30 transition-colors',
+              'grid grid-cols-3 px-6 py-4 border-b border-bd-subtle/50 last:border-0 hover:bg-bg-inverted/90/30 transition-colors',
               i % 2 === 0 ? 'bg-transparent' : 'bg-white/[0.02]'
             )}
           >
-            <p className="text-[15px] font-medium text-slate-300">{row.feature}</p>
+            <p className="text-[15px] font-medium text-tx-primary">{row.feature}</p>
             <div className="flex justify-center items-center">
               <CellIcon value={row.parapet} />
             </div>

@@ -41,14 +41,14 @@ export default function Industries() {
       title="Industries | Parapet"
       description="Tailored society management solutions for apartments, townships, and commercial spaces."
     >
-      <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
+      <div className="pt-32 pb-24 bg-transparent min-h-screen">
         <div className="container">
           
           <div className="text-center max-w-3xl mx-auto mb-20">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-tx-primary mb-6"
             >
               Built for every <span className="text-[var(--brass)]">community</span>.
             </motion.h1>
@@ -56,7 +56,7 @@ export default function Industries() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-slate-600 leading-relaxed font-medium"
+              className="text-xl text-tx-primary leading-relaxed font-medium"
             >
               Parapet's flexible architecture adapts perfectly to the unique operational challenges of different real estate asset classes.
             </motion.p>
@@ -72,16 +72,16 @@ export default function Industries() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group bg-white p-10 rounded-[2rem] border border-slate-200 shadow-xl relative overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1"
+                  className="group bg-bg-surface p-10 rounded-[2rem] border border-bd-subtle shadow-xl relative overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1"
                 >
                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#C58A38]/5 rounded-full blur-[80px] z-0 translate-x-1/3 -translate-y-1/3 pointer-events-none group-hover:bg-[#C58A38]/10 transition-colors" />
                   
-                  <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#C58A38]/10 transition-all duration-300">
-                    <Icon size={32} className="text-slate-700 group-hover:text-[var(--brass)] transition-colors" />
+                  <div className="w-16 h-16 rounded-2xl bg-bg-subtle flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#C58A38]/10 transition-all duration-300">
+                    <Icon size={32} className="text-tx-primary group-hover:text-[var(--brass)] transition-colors" />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">{segment.title}</h3>
-                  <p className="text-slate-600 leading-relaxed font-medium mb-8">
+                  <h3 className="text-2xl font-bold text-tx-primary mb-4">{segment.title}</h3>
+                  <p className="text-tx-primary leading-relaxed font-medium mb-8">
                     {segment.desc}
                   </p>
                   
@@ -89,7 +89,7 @@ export default function Industries() {
                     {segment.features.map(feat => (
                       <div key={feat} className="flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--brass)]" />
-                        <span className="text-slate-700 font-medium">{feat}</span>
+                        <span className="text-tx-primary font-medium">{feat}</span>
                       </div>
                     ))}
                   </div>

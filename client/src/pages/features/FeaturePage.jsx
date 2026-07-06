@@ -31,14 +31,14 @@ export default function FeaturePage() {
   return (
     <PageWrapper title={`${feature.title} | Parapet`}>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-[#1E293B] text-white overflow-hidden relative">
+      <section className="pt-32 pb-16 bg-transparent  overflow-hidden relative">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#C58A38]/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="container relative z-10">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 text-sm font-medium text-[#E4B876] mb-6 tracking-wider uppercase">
-              <Link to="/features" className="hover:text-white transition-colors">Features</Link>
+              <Link to="/features" className="hover:text-tx-primary transition-colors">Features</Link>
               <span>/</span>
-              <Link to={`/features#category-${categoryKey}`} className="hover:text-white transition-colors">{categoryName}</Link>
+              <Link to={`/features#category-${categoryKey}`} className="hover:text-tx-primary transition-colors">{categoryName}</Link>
             </div>
             
             <motion.h1 
@@ -53,7 +53,7 @@ export default function FeaturePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl"
+              className="text-lg md:text-xl text-tx-primary leading-relaxed mb-8 max-w-2xl"
             >
               {feature.description}
             </motion.p>
@@ -73,7 +73,7 @@ export default function FeaturePage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-transparent">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Image / Interactive Preview */}
@@ -81,7 +81,7 @@ export default function FeaturePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="aspect-square md:aspect-video lg:aspect-square bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden flex items-center justify-center relative group"
+              className="aspect-square md:aspect-video lg:aspect-square bg-bg-surface rounded-3xl border border-bd-subtle shadow-xl overflow-hidden flex items-center justify-center relative group"
             >
               {feature.previewImage ? (
                 <img 
@@ -91,13 +91,13 @@ export default function FeaturePage() {
                 />
               ) : (
                 <>
-                  <div className="absolute inset-0 bg-slate-50/50" />
+                  <div className="absolute inset-0 bg-bg-app/50" />
                   <div className="relative text-center p-8">
                     <div className="w-16 h-16 bg-[#C58A38]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8 text-[#C58A38]" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Interactive Preview</h3>
-                    <p className="text-slate-500">UI placeholder for {feature.title}</p>
+                    <h3 className="text-xl font-bold text-tx-primary mb-2">Interactive Preview</h3>
+                    <p className="text-tx-secondary font-medium">UI placeholder for {feature.title}</p>
                   </div>
                 </>
               )}
@@ -106,7 +106,7 @@ export default function FeaturePage() {
             {/* Benefits List */}
             <div className="space-y-12">
               <div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-8">Why use {feature.title}?</h2>
+                <h2 className="text-3xl font-bold text-tx-primary mb-8">Why use {feature.title}?</h2>
                 <div className="space-y-6">
                   {feature.benefits.map((benefit, idx) => (
                     <motion.div 
@@ -123,23 +123,23 @@ export default function FeaturePage() {
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 mb-1">{benefit.title}</h4>
-                        <p className="text-slate-600 leading-relaxed">{benefit.desc}</p>
+                        <h4 className="text-lg font-bold text-tx-primary mb-1">{benefit.title}</h4>
+                        <p className="text-tx-primary leading-relaxed">{benefit.desc}</p>
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-slate-200">
-                <h3 className="text-xl font-bold text-slate-900 mb-6">How it works</h3>
+              <div className="pt-8 border-t border-bd-subtle">
+                <h3 className="text-xl font-bold text-tx-primary mb-6">How it works</h3>
                 <div className="space-y-4">
                   {feature.steps.map((step, idx) => (
-                    <div key={idx} className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200">
-                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-sm shrink-0">
+                    <div key={idx} className="flex items-center gap-4 bg-bg-surface p-4 rounded-xl border border-bd-subtle">
+                      <div className="w-8 h-8 rounded-full bg-bg-subtle flex items-center justify-center text-tx-secondary font-medium font-bold text-sm shrink-0">
                         {idx + 1}
                       </div>
-                      <p className="font-medium text-slate-700">{step}</p>
+                      <p className="font-medium text-tx-primary">{step}</p>
                     </div>
                   ))}
                 </div>
@@ -150,14 +150,14 @@ export default function FeaturePage() {
       </section>
 
       {feature.diagram && (
-        <section className="py-20 bg-white border-t border-slate-200">
+        <section className="py-20 bg-transparent border-t border-bd-subtle">
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-slate-900 mb-4">Workflow Architecture</h2>
-                <p className="text-slate-600 text-lg">Understanding the core operational flow behind this feature.</p>
+                <h2 className="text-3xl font-bold text-tx-primary mb-4">Workflow Architecture</h2>
+                <p className="text-tx-primary text-lg">Understanding the core operational flow behind this feature.</p>
               </div>
-              <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+              <div className="bg-bg-app p-8 rounded-[2rem] border border-bd-subtle shadow-sm">
                 <MermaidDiagram chart={feature.diagram} />
               </div>
             </div>

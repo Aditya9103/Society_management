@@ -39,7 +39,7 @@ export default function About() {
       title="About Us | Parapet"
       description="The story behind Parapet and our mission to modernize society management."
     >
-      <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
+      <div className="pt-32 pb-24 bg-transparent min-h-screen">
         
         {/* Mission Section */}
         <section className="container mb-32">
@@ -47,7 +47,7 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200 text-sm font-bold text-slate-700 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bd-subtle text-sm font-bold text-tx-primary mb-8"
             >
               Our Mission
             </motion.div>
@@ -56,7 +56,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 mb-8 leading-[1.1]"
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-tx-primary mb-8 leading-[1.1]"
             >
               We're building the <br/>
               <span className="text-[var(--brass)]">operating system</span> <br/>
@@ -67,7 +67,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-slate-600 leading-relaxed font-medium max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-tx-primary leading-relaxed font-medium max-w-3xl mx-auto"
             >
               Parapet was born out of frustration. We saw managing committees struggling with 5 different tools for billing, gate security, and communication. We knew there had to be a better, more beautiful way.
             </motion.p>
@@ -75,11 +75,11 @@ export default function About() {
         </section>
 
         {/* Values Section */}
-        <section className="bg-white py-24 border-y border-slate-200">
+        <section className="bg-transparent py-24 border-y border-bd-subtle">
           <div className="container">
             <div className="max-w-3xl mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What drives us</h2>
-              <p className="text-xl text-slate-600 font-medium">These core values dictate every product decision we make.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-tx-primary mb-4">What drives us</h2>
+              <p className="text-xl text-tx-secondary font-medium">These core values dictate every product decision we make.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -94,12 +94,12 @@ export default function About() {
                     transition={{ delay: idx * 0.1 }}
                     className="flex gap-6"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-bg-subtle flex items-center justify-center shrink-0">
                       <Icon size={28} className="text-[var(--brass)]" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3">{val.title}</h3>
-                      <p className="text-lg text-slate-600 leading-relaxed font-medium">{val.desc}</p>
+                      <h3 className="text-2xl font-bold text-tx-primary mb-3">{val.title}</h3>
+                      <p className="text-lg text-tx-primary leading-relaxed font-medium">{val.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -111,8 +111,8 @@ export default function About() {
         {/* Team Section */}
         <section className="container py-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Meet the Team</h2>
-            <p className="text-xl text-slate-600 font-medium">Built by a passionate team of engineers and community builders.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-tx-primary mb-4">Meet the Team</h2>
+            <p className="text-xl text-tx-secondary font-medium">Built by a passionate team of engineers and community builders.</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -125,12 +125,12 @@ export default function About() {
                 transition={{ delay: idx * 0.1 }}
                 className="text-center"
               >
-                <div className="w-40 h-40 mx-auto rounded-3xl bg-slate-200 mb-6 overflow-hidden">
+                <div className="w-40 h-40 mx-auto rounded-3xl bg-bd-subtle mb-6 overflow-hidden">
                   {/* Placeholder for team photos */}
                   <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
-                <p className="text-slate-500 font-medium">{member.role}</p>
+                <h3 className="text-xl font-bold text-tx-primary mb-1">{member.name}</h3>
+                <p className="text-tx-secondary font-medium font-medium">{member.role}</p>
               </motion.div>
             ))}
           </div>

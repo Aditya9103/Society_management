@@ -71,7 +71,7 @@ export default function Pricing() {
       title="Pricing | Parapet"
       description="Simple, transparent pricing for societies of all sizes."
     >
-      <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
+      <div className="pt-32 pb-24 bg-transparent min-h-screen">
         <div className="container">
           
           {/* Header */}
@@ -79,7 +79,7 @@ export default function Pricing() {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-tx-primary mb-6"
             >
               Simple, transparent pricing.
             </motion.h1>
@@ -87,7 +87,7 @@ export default function Pricing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-slate-600 leading-relaxed font-medium mb-10"
+              className="text-xl text-tx-primary leading-relaxed font-medium mb-10"
             >
               Whether you're a single building or a sprawling township, we have a plan perfectly scaled for your needs.
             </motion.p>
@@ -99,21 +99,21 @@ export default function Pricing() {
               transition={{ delay: 0.2 }}
               className="flex items-center justify-center gap-4"
             >
-              <span className={cn("text-lg font-semibold transition-colors", !isAnnual ? "text-slate-900" : "text-slate-500")}>
+              <span className={cn("text-lg font-semibold transition-colors", !isAnnual ? "text-tx-primary" : "text-tx-secondary font-medium")}>
                 Monthly
               </span>
               <button 
                 onClick={() => setIsAnnual(!isAnnual)}
-                className="w-16 h-8 rounded-full bg-slate-200 relative p-1 cursor-pointer hover:bg-slate-300 transition-colors"
+                className="w-16 h-8 rounded-full bg-bd-subtle relative p-1 cursor-pointer hover:bg-bd-strong transition-colors"
                 aria-label="Toggle billing cycle"
               >
                 <motion.div 
-                  className="w-6 h-6 rounded-full bg-white shadow-sm"
+                  className="w-6 h-6 rounded-full bg-bg-surface shadow-sm"
                   animate={{ x: isAnnual ? 32 : 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               </button>
-              <span className={cn("text-lg font-semibold transition-colors flex items-center gap-2", isAnnual ? "text-slate-900" : "text-slate-500")}>
+              <span className={cn("text-lg font-semibold transition-colors flex items-center gap-2", isAnnual ? "text-tx-primary" : "text-tx-secondary font-medium")}>
                 Annually
                 <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full uppercase tracking-wider">Save 20%</span>
               </span>
@@ -129,8 +129,8 @@ export default function Pricing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + (idx * 0.1) }}
                 className={cn(
-                  "relative bg-white rounded-3xl p-8 shadow-xl transition-all hover:-translate-y-1",
-                  plan.popular ? "border-2 border-[var(--brass)] shadow-[0_20px_40px_rgba(192,138,62,0.15)]" : "border border-slate-200"
+                  "relative bg-bg-surface rounded-3xl p-8 shadow-xl transition-all hover:-translate-y-1",
+                  plan.popular ? "border-2 border-[var(--brass)] shadow-[0_20px_40px_rgba(192,138,62,0.15)]" : "border border-bd-subtle"
                 )}
               >
                 {plan.popular && (
@@ -140,13 +140,13 @@ export default function Pricing() {
                 )}
                 
                 <div className="flex items-center gap-4 mb-6">
-                  <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center", plan.popular ? "bg-[#C58A38]/10" : "bg-slate-100")}>
-                    <plan.icon size={24} className={plan.popular ? "text-[var(--brass)]" : "text-slate-600"} />
+                  <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center", plan.popular ? "bg-[#C58A38]/10" : "bg-bg-subtle")}>
+                    <plan.icon size={24} className={plan.popular ? "text-[var(--brass)]" : "text-tx-primary"} />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">{plan.name}</h3>
+                  <h3 className="text-2xl font-bold text-tx-primary">{plan.name}</h3>
                 </div>
                 
-                <p className="text-slate-600 font-medium h-16">{plan.desc}</p>
+                <p className="text-tx-secondary font-medium h-16">{plan.desc}</p>
                 
                 <div className="my-8">
                   <AnimatePresence mode="wait">
@@ -157,13 +157,13 @@ export default function Pricing() {
                       exit={{ opacity: 0, y: 10 }}
                       className="flex items-baseline gap-1"
                     >
-                      <span className="text-4xl font-bold text-slate-900">
+                      <span className="text-4xl font-bold text-tx-primary">
                         ₹{isAnnual ? plan.priceAnnually.toLocaleString() : plan.priceMonthly.toLocaleString()}
                       </span>
-                      <span className="text-slate-500 font-medium">/mo</span>
+                      <span className="text-tx-secondary font-medium font-medium">/mo</span>
                     </motion.div>
                   </AnimatePresence>
-                  <p className="text-sm text-slate-400 mt-1 font-medium">Billed {isAnnual ? 'annually' : 'monthly'}</p>
+                  <p className="text-sm text-tx-secondary font-medium mt-1 font-medium">Billed {isAnnual ? 'annually' : 'monthly'}</p>
                 </div>
                 
                 <Button 
@@ -177,20 +177,20 @@ export default function Pricing() {
                 </Button>
                 
                 <div className="space-y-4">
-                  <p className="text-sm font-bold text-slate-900 uppercase tracking-wider">Features included:</p>
+                  <p className="text-sm font-bold text-tx-primary uppercase tracking-wider">Features included:</p>
                   {plan.features.map(feat => (
                     <div key={feat} className="flex items-start gap-3">
                       <Check size={20} className="text-emerald-500 shrink-0 mt-0.5" />
-                      <span className="text-slate-700 font-medium">{feat}</span>
+                      <span className="text-tx-primary font-medium">{feat}</span>
                     </div>
                   ))}
                   
                   {plan.notIncluded.length > 0 && (
-                    <div className="pt-4 border-t border-slate-100 mt-4 space-y-4">
+                    <div className="pt-4 border-t border-bd-subtle mt-4 space-y-4">
                       {plan.notIncluded.map(feat => (
                         <div key={feat} className="flex items-start gap-3 opacity-50">
-                          <X size={20} className="text-slate-400 shrink-0 mt-0.5" />
-                          <span className="text-slate-500 font-medium">{feat}</span>
+                          <X size={20} className="text-tx-secondary font-medium shrink-0 mt-0.5" />
+                          <span className="text-tx-secondary font-medium font-medium">{feat}</span>
                         </div>
                       ))}
                     </div>
@@ -205,12 +205,12 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-24 max-w-4xl mx-auto bg-slate-900 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden"
+            className="mt-24 max-w-4xl mx-auto bg-bg-inverted rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--brass)]/10 rounded-full blur-[80px] pointer-events-none" />
             <div className="relative z-10 max-w-xl">
-              <h3 className="text-3xl font-bold text-white mb-4">Need a custom enterprise solution?</h3>
-              <p className="text-slate-300 font-medium leading-relaxed">
+              <h3 className="text-3xl font-bold text-tx-primary mb-4">Need a custom enterprise solution?</h3>
+              <p className="text-tx-secondary font-medium leading-relaxed">
                 If you manage multiple properties, require custom API integrations, or need white-label solutions, our enterprise team can build a custom package for you.
               </p>
             </div>

@@ -6,7 +6,7 @@ import { homeFaqs } from '../../../data/faqs';
 
 export default function FAQSection() {
   return (
-    <section className="py-32 lg:py-40 bg-white">
+    <section className="py-32 lg:py-40 bg-transparent">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <SectionHeader

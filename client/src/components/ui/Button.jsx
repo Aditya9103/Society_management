@@ -2,20 +2,23 @@ import { forwardRef } from "react";
 import { cn } from "@/utils/cn";
 
 const variants = {
+  primary:
+    "bg-gradient-to-b from-primary-light to-primary-dark text-white border-t border-white/20 border-b border-black/20 shadow-[0_4px_14px_rgba(37,99,235,0.4)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.6)] hover:-translate-y-0.5",
+
   brass:
-    "bg-gradient-to-b from-[#D4A35B] to-[#C58A38] text-white border-t border-white/20 border-b border-black/20 shadow-[0_4px_14px_rgba(197,138,56,0.4)] hover:shadow-[0_6px_20px_rgba(197,138,56,0.6)] hover:-translate-y-0.5",
+    "bg-gradient-to-b from-[#D4A35B] to-primary text-white border-t border-white/20 border-b border-black/20 shadow-[0_4px_14px_rgba(197,138,56,0.4)] hover:shadow-[0_6px_20px_rgba(197,138,56,0.6)] hover:-translate-y-0.5",
 
   ink:
     "bg-gradient-to-b from-slate-700 to-slate-900 text-white border-t border-white/10 border-b border-black/40 shadow-[0_4px_14px_rgba(15,23,42,0.4)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.6)] hover:-translate-y-0.5",
 
   outline:
-    "bg-white/80 backdrop-blur-xl text-slate-800 border border-slate-200/80 hover:bg-white hover:border-slate-300 shadow-sm hover:shadow-md hover:-translate-y-0.5",
+    "bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl text-tx-secondary font-medium border border-bd-subtle/80 hover:bg-bg-surface hover:border-bd-strong shadow-sm hover:shadow-md hover:-translate-y-0.5",
 
   ghost:
-    "bg-transparent text-slate-600 border border-transparent hover:bg-slate-100 hover:text-slate-900",
+    "bg-transparent text-tx-primary border border-transparent hover:bg-bg-subtle hover:text-tx-primary",
 
   "outline-light":
-    "bg-white/10 backdrop-blur-xl text-white border border-white/20 hover:bg-white/20 hover:border-white/40 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:-translate-y-0.5",
+    "bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl text-white border border-white/20 hover:bg-bg-surface shadow-sm border border-bd-subtle hover:border-white/40 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:-translate-y-0.5",
 };
 
 const sizes = {
@@ -37,7 +40,7 @@ const roundedStyles = {
 
 const Button = forwardRef(function Button(
   {
-    variant = "brass",
+    variant = "primary",
     size = "md",
     fullWidth = false,
     rounded = "full",
@@ -60,9 +63,9 @@ const Button = forwardRef(function Button(
         "cursor-pointer",
         "leading-none",
         "transition-all duration-300 ease-out",
-        "focus:outline-none focus:ring-2 focus:ring-[#C58A38] focus:ring-offset-2",
+        "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
         "disabled:opacity-50 disabled:pointer-events-none",
-        variants[variant] || variants.brass,
+        variants[variant] || variants.primary,
         sizes[size] || sizes.md,
         roundedStyles[rounded],
         fullWidth && "w-full",

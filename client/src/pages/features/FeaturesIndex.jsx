@@ -9,7 +9,7 @@ import Card from '../../components/ui/Card';
 export default function FeaturesIndex() {
   return (
     <PageWrapper title="All Features | Parapet">
-      <div className="pt-32 pb-16 bg-slate-50 min-h-screen">
+      <div className="pt-32 pb-16 bg-transparent min-h-screen">
         <div className="container">
           <SectionHeader
             eyebrow="Complete ERP"
@@ -29,7 +29,7 @@ export default function FeaturesIndex() {
                     <a
                       key={key}
                       href={`#category-${key}`}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 font-medium hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-tx-secondary font-medium hover:bg-bg-subtle hover:text-tx-primary transition-colors"
                     >
                       <Icon size={18} className="text-[#C58A38]" />
                       {category.title}
@@ -46,12 +46,12 @@ export default function FeaturesIndex() {
                 return (
                   <section key={key} id={`category-${key}`} className="scroll-mt-32">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center">
-                        <Icon size={20} className="text-slate-700" />
+                      <div className="w-10 h-10 rounded-lg bg-bd-subtle flex items-center justify-center">
+                        <Icon size={20} className="text-tx-primary" />
                       </div>
                       <div>
-                        <h2 className="text-2xl font-bold text-slate-900">{category.title}</h2>
-                        <p className="text-slate-500">{category.description}</p>
+                        <h2 className="text-2xl font-bold text-tx-primary">{category.title}</h2>
+                        <p className="text-tx-secondary font-medium">{category.description}</p>
                       </div>
                     </div>
 
@@ -67,10 +67,10 @@ export default function FeaturesIndex() {
                             className="p-8 h-full relative overflow-hidden"
                           >
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#C58A38]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#C58A38] transition-colors">
+                            <h3 className="text-xl font-bold text-tx-primary mb-3 group-hover:text-[#C58A38] transition-colors">
                               {feature.title}
                             </h3>
-                            <p className="text-slate-600 leading-relaxed">
+                            <p className="text-tx-primary leading-relaxed">
                               {feature.description}
                             </p>
                           </Card>

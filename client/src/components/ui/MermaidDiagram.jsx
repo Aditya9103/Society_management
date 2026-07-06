@@ -39,17 +39,17 @@ export default function MermaidDiagram({ chart, className }) {
 
   useEffect(() => {
     if (!chart || !containerRef.current) return;
-    
+
     let isMounted = true;
-    
+
     const renderChart = async () => {
       try {
         setHasError(false);
         // Generate a unique ID to prevent conflicts when multiple diagrams mount
         const id = `mermaid-svg-${Math.random().toString(36).substring(2, 9)}`;
-        
+
         const { svg } = await mermaid.render(id, chart);
-        
+
         if (isMounted) {
           setSvgContent(svg);
         }
@@ -60,9 +60,9 @@ export default function MermaidDiagram({ chart, className }) {
         }
       }
     };
-    
+
     renderChart();
-    
+
     return () => {
       isMounted = false;
     };
@@ -77,7 +77,7 @@ export default function MermaidDiagram({ chart, className }) {
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={cn("w-full overflow-x-auto flex justify-center items-center py-6", className)}
       dangerouslySetInnerHTML={{ __html: svgContent }}

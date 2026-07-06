@@ -61,17 +61,17 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-[var(--ink)]/95 backdrop-blur-lg border-b border-[var(--line-dark)] py-3 shadow-[0_4px_32px_rgba(0,0,0,0.4)]'
+            ? 'bg-white/90 backdrop-blur-md border-b border-bd-subtle py-3 shadow-sm'
             : 'bg-transparent py-5'
         )}
       >
         <div className="container flex items-center gap-6">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0 mr-4" aria-label="Parapet home">
-            <div className="w-8 h-8 rounded-lg bg-[var(--brass)] flex items-center justify-center shadow-[0_2px_8px_rgba(192,138,62,0.5)]">
+            <div className="w-8 h-8 rounded-lg bg-primary shadow-lg">
               <Zap size={16} className="text-white fill-white" />
             </div>
-            <span className="font-['Space_Grotesk'] font-700 text-[18px] tracking-[-0.02em] text-white">
+            <span className="font-heading font-700 text-[18px] tracking-[-0.02em] text-tx-primary">
               Parapet
             </span>
           </Link>
@@ -87,8 +87,8 @@ export default function Navbar() {
               className={cn(
                 'flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-colors',
                 megaOpen
-                  ? 'bg-white/10 text-white'
-                  : 'text-[rgba(244,245,241,0.75)] hover:text-white hover:bg-white/8'
+                  ? 'bg-bg-surface shadow-sm border border-bd-subtle text-tx-primary'
+                  : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
               )}
             >
               Features
@@ -104,8 +104,8 @@ export default function Navbar() {
                 className={({ isActive }) => cn(
                   'px-4 py-2 rounded-full text-sm font-medium transition-colors',
                   isActive
-                    ? 'text-white bg-white/10'
-                    : 'text-[rgba(244,245,241,0.75)] hover:text-white hover:bg-white/8'
+                    ? 'text-tx-primary bg-bg-surface shadow-sm border border-bd-subtle'
+                    : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
                 )}
               >
                 {item.label}
@@ -117,7 +117,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 ml-auto">
             <Link
               to="/admin/login"
-              className="text-[rgba(244,245,241,0.65)] hover:text-white text-sm transition-colors"
+              className="text-tx-secondary hover:text-tx-primary text-sm transition-colors"
             >
               Sign in
             </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden ml-auto text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden ml-auto text-tx-primary p-2 rounded-lg hover:bg-bg-surface shadow-sm border border-bd-subtle transition-colors"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
@@ -146,13 +146,13 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="absolute top-full left-0 right-0 bg-[var(--ink)]/98 backdrop-blur-xl border-b border-[var(--line-dark)] shadow-[0_24px_48px_rgba(0,0,0,0.5)]"
+              className="absolute top-full left-0 right-0 bg-white/90 backdrop-blur-md border-b border-bd-subtle shadow-lg"
             >
               <div className="container py-8">
                 <div className="flex gap-8">
                   {/* Department tabs (left sidebar) */}
-                  <div className="w-44 shrink-0 flex flex-col gap-1 border-r border-[var(--line-dark)] pr-6">
-                    <p className="mono text-[var(--brass-light)] mb-3">Departments</p>
+                  <div className="w-44 shrink-0 flex flex-col gap-1 border-r border-bd-subtle pr-6">
+                    <p className="mono text-tx-primary mb-3">Departments</p>
                     {navigation.departments.map((dept) => (
                       <button
                         key={dept.id}
@@ -161,8 +161,8 @@ export default function Navbar() {
                         className={cn(
                           'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-left transition-colors',
                           activeTab === dept.id
-                            ? 'bg-[rgba(192,138,62,0.15)] text-[var(--brass-light)]'
-                            : 'text-[rgba(244,245,241,0.65)] hover:text-white hover:bg-white/6'
+                            ? 'bg-bg-subtle text-tx-primary'
+                            : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
                         )}
                       >
                         <span>{deptIcons[dept.id]}</span>
@@ -181,7 +181,7 @@ export default function Navbar() {
                         exit={{ opacity: 0, x: -8 }}
                         transition={{ duration: 0.15 }}
                       >
-                        <p className="mono text-[var(--brass-light)] mb-4">
+                        <p className="mono text-tx-primary mb-4">
                           {activeDept?.label} Module
                         </p>
                         <div className="grid grid-cols-3 gap-2">
@@ -190,9 +190,9 @@ export default function Navbar() {
                               key={feat.slug}
                               to={`/features/${feat.slug}`}
                               onClick={() => setMegaOpen(false)}
-                              className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-[rgba(244,245,241,0.75)] hover:text-white hover:bg-white/8 transition-colors group"
+                              className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle transition-colors group"
                             >
-                              <ArrowRight size={12} className="text-[var(--brass)] opacity-0 group-hover:opacity-100 -ml-1 group-hover:ml-0 transition-all" />
+                              <ArrowRight size={12} className="text-primary opacity-0 group-hover:opacity-100 -ml-1 group-hover:ml-0 transition-all" />
                               {feat.name}
                             </Link>
                           ))}
@@ -202,11 +202,11 @@ export default function Navbar() {
                   </div>
 
                   {/* View all CTA */}
-                  <div className="w-40 shrink-0 border-l border-[var(--line-dark)] pl-6 flex flex-col justify-center gap-3">
+                  <div className="w-40 shrink-0 border-l border-bd-subtle pl-6 flex flex-col justify-center gap-3">
                     <Link
                       to="/features"
                       onClick={() => setMegaOpen(false)}
-                      className="flex items-center gap-2 text-sm text-[var(--brass-light)] hover:text-[var(--brass)] font-medium transition-colors"
+                      className="flex items-center gap-2 text-sm text-tx-primary hover:text-primary font-medium transition-colors"
                     >
                       View all features <ArrowRight size={14} />
                     </Link>

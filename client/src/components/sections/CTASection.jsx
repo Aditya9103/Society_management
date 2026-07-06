@@ -22,16 +22,16 @@ export default function CTASection({
       className={cn('section', className)}
     >
       <div className="container">
-        <div className="relative rounded-[24px] bg-[#1E293B] border border-[#334155] overflow-hidden px-8 py-16 text-center text-white">
+        <div className="relative rounded-[24px] bg-ink border border-[#334155] overflow-hidden px-8 py-16 text-center text-white">
           {/* Background gradient blobs */}
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#C58A38]/5 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Dotted border accent top */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C58A38] to-transparent opacity-50" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
 
           <div className="relative">
-            <p className="text-xs uppercase tracking-wider font-semibold text-[#E4B876] mb-4">
+            <p className="text-xs uppercase tracking-wider font-semibold text-primary-light mb-4">
               Get Started Today
             </p>
             <h2 className="text-white max-w-[540px] mx-auto mb-4">{heading}</h2>
@@ -40,7 +40,7 @@ export default function CTASection({
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button as={Link} to={primaryHref} variant="brass" size="xl">
+              <Button as={Link} to={primaryHref} variant="primary" size="xl">
                 {primaryLabel} <ArrowRight size={16} />
               </Button>
               <Button as={Link} to={secondaryHref} variant="outline-light" size="xl">

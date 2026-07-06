@@ -40,7 +40,7 @@ export default function Contact() {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+              className="text-4xl md:text-5xl font-bold text-tx-primary mb-6"
             >
               Get in <span className="text-[var(--brass)]">touch</span>.
             </motion.h1>
@@ -48,7 +48,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-slate-700 leading-relaxed font-medium"
+              className="text-xl text-tx-primary leading-relaxed font-medium"
             >
               Whether you have a question about features, pricing, or need technical support, our team is ready to answer all your questions.
             </motion.p>
@@ -63,13 +63,13 @@ export default function Contact() {
               transition={{ delay: 0.2 }}
               className="space-y-8"
             >
-              <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex gap-6">
+              <div className="bg-bg-surface rounded-3xl p-8 border border-bd-subtle shadow-sm flex gap-6">
                 <div className="w-14 h-14 bg-[var(--ink)]/5 rounded-2xl flex items-center justify-center shrink-0">
                   <MapPin className="text-[var(--ink)]" size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">Headquarters</h3>
-                  <p className="text-lg text-slate-700 leading-relaxed font-medium">
+                  <h3 className="text-xl font-bold text-tx-primary mb-2">Headquarters</h3>
+                  <p className="text-lg text-tx-primary leading-relaxed font-medium">
                     100 Feet Road, Indiranagar<br/>
                     Bengaluru, Karnataka 560038<br/>
                     India
@@ -78,23 +78,23 @@ export default function Contact() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
+                <div className="bg-bg-surface rounded-3xl p-8 border border-bd-subtle shadow-sm flex flex-col gap-4">
                   <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
                     <Phone className="text-emerald-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">Sales</h3>
-                    <a href="tel:+919876543210" className="text-lg font-medium text-slate-700 hover:text-[var(--brass)] transition-colors">+91 98765 43210</a>
+                    <h3 className="text-lg font-bold text-tx-primary mb-1">Sales</h3>
+                    <a href="tel:+919876543210" className="text-lg font-medium text-tx-primary hover:text-[var(--brass)] transition-colors">+91 98765 43210</a>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
+                <div className="bg-bg-surface rounded-3xl p-8 border border-bd-subtle shadow-sm flex flex-col gap-4">
                   <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
                     <Mail className="text-blue-600" size={20} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-1">Support</h3>
-                    <a href="mailto:support@parapet.com" className="text-lg font-medium text-slate-700 hover:text-[var(--brass)] transition-colors">support@parapet.com</a>
+                    <h3 className="text-lg font-bold text-tx-primary mb-1">Support</h3>
+                    <a href="mailto:support@parapet.com" className="text-lg font-medium text-tx-primary hover:text-[var(--brass)] transition-colors">support@parapet.com</a>
                   </div>
                 </div>
               </div>
@@ -106,19 +106,19 @@ export default function Contact() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl relative overflow-hidden"
+              className="bg-bg-surface p-8 rounded-3xl border border-bd-subtle shadow-xl relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--brass)]/5 rounded-full blur-[80px] z-0 pointer-events-none translate-x-1/3 -translate-y-1/3" />
               
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Send a Message</h2>
+              <h2 className="text-2xl font-bold text-tx-primary mb-6">Send a Message</h2>
 
               {status === 'success' ? (
                 <div className="text-center py-12 flex flex-col items-center">
                   <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle2 size={32} className="text-emerald-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
-                  <p className="text-slate-600 mb-8 max-w-xs mx-auto">
+                  <h3 className="text-2xl font-bold text-tx-primary mb-2">Message Sent!</h3>
+                  <p className="text-tx-primary mb-8 max-w-xs mx-auto">
                     Thanks for reaching out. We'll get back to you within 24 hours.
                   </p>
                   <Button variant="outline" onClick={() => setStatus('idle')}>
@@ -128,20 +128,20 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Full Name *</label>
+                    <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Full Name *</label>
                     <input
                       type="text"
                       {...register('name', { required: 'Name is required' })}
                       className={cn(
-                        "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none",
-                        errors.name ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                        "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
+                        errors.name ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-bd-subtle focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
                       )}
                     />
                     {errors.name && <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium">{errors.name.message}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Email Address *</label>
+                    <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Email Address *</label>
                     <input
                       type="email"
                       {...register('email', { 
@@ -149,39 +149,39 @@ export default function Contact() {
                         pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "invalid email" }
                       })}
                       className={cn(
-                        "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none",
-                        errors.email ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                        "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
+                        errors.email ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-bd-subtle focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
                       )}
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium">{errors.email.message}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Phone Number (Optional)</label>
+                    <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Phone Number (Optional)</label>
                     <input
                       type="tel"
                       {...register('phone')}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Society Name (Optional)</label>
+                    <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Society Name (Optional)</label>
                     <input
                       type="text"
                       {...register('societyName')}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Message *</label>
+                    <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Message *</label>
                     <textarea
                       rows={4}
                       {...register('message', { required: 'Message is required' })}
                       className={cn(
-                        "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none resize-none",
-                        errors.message ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                        "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none resize-none",
+                        errors.message ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" : "border-bd-subtle focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
                       )}
                     />
                     {errors.message && <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium">{errors.message.message}</p>}

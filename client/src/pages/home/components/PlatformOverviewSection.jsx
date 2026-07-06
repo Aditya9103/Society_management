@@ -3,7 +3,7 @@ import ModuleGrid from '../../../components/sections/ModuleGrid';
 
 export default function PlatformOverviewSection() {
   return (
-    <section className="relative overflow-hidden border-y border-slate-200/60 bg-white py-24 lg:py-32">
+    <section className="relative overflow-hidden border-y border-bd-subtle/60 bg-transparent py-24 lg:py-32">
       {/* Faint blueprint grid, ties back to hero without competing */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"

@@ -40,12 +40,12 @@ export default function BookDemo() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
             {/* Left Column: Value Prop */}
-            <div className="text-white pt-8 lg:pt-0">
+            <div className="text-tx-primary pt-8 lg:pt-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-sm font-medium text-[var(--brass-light)] mb-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-md border border-white/10 text-sm font-medium text-[var(--brass-light)] mb-8">
                   <Zap size={14} className="fill-[var(--brass-light)]" />
                   Free 30-Minute Consultation
                 </div>
@@ -55,7 +55,7 @@ export default function BookDemo() {
                   <span className="text-[var(--brass)]">action</span>.
                 </h1>
 
-                <p className="text-xl text-slate-300 mb-12 max-w-lg leading-relaxed font-medium">
+                <p className="text-xl text-tx-primary mb-12 max-w-lg leading-relaxed font-medium">
                   Join 500+ premium societies running their operations on autopilot. Book a demo to see how we can digitize your entire society management.
                 </p>
 
@@ -74,8 +74,8 @@ export default function BookDemo() {
                           <Icon size={24} className="text-[var(--brass-light)]" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-1.5">{feat.title}</h3>
-                          <p className="text-slate-300 leading-relaxed font-medium">{feat.desc}</p>
+                          <h3 className="text-xl font-bold text-tx-primary mb-1.5">{feat.title}</h3>
+                          <p className="text-tx-primary leading-relaxed font-medium">{feat.desc}</p>
                         </div>
                       </motion.div>
                     );

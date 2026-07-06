@@ -9,7 +9,7 @@ export function AccordionItem({ question, answer, dark = false }) {
   return (
     <div className={cn(
       'border-b last:border-b-0 transition-colors duration-300',
-      dark ? 'border-[#334155]/60' : 'border-slate-200/60'
+      dark ? 'border-[#334155]/60' : 'border-bd-subtle/60'
     )}>
       <button
         onClick={() => setOpen((o) => !o)}
@@ -18,15 +18,15 @@ export function AccordionItem({ question, answer, dark = false }) {
           'w-full flex items-center justify-between gap-4 py-6 text-left',
           'font-semibold text-[16px] transition-colors',
           dark
-            ? 'text-white hover:text-[#C58A38]'
-            : 'text-slate-900 hover:text-[#C58A38]'
+            ? 'text-white hover:text-primary'
+            : 'text-tx-primary hover:text-primary'
         )}
       >
         <span>{question}</span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.25, ease: 'easeInOut' }}
-          className="shrink-0 text-[#C58A38]"
+          className="shrink-0 text-primary"
         >
           <ChevronDown size={18} />
         </motion.span>
@@ -44,7 +44,7 @@ export function AccordionItem({ question, answer, dark = false }) {
           >
             <p className={cn(
               'pb-6 text-[15px] leading-relaxed',
-              dark ? 'text-slate-300' : 'text-slate-600'
+              dark ? 'text-tx-primary' : 'text-tx-primary'
             )}>
               {answer}
             </p>
@@ -59,7 +59,7 @@ export default function Accordion({ items = [], dark = false, className = '' }) 
   return (
     <div className={cn(
       'rounded-2xl overflow-hidden transition-all duration-300',
-      dark ? 'bg-[#1E293B]/80 backdrop-blur-xl px-8 shadow-xl shadow-slate-900/20' : 'bg-white/60 backdrop-blur-xl border border-slate-200/60 px-8 shadow-lg shadow-slate-200/40',
+      dark ? 'bg-ink/80 backdrop-blur-xl px-8 shadow-xl shadow-slate-900/20' : 'bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl border border-bd-subtle/60 px-8 shadow-lg shadow-slate-200/40',
       className
     )}>
       {items.map((item, i) => (

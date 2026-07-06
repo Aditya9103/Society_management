@@ -47,13 +47,13 @@ export default function SectionHeader({
           className={cn('mb-4 flex items-center gap-2', justifyClass[align])}
         >
           <span
-            className={cn('h-px w-6', dark ? 'bg-[#E4B876]/50' : 'bg-[#C58A38]/50')}
+            className={cn('h-px w-6', dark ? 'bg-primary-light/50' : 'bg-primary/50')}
             aria-hidden="true"
           />
           <p
             className={cn(
               'text-sm font-semibold uppercase tracking-wider',
-              dark ? 'text-[#E4B876]' : 'text-[#C58A38]'
+              dark ? 'text-primary-light' : 'text-primary'
             )}
           >
             {eyebrow}
@@ -65,7 +65,7 @@ export default function SectionHeader({
         variants={childVariants}
         className={cn(
           'text-[28px] font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[44px]',
-          dark ? 'text-white' : 'text-slate-900'
+          dark ? 'text-white' : 'text-tx-primary'
         )}
       >
         {heading}

@@ -53,24 +53,24 @@ export default function LeadForm({ source = 'book-demo', className }) {
   return (
     <form 
       onSubmit={handleSubmit(onSubmit)} 
-      className={cn("bg-white/80 backdrop-blur-xl border border-slate-200/60 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 relative overflow-hidden", className)}
+      className={cn("bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl border border-bd-subtle/60 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 relative overflow-hidden", className)}
     >
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#C58A38]/5 rounded-full blur-[80px] z-0 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] z-0 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
       
       <div className="space-y-4">
         {/* Row 1: Name & Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Full Name *</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Full Name *</label>
             <input
               type="text"
               placeholder="Jane Doe"
               {...register('name', { required: 'Name is required' })}
               className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none",
+                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
                 errors.name 
                   ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
               )}
             />
             <AnimatePresence>
@@ -83,7 +83,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Work Email *</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Work Email *</label>
             <input
               type="email"
               placeholder="jane@society.com"
@@ -95,10 +95,10 @@ export default function LeadForm({ source = 'book-demo', className }) {
                 }
               })}
               className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none",
+                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
                 errors.workEmail 
                   ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
               )}
             />
             <AnimatePresence>
@@ -114,16 +114,16 @@ export default function LeadForm({ source = 'book-demo', className }) {
         {/* Row 2: Society & Phone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Society Name *</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Society Name *</label>
             <input
               type="text"
               placeholder="Lotus Panache"
               {...register('societyName', { required: 'Society Name is required' })}
               className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white transition-all outline-none",
+                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
                 errors.societyName 
                   ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-slate-200 focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10"
+                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
               )}
             />
             <AnimatePresence>
@@ -136,12 +136,12 @@ export default function LeadForm({ source = 'book-demo', className }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Phone Number (Optional)</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Phone Number (Optional)</label>
             <input
               type="tel"
               placeholder="+91 98765 43210"
               {...register('phone')}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none"
             />
           </div>
         </div>
@@ -149,10 +149,10 @@ export default function LeadForm({ source = 'book-demo', className }) {
         {/* Row 3: Units & Date */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Total Units</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Total Units</label>
             <select
               {...register('unitCount')}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none appearance-none"
+              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none appearance-none"
             >
               <option value="">Select size...</option>
               <option value="50">1 - 50</option>
@@ -163,11 +163,11 @@ export default function LeadForm({ source = 'book-demo', className }) {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Preferred Date</label>
+            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Preferred Date</label>
             <input
               type="date"
               {...register('preferredDate')}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#C58A38] focus:ring-4 focus:ring-[#C58A38]/10 transition-all outline-none text-slate-700"
+              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-tx-primary"
             />
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
         type="submit" 
         variant="brass" 
         size="lg" 
-        className="w-full relative shadow-lg shadow-[#C58A38]/20"
+        className="w-full relative shadow-lg shadow-primary/20"
         disabled={isLoading}
       >
         {isLoading ? (
@@ -205,7 +205,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
         {isLoading && <span className="absolute inset-0 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin" /></span>}
       </Button>
 
-      <p className="text-center text-xs font-medium text-slate-400 mt-4">
+      <p className="text-center text-xs font-medium text-tx-secondary font-medium mt-4">
         By submitting, you agree to our Privacy Policy and Terms of Service.
       </p>
     </form>

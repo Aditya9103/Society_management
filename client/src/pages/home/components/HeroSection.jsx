@@ -48,10 +48,10 @@ function StatCounter({ end, suffix = '', label }) {
   }, [end]);
   return (
     <div className="text-center">
-      <p className="font-['IBM_Plex_Mono'] font-bold text-[32px] leading-none text-white">
+      <p className="font-mono font-bold text-[32px] leading-none text-tx-primary">
         {count.toLocaleString('en-IN')}{suffix}
       </p>
-      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[rgba(244,245,241,0.5)]">
+      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-tx-secondary font-medium">
         {label}
       </p>
     </div>
@@ -81,7 +81,7 @@ function TiltPanel({ children }) {
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      className="relative overflow-hidden rounded-[32px] border border-slate-700/60 bg-gradient-to-br from-slate-800/90 to-slate-900 shadow-[0_40px_120px_rgba(0,0,0,0.65)] backdrop-blur-2xl"
+      className="relative overflow-hidden rounded-[32px] border border-white/40 bg-gradient-to-br from-white/80 to-white/40 shadow-[0_40px_120px_rgba(0,0,0,0.1)] backdrop-blur-2xl"
     >
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-70"
@@ -100,37 +100,9 @@ function TiltPanel({ children }) {
 export default function HeroSection() {
   return (
     <section
-      className="relative flex min-h-screen items-center overflow-hidden bg-slate-900 pt-12 pb-20 text-white lg:pt-16 lg:pb-24"
+      className="relative flex min-h-screen items-center overflow-hidden bg-transparent pt-12 pb-20  lg:pt-16 lg:pb-24"
       aria-labelledby="hero-heading"
     >
-      {/* Animated gradient mesh */}
-      <motion.div
-        className="pointer-events-none absolute top-10 left-0 h-[30rem] w-[30rem] rounded-full bg-[rgba(197,138,56,0.08)] blur-[130px]"
-        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="pointer-events-none absolute bottom-0 right-0 h-[26rem] w-[26rem] rounded-full bg-[rgba(47,158,110,0.06)] blur-[120px]"
-        animate={{ x: [0, -30, 0], y: [0, -20, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="pointer-events-none absolute top-1/3 right-1/4 h-72 w-72 rounded-full bg-[rgba(59,130,246,0.05)] blur-[110px]"
-        animate={{ x: [0, 20, 0], y: [0, 25, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Blueprint grid overlay */}
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(192,138,62,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(192,138,62,0.06) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-        }}
-      />
-
       <div className="container relative z-10 px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left: copy */}
@@ -145,7 +117,7 @@ export default function HeroSection() {
               <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                 <Link
                   to="/features"
-                  className="group inline-flex items-center gap-3.5 rounded-full border border-[#D4A35B]/20 bg-white/5 p-1.5 pr-5 backdrop-blur-xl transition-all duration-300 hover:border-[#D4A35B]/40 hover:bg-white/10 hover:shadow-[0_8px_32px_rgba(197,138,56,0.15)]"
+                  className="group inline-flex items-center gap-3.5 rounded-full border border-[#D4A35B]/20 bg-slate-900/5 p-1.5 pr-5 backdrop-blur-xl transition-all duration-300 hover:border-[#D4A35B]/40 hover:bg-slate-900/10 hover:shadow-[0_8px_32px_rgba(197,138,56,0.15)]"
                 >
                   <span className="inline-flex items-center gap-2 rounded-full bg-[#D4A35B]/20 px-3 py-1">
                     <span className="relative flex h-1.5 w-1.5">
@@ -156,7 +128,7 @@ export default function HeroSection() {
                       LIVE
                     </span>
                   </span>
-                  <span className="text-sm font-medium text-slate-300 transition-colors duration-300 group-hover:text-white">
+                  <span className="text-sm font-medium text-tx-primary transition-colors duration-300 group-hover:text-tx-primary">
                     Enterprise Society ERP
                     <span className="mx-2 select-none text-[#D4A35B]/60">•</span>
                     PWA
@@ -168,14 +140,14 @@ export default function HeroSection() {
 
             {/* Heading + subhead */}
             <motion.div variants={fadeUp} className="space-y-5">
-              <h1 id="hero-heading" className="text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
+              <h1 id="hero-heading" className="text-4xl font-bold leading-[1.05] tracking-tight text-tx-primary sm:text-5xl lg:text-[3.4rem]">
                 <span className="block">Run Your Entire</span>
                 <span className="block bg-gradient-to-r from-[#E4B876] via-[#D4A35B] to-[#C58A38] bg-clip-text text-transparent">
                   Housing Society
                 </span>
                 <span className="block">From One Intelligent Platform</span>
               </h1>
-              <p className="max-w-md text-base leading-relaxed text-slate-400 sm:text-lg">
+              <p className="max-w-md text-base leading-relaxed text-tx-primary sm:text-lg">
                 Billing, visitor entry, complaints, and communication — unified
                 in one platform your committee and residents actually use.
               </p>
@@ -200,11 +172,11 @@ export default function HeroSection() {
               <Button
                 as={Link}
                 to="/features"
-                variant="outline-light"
+                variant="outline"
                 size="xl"
-                className="group justify-center backdrop-blur-md hover:scale-[1.03] hover:border-white/50 hover:bg-white/15 active:scale-[0.98] sm:min-w-[220px]"
+                className="group justify-center backdrop-blur-md hover:scale-[1.03] hover:bg-bg-surface shadow-sm border border-bd-subtle active:scale-[0.98] sm:min-w-[220px]"
               >
-                <Play size={16} className="fill-white transition-transform duration-300 group-hover:scale-110" />
+                <Play size={16} className="fill-slate-900 transition-transform duration-300 group-hover:scale-110" />
                 Watch Product Tour
               </Button>
             </motion.div>
@@ -212,7 +184,7 @@ export default function HeroSection() {
             {/* Features — staggered individually */}
             <motion.div
               variants={fadeUp}
-              className="border-t border-white/10 pt-8"
+              className="border-t border-bd-subtle pt-8"
             >
               <motion.div
                 variants={staggerGrid}
@@ -226,28 +198,12 @@ export default function HeroSection() {
                       <Icon className={`h-5 w-5 ${iconColor}`} />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">{title}</p>
-                      <p className="text-sm text-slate-400">{desc}</p>
+                      <p className="text-sm font-semibold text-tx-primary">{title}</p>
+                      <p className="text-sm text-tx-primary">{desc}</p>
                     </div>
                   </motion.div>
                 ))}
               </motion.div>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div variants={fadeUp} className="grid grid-cols-3 gap-4 sm:gap-5">
-              {[
-                { end: 500, suffix: '+', label: 'Societies' },
-                { end: 80000, suffix: '+', label: 'Residents' },
-                { end: 2, suffix: ' Days', label: 'Deployment' },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="group rounded-2xl border border-slate-700/60 bg-white/5 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#D4A35B]/40 hover:bg-white/[0.07]"
-                >
-                  <StatCounter {...stat} />
-                </div>
-              ))}
             </motion.div>
           </motion.div>
 
@@ -269,7 +225,7 @@ export default function HeroSection() {
 
       {/* Scroll cue */}
       <motion.div
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-slate-500 lg:flex"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-tx-secondary font-medium lg:flex"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >

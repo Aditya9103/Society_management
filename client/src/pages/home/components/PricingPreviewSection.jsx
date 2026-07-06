@@ -5,7 +5,7 @@ import PricingTable from '../../../components/sections/PricingTable';
 
 export default function PricingPreviewSection() {
   return (
-    <section className="py-32 lg:py-40 bg-white border-y border-slate-200/60">
+    <section className="py-32 lg:py-40 bg-transparent border-y border-bd-subtle/60">
       <div className="container">
         <SectionHeader
           eyebrow="Transparent Pricing"

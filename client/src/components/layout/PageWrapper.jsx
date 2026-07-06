@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { Background } from '../ui/backgrounds/Background';
 
 export default function PageWrapper({
   children,
@@ -24,9 +25,11 @@ export default function PageWrapper({
         <meta name="twitter:description" content={description} />
       </Helmet>
       <Navbar />
-      <main id="main-content" tabIndex={-1}>
-        {children}
-      </main>
+      <Background>
+        <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col">
+          {children}
+        </main>
+      </Background>
       <Footer />
     </>
   );

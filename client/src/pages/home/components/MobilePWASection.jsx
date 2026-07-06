@@ -12,7 +12,7 @@ const mobileFeatures = [
 
 export default function MobilePWASection() {
   return (
-    <section className="py-32 lg:py-40 bg-slate-50">
+    <section className="py-32 lg:py-40 bg-transparent">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: phone mockup */}
@@ -24,12 +24,12 @@ export default function MobilePWASection() {
             className="relative flex justify-center gap-4"
           >
             {/* Resident App mockup */}
-            <div className="relative w-52 h-[420px] rounded-[36px] bg-slate-900 border-[6px] border-slate-800 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col z-10">
-              <div className="bg-slate-800 px-5 py-4 border-b border-slate-700/50">
+            <div className="relative w-52 h-[420px] rounded-[36px] bg-bg-inverted border-[6px] border-bd-subtle/10 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col z-10">
+              <div className="bg-bg-inverted/90 px-5 py-4 border-b border-bd-subtle/50">
                 <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#E4B876]">Resident App</p>
               </div>
               {/* Fake app content */}
-              <div className="p-4 space-y-3 flex-1 bg-slate-900/50">
+              <div className="p-4 space-y-3 flex-1 bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl shadow-lg border-white/50">
                 {[['Visitor arrived', '#2F9E6E'], ['Bill paid ₹3,200', '#C08A3E'], ['Ticket #041 closed', '#C08A3E'], ['SOS cleared', '#2F9E6E']].map(([text, color]) => (
                   <div key={text} className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
                     <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
@@ -45,11 +45,11 @@ export default function MobilePWASection() {
             </div>
 
             {/* Guard App mockup */}
-            <div className="relative w-48 h-[340px] mt-12 -ml-8 rounded-[32px] bg-slate-800 border-[6px] border-slate-700 shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col z-20">
-              <div className="bg-slate-900 px-5 py-4 border-b border-slate-700/50">
+            <div className="relative w-48 h-[340px] mt-12 -ml-8 rounded-[32px] bg-bg-inverted/90 border-[6px] border-bd-subtle shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col z-20">
+              <div className="bg-bg-inverted px-5 py-4 border-b border-bd-subtle/50">
                 <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#E4B876]">Guard App</p>
               </div>
-              <div className="p-4 space-y-3 flex-1 bg-slate-800/50">
+              <div className="p-4 space-y-3 flex-1 bg-bg-surface shadow-sm border border-bd-subtle">
                 <div className="bg-[#C58A38]/10 rounded-2xl p-4 border border-[#C58A38]/20 backdrop-blur-sm">
                   <QrCode size={32} className="text-[var(--brass-light)] mx-auto mb-1" />
                   <p className="text-center font-mono text-[9px] text-[var(--brass-light)] uppercase tracking-[0.1em]">Scan QR</p>
@@ -83,14 +83,14 @@ export default function MobilePWASection() {
             <h2 className="mb-6 text-4xl lg:text-5xl font-bold leading-tight">
               No App Store required.<br />Install it like any website.
             </h2>
-            <p className="text-[18px] text-slate-500 leading-relaxed mb-10">
+            <p className="text-[18px] text-tx-secondary font-medium leading-relaxed mb-10">
               Parapet is a Progressive Web App — residents and guards install it directly from their browser. No waiting for App Store approvals. Updates ship instantly to every device.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-10">
               {mobileFeatures.map((f) => (
-                <div key={f.label} className="flex items-center gap-3 text-[15px] font-medium text-slate-800">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-[#C58A38] shadow-sm">
+                <div key={f.label} className="flex items-center gap-3 text-[15px] font-medium text-tx-secondary font-medium">
+                  <div className="w-10 h-10 rounded-xl bg-bg-subtle flex items-center justify-center text-[#C58A38] shadow-sm">
                     {f.icon}
                   </div>
                   {f.label}

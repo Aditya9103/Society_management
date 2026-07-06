@@ -3,30 +3,35 @@
 @import "tailwindcss";
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
-:root {
-  --ink: #1E293B;
-  /* slate-800 */
-  --ink-2: #3b485b;
-  /* slate-700 */
-  --paper: #F8FAFC;
-  /* slate-50 */
-  --paper-2: #F1F5F9;
-  /* slate-100 */
-  --white: #FFFFFF;
-  --brass: #C58A38;
-  --brass-light: #E4B876;
-  --teal: #10B981;
-  /* emerald-500 */
-  --alert: #EF4444;
-  /* red-500 */
-  --text: #0F172A;
-  /* slate-900 */
-  --text-muted: #64748B;
-  /* slate-500 */
-  --line: #cedcee;
-  /* slate-200 */
-  --line-dark: #475569;
-  /* slate-600 */
+@theme {
+  /* Core Colors */
+  --color-primary: #2563EB; /* Vibrant Blue 600 */
+  --color-primary-light: #60A5FA; /* Blue 400 */
+  --color-primary-dark: #1D4ED8; /* Blue 700 */
+
+  --color-success: #10B981; /* Emerald 500 */
+  --color-alert: #EF4444; /* Red 500 */
+
+  /* Semantic Centralized Theme Variables */
+  --color-bg-app: #F8FAFC;       /* App Background (slate-50) */
+  --color-bg-surface: #FFFFFF;   /* Cards/Modals (white) */
+  --color-bg-subtle: #F1F5F9;    /* Hover States (slate-100) */
+  
+  --color-tx-primary: #0F172A;   /* Main Text/Headings (slate-900) */
+  --color-tx-secondary: #475569; /* Body Text (slate-600) */
+  --color-tx-muted: #64748B;     /* Icons/Meta (slate-500) */
+  
+  --color-bd-subtle: #E2E8F0;    /* Card Borders (slate-200) */
+  --color-bd-strong: #CBD5E1;    /* Divider/Input Borders (slate-300) */
+
+  /* Inverted Theme (Dark components in light mode) */
+  --color-bg-inverted: #0F172A;  /* slate-900 */
+  --color-tx-inverted: #FFFFFF;  /* white */
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Inter', system-ui, monospace;
 
   /* Layout */
   --container: 1180px;
@@ -81,11 +86,11 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.6;
-    color: var(--text);
-    background: var(--paper);
+    color: var(--color-tx-secondary);
+    background: var(--color-bg-app);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -97,10 +102,11 @@
   h4,
   h5,
   h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.15;
-    color: inherit;
+    color: var(--color-tx-primary);
+    letter-spacing: -0.02em;
   }
 
   h1 {
@@ -117,7 +123,7 @@
 
   /* ─── Focus ring ────────────────────────────────────────────── */
   :focus-visible {
-    outline: 2px solid var(--brass);
+    outline: 2px solid var(--color-primary);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -150,7 +156,7 @@
 
   /* ─── Selection ─────────────────────────────────────────────── */
   ::selection {
-    background: var(--brass);
+    background: var(--color-primary);
     color: white;
   }
 }
@@ -159,7 +165,7 @@
 
   .mono,
   .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono), monospace;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 11px;
@@ -181,18 +187,38 @@
 
   /* ─── Surface colors ────────────────────────────────────────── */
   .bg-ink {
-    background-color: var(--ink);
+    background-color: var(--color-ink);
   }
 
   .bg-ink-2 {
-    background-color: var(--ink-2);
+    background-color: var(--color-ink-light);
   }
 
   .bg-paper {
-    background-color: var(--paper);
+    background-color: var(--color-paper);
   }
 
   .bg-paper-2 {
-    background-color: var(--paper-2);
+    background-color: var(--color-paper-dark);
+  }
+
+  /* ─── Background Patterns ───────────────────────────────────── */
+  .bg-standard-dots {
+    background-image: radial-gradient(var(--color-bd-strong) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 }

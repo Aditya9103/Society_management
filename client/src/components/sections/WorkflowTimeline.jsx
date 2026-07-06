@@ -69,7 +69,7 @@ function WorkflowColumn({ eyebrow, title, steps, color, isFirst }) {
             {eyebrow}
           </p>
         </div>
-        <h3 className="text-[22px] font-bold leading-tight text-white">{title}</h3>
+        <h3 className="text-[22px] font-bold leading-tight text-tx-primary">{title}</h3>
       </div>
 
       {/* Steps */}
@@ -108,8 +108,8 @@ function WorkflowColumn({ eyebrow, title, steps, color, isFirst }) {
 
             {/* Step content */}
             <div>
-              <p className="mb-1.5 text-[16px] font-bold leading-tight text-white">{step.label}</p>
-              <p className="text-[14px] leading-relaxed text-slate-400">{step.detail}</p>
+              <p className="mb-1.5 text-[16px] font-bold leading-tight text-tx-primary">{step.label}</p>
+              <p className="text-[14px] leading-relaxed text-tx-secondary font-medium">{step.detail}</p>
             </div>
           </motion.div>
         ))}

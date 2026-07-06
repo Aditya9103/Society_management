@@ -51,7 +51,7 @@ export default function Register() {
           </div>
 
           {/* Registration Card */}
-          <div className="bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 relative overflow-hidden">
+          <div className="bg-bg-surface rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-bd-subtle relative overflow-hidden">
             {/* Top decorative gradient */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--brass)] to-[var(--brass-light)]" />
 
@@ -72,54 +72,54 @@ export default function Register() {
             <form onSubmit={handleSubmit} className="space-y-5">
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-slate-700">Full Name</label>
+                <label className="text-sm font-bold text-tx-secondary font-medium">Full Name</label>
                 <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     autoComplete="name"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-slate-400"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
                     placeholder="Jane Doe"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-slate-700">Work Email</label>
+                <label className="text-sm font-bold text-tx-secondary font-medium">Work Email</label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     autoComplete="username"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-slate-400"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
                     placeholder="admin@parapet.com"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-slate-700">Secure Password</label>
+                <label className="text-sm font-bold text-tx-secondary font-medium">Secure Password</label>
                 <div className="relative">
-                  <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
                   <input
                     type={showPassword ? "text" : "password"}
                     required
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     autoComplete="new-password"
-                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-slate-400"
+                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-tx-muted hover:text-tx-secondary transition-colors"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -127,23 +127,23 @@ export default function Register() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-slate-700">Setup Secret Key</label>
-                <p className="text-xs text-slate-500 mb-2">Check your .env file for ADMIN_REGISTRATION_SECRET</p>
+                <label className="text-sm font-bold text-tx-secondary font-medium">Setup Secret Key</label>
+                <p className="text-xs text-tx-muted mb-2">Check your .env file for ADMIN_REGISTRATION_SECRET</p>
                 <div className="relative">
-                  <Shield className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <Shield className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
                   <input
                     type={showSecret ? "text" : "password"}
                     required
                     value={formData.secretKey}
                     onChange={(e) => setFormData({ ...formData, secretKey: e.target.value })}
                     autoComplete="off"
-                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-slate-400 mono text-sm"
+                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted mono text-sm"
                     placeholder="Secret Key"
                   />
                   <button
                     type="button"
                     onClick={() => setShowSecret(!showSecret)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-tx-muted hover:text-tx-secondary transition-colors"
                   >
                     {showSecret ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -169,7 +169,7 @@ export default function Register() {
             </form>
 
             <div className="mt-8 text-center">
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm font-medium text-tx-muted">
                 Already have access? <Link to="/admin/login" className="text-[var(--brass)] font-bold hover:underline">Sign In</Link>
               </p>
             </div>
