@@ -3,7 +3,7 @@ import TestimonialGrid from '../../../components/sections/TestimonialGrid';
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-32 lg:py-40 bg-transparent border-y border-bd-subtle/60">
+    <section className="py-32 lg:py-40 bg-[var(--surface-light)] border-y border-[var(--line-on-light)] text-[var(--text-on-light)]">
       <div className="container">
         <SectionHeader
           eyebrow="Customer Stories"

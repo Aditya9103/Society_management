@@ -33,12 +33,12 @@ export default function SecurityStrip() {
         <motion.div
           key={item.label}
           variants={itemVariants}
-          className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl border border-bd-subtle/50 bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl hover:bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-lg shadow-md hover:border-primary/50 hover:shadow-lg shadow-black/20 transition-all duration-300"
+          className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl border border-[var(--line-on-dark)] bg-[var(--surface-dark-raised)] shadow-[var(--shadow-dark-panel)] hover:bg-white/5 hover:border-[var(--text-on-dark-muted)] transition-all duration-300"
         >
-          <div className="text-primary-light bg-primary/10 p-3 rounded-xl">{item.icon}</div>
+          <div className="text-[var(--accent)] bg-white/5 border border-[var(--line-on-dark)] p-3 rounded-xl">{item.icon}</div>
           <div>
-            <p className="text-tx-primary font-bold text-[14px] leading-tight mb-1">{item.label}</p>
-            <p className="text-tx-secondary font-medium text-[12px]">{item.detail}</p>
+            <p className="text-[var(--text-on-dark)] font-bold text-[14px] leading-tight mb-1">{item.label}</p>
+            <p className="text-[var(--text-on-dark-muted)] font-medium text-[12px]">{item.detail}</p>
           </div>
         </motion.div>
       ))}

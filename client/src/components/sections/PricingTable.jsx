@@ -84,8 +84,8 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
       className={cn(
         'relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300',
         highlighted
-          ? 'bg-bg-inverted border-primary shadow-2xl shadow-primary/20 scale-105 z-10'
-          : 'bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl border-bd-subtle/60 shadow-lg shadow-slate-200/40 hover:shadow-xl hover:-translate-y-1'
+          ? 'bg-[var(--surface-dark-deepest)] border-primary shadow-2xl shadow-primary/20 scale-105 z-10'
+          : 'bg-white shadow-sm border-[var(--line-on-light)] backdrop-blur-xl border-[var(--line-on-light)]/60 shadow-lg shadow-slate-200/40 hover:shadow-xl hover:-translate-y-1'
       )}
     >
       {highlighted && (
@@ -108,14 +108,14 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
         {/* Price */}
         {displayPrice ? (
           <div className="mb-2">
-            <span className={`font-mono font-bold text-[44px] tracking-tight ${highlighted ? 'text-white' : 'text-tx-primary'}`}>
+            <span className={`font-mono font-bold text-[44px] tracking-tight ${highlighted ? 'text-white' : 'text-[var(--text-on-light)]'}`}>
               ₹{displayPrice.toLocaleString('en-IN')}
             </span>
-            <span className={`text-[15px] ml-1 font-medium ${highlighted ? 'text-tx-secondary font-medium' : 'text-tx-secondary font-medium'}`}>/month</span>
+            <span className={`text-[15px] ml-1 font-medium ${highlighted ? 'text-[var(--text-on-dark-muted)]' : 'text-[var(--text-on-light-muted)]'}`}>/month</span>
           </div>
         ) : (
           <div className="mb-2">
-            <span className={`font-heading font-bold text-[32px] ${highlighted ? 'text-white' : 'text-tx-primary'}`}>
+            <span className={`font-heading font-bold text-[32px] ${highlighted ? 'text-white' : 'text-[var(--text-on-light)]'}`}>
               Custom Pricing
             </span>
           </div>
@@ -130,7 +130,7 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
           {unitLimit}
         </p>
 
-        <p className={`text-[15px] leading-relaxed mb-8 ${highlighted ? 'text-tx-primary' : 'text-tx-primary'}`}>
+        <p className={`text-[15px] leading-relaxed mb-8 ${highlighted ? 'text-[var(--text-on-dark-muted)]' : 'text-[var(--text-on-light-muted)]'}`}>
           {description}
         </p>
 
@@ -141,7 +141,7 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
               <div className={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${highlighted ? 'bg-emerald-500/20' : 'bg-emerald-500/15'}`}>
                 <Check size={12} className="text-emerald-500" />
               </div>
-              <span className={`text-[14px] font-medium ${highlighted ? 'text-bd-subtle' : 'text-tx-primary'}`}>{f}</span>
+              <span className={`text-[14px] font-medium ${highlighted ? 'text-[var(--text-on-dark)]' : 'text-[var(--text-on-light)]'}`}>{f}</span>
             </li>
           ))}
         </ul>

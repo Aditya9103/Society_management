@@ -3,7 +3,7 @@ import ModuleGrid from '../../../components/sections/ModuleGrid';
 
 export default function PlatformOverviewSection() {
   return (
-    <section className="relative overflow-hidden border-y border-bd-subtle/60 bg-transparent py-24 lg:py-32">
+    <section className="relative overflow-hidden border-y border-[var(--line-on-dark)] bg-surface-dark bp-grid-dark py-24 lg:py-32 text-text-primary-on-dark">
       {/* Faint blueprint grid, ties back to hero without competing */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"
@@ -15,13 +15,14 @@ export default function PlatformOverviewSection() {
         }}
       />
 
-      <div className="container relative px-6 lg:px-8">
+      <div className="container relative z-10 px-6 lg:px-8">
         <SectionHeader
           eyebrow="Platform Overview"
           heading="Six modules. One platform. Zero context-switching."
           subtext="Every department in your society has a dedicated module — built together so data flows seamlessly across security, finance, maintenance, and more."
           align="center"
           maxWidth="620px"
+          dark={true}
         />
         <ModuleGrid />
       </div>

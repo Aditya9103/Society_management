@@ -7,7 +7,7 @@ function StatBadge({ value, label, x, y }) {
     <g transform={`translate(${x}, ${y})`}>
       <rect x="0" y="0" width="130" height="38" rx="6"
         fill="rgba(16,24,43,0.85)" stroke="rgba(192,138,62,0.35)" strokeWidth="1" />
-      <text x="10" y="13" fill="#E4B876" fontSize="8" fontFamily="IBM Plex Mono"
+      <text x="10" y="13" fill="var(--accent)" fontSize="8" fontFamily="IBM Plex Mono"
         letterSpacing="1" fontWeight="600">
         {label.toUpperCase()}
       </text>
@@ -25,36 +25,37 @@ function QRRing({ cx, cy, reduced }) {
       {/* Outer pulsing ring */}
       {!reduced && (
         <motion.circle
-          cx={cx} cy={cy} r="22"
-          fill="none" stroke="#C08A3E" strokeWidth="1.5" strokeDasharray="4 3"
+          cx={cx} cy={cy} r={22}
+          fill="none" stroke="var(--accent)" strokeWidth={1.5} strokeDasharray="4 3"
+          initial={{ r: 20, opacity: 0.8 }}
           animate={{ r: [20, 26, 20], opacity: [0.8, 0.3, 0.8] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         />
       )}
       {/* Inner ring */}
       <circle cx={cx} cy={cy} r="16" fill="rgba(192,138,62,0.1)"
-        stroke="#C08A3E" strokeWidth="1.5" />
+        stroke="var(--accent)" strokeWidth="1.5" />
       {/* QR icon simplified */}
       <g transform={`translate(${cx - 8}, ${cy - 8})`}>
         {/* Top-left module */}
-        <rect x="0" y="0" width="5" height="5" rx="1" fill="#E4B876" />
+        <rect x="0" y="0" width="5" height="5" rx="1" fill="var(--accent)" />
         <rect x="1" y="1" width="3" height="3" rx="0.5" fill="rgba(16,24,43,0.8)" />
-        <rect x="2" y="2" width="1" height="1" fill="#E4B876" />
+        <rect x="2" y="2" width="1" height="1" fill="var(--accent)" />
         {/* Top-right module */}
-        <rect x="11" y="0" width="5" height="5" rx="1" fill="#E4B876" />
+        <rect x="11" y="0" width="5" height="5" rx="1" fill="var(--accent)" />
         <rect x="12" y="1" width="3" height="3" rx="0.5" fill="rgba(16,24,43,0.8)" />
-        <rect x="13" y="2" width="1" height="1" fill="#E4B876" />
+        <rect x="13" y="2" width="1" height="1" fill="var(--accent)" />
         {/* Bottom-left module */}
-        <rect x="0" y="11" width="5" height="5" rx="1" fill="#E4B876" />
+        <rect x="0" y="11" width="5" height="5" rx="1" fill="var(--accent)" />
         <rect x="1" y="12" width="3" height="3" rx="0.5" fill="rgba(16,24,43,0.8)" />
-        <rect x="2" y="13" width="1" height="1" fill="#E4B876" />
+        <rect x="2" y="13" width="1" height="1" fill="var(--accent)" />
         {/* Data dots */}
-        <rect x="7" y="0" width="2" height="2" rx="0.5" fill="#C08A3E" />
-        <rect x="11" y="7" width="2" height="2" rx="0.5" fill="#C08A3E" />
-        <rect x="7" y="11" width="2" height="2" rx="0.5" fill="#C08A3E" />
-        <rect x="7" y="7" width="2" height="2" rx="0.5" fill="#E4B876" />
-        <rect x="11" y="11" width="2" height="2" rx="0.5" fill="#C08A3E" />
-        <rect x="14" y="7" width="2" height="2" rx="0.5" fill="#C08A3E" />
+        <rect x="7" y="0" width="2" height="2" rx="0.5" fill="var(--accent)" />
+        <rect x="11" y="7" width="2" height="2" rx="0.5" fill="var(--accent)" />
+        <rect x="7" y="11" width="2" height="2" rx="0.5" fill="var(--accent)" />
+        <rect x="7" y="7" width="2" height="2" rx="0.5" fill="var(--accent)" />
+        <rect x="11" y="11" width="2" height="2" rx="0.5" fill="var(--accent)" />
+        <rect x="14" y="7" width="2" height="2" rx="0.5" fill="var(--accent)" />
       </g>
     </g>
   );
@@ -68,7 +69,7 @@ function Tower({ x, y, label, floors = 8, width = 32, active = false }) {
     <g>
       {/* Building */}
       <rect x={x - width / 2} y={y - totalH} width={width} height={totalH}
-        fill="rgba(26,35,56,0.9)" stroke={active ? '#C08A3E' : 'rgba(192,138,62,0.3)'}
+        fill="rgba(26,35,56,0.9)" stroke={active ? 'var(--accent)' : 'rgba(192,138,62,0.3)'}
         strokeWidth={active ? '1.5' : '1'} rx="2" />
       {/* Windows */}
       {Array.from({ length: floors - 1 }, (_, i) => (
@@ -86,11 +87,11 @@ function Tower({ x, y, label, floors = 8, width = 32, active = false }) {
       ))}
       {/* Roof */}
       <rect x={x - width / 2} y={y - totalH - 4} width={width} height="4"
-        fill={active ? '#C08A3E' : 'rgba(192,138,62,0.5)'} rx="1" />
+        fill={active ? 'var(--accent)' : 'rgba(192,138,62,0.5)'} rx="1" />
       {/* Label */}
       <rect x={x - 14} y={y + 4} width="28" height="14" rx="3"
         fill="rgba(16,24,43,0.9)" stroke="rgba(192,138,62,0.3)" strokeWidth="1" />
-      <text x={x} y={y + 14} textAnchor="middle" fill="#E4B876"
+      <text x={x} y={y + 14} textAnchor="middle" fill="var(--accent)"
         fontSize="8" fontFamily="IBM Plex Mono" fontWeight="600">
         {label}
       </text>
@@ -105,7 +106,8 @@ function TravelDot({ reduced }) {
   return (
     <motion.g>
       <motion.circle
-        r="4" fill="#2F9E6E"
+        cx={250} cy={320} r={4} fill="var(--teal)"
+        initial={{ cx: 250, cy: 320, opacity: 0 }}
         animate={{
           cx: [250, 250, 120, 120, 250, 380, 380, 250],
           cy: [320, 210, 210, 200, 210, 210, 200, 320],
@@ -121,7 +123,8 @@ function TravelDot({ reduced }) {
       />
       {/* Glow trail */}
       <motion.circle
-        r="8" fill="rgba(47,158,110,0.2)"
+        cx={250} cy={320} r={8} fill="rgba(47,158,110,0.2)"
+        initial={{ cx: 250, cy: 320, opacity: 0 }}
         animate={{
           cx: [250, 250, 120, 120, 250, 380, 380, 250],
           cy: [320, 210, 210, 200, 210, 210, 200, 320],
@@ -246,16 +249,21 @@ export default function HeroBlueprint({ stats, simplified = false }) {
           <rect x="265" y="315" width="10" height="28" rx="2"
             fill="rgba(192,138,62,0.6)" />
           {/* Gate bar (boom barrier) */}
-          <motion.line
-            x1="235" y1="322" x2="265" y2="322"
-            stroke="#C08A3E" strokeWidth="3" strokeLinecap="round"
-            animate={!reduced ? { x2: [265, 265, 265], y2: [322, 310, 322] } : {}}
-            transition={{ duration: 4, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
-          />
+          {reduced ? (
+            <line x1={235} y1={322} x2={265} y2={322} stroke="var(--accent)" strokeWidth={3} strokeLinecap="round" />
+          ) : (
+            <motion.line
+              x1={235} y1={322} x2={265} y2={322}
+              stroke="var(--accent)" strokeWidth={3} strokeLinecap="round"
+              initial={{ x2: 265, y2: 322 }}
+              animate={{ x2: [265, 265, 265], y2: [322, 310, 322] }}
+              transition={{ duration: 4, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
+            />
+          )}
           {/* Gate label */}
           <rect x="213" y="345" width="74" height="14" rx="3"
             fill="rgba(16,24,43,0.9)" stroke="rgba(192,138,62,0.35)" strokeWidth="1" />
-          <text x="250" y="355" textAnchor="middle" fill="#E4B876"
+          <text x="250" y="355" textAnchor="middle" fill="var(--accent)"
             fontSize="7" fontFamily="IBM Plex Mono" letterSpacing="1">MAIN GATE</text>
         </g>
 
@@ -264,7 +272,8 @@ export default function HeroBlueprint({ stats, simplified = false }) {
 
         {/* Live indicator dot at Tower A */}
         {!reduced && (
-          <motion.circle cx={120} cy={168} r="4" fill="#2F9E6E"
+          <motion.circle cx={120} cy={168} r={4} fill="var(--teal)"
+            initial={{ opacity: 1, r: 4 }}
             animate={{ opacity: [1, 0.3, 1], r: [4, 5, 4] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -274,7 +283,7 @@ export default function HeroBlueprint({ stats, simplified = false }) {
         <g transform="translate(440, 55)">
           <circle cx="0" cy="0" r="12" fill="rgba(26,35,56,0.8)"
             stroke="rgba(192,138,62,0.3)" strokeWidth="1" />
-          <text x="0" y="-3" textAnchor="middle" fill="#E4B876"
+          <text x="0" y="-3" textAnchor="middle" fill="var(--accent)"
             fontSize="9" fontFamily="IBM Plex Mono" fontWeight="700">N</text>
           <line x1="0" y1="-8" x2="0" y2="8" stroke="rgba(192,138,62,0.4)" strokeWidth="0.5" />
           <line x1="-8" y1="0" x2="8" y2="0" stroke="rgba(192,138,62,0.4)" strokeWidth="0.5" />

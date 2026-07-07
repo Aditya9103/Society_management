@@ -9,13 +9,13 @@ const segments = [
 
 export default function TrustStripSection() {
   return (
-    <section className="bg-transparent border-y border-bd-subtle/80 py-8 md:py-10">
+    <section className="bg-surface-light border-y border-[var(--line-on-light)] py-8 md:py-10 text-text-primary-on-light">
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
 
           {/* Enhanced Anchor Label */}
           <div className="flex items-center gap-3 shrink-0">
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-tx-secondary font-medium select-none">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-[var(--text-on-light-muted)] select-none">
               Designed for
             </span>
             <div className="h-px w-8 bg-slate-300 hidden md:block" />
@@ -35,20 +35,20 @@ export default function TrustStripSection() {
               {/* Main List - Deepened Slate & Semi-Bold Text */}
               {segments.map((s) => (
                 <div key={s} className="flex items-center gap-8 whitespace-nowrap">
-                  <span className="text-[15px] font-semibold text-tx-secondary font-medium transition-colors duration-200 hover:text-black cursor-default tracking-wide">
+                  <span className="text-[15px] font-semibold text-[var(--text-on-light-muted)] transition-colors duration-200 hover:text-black cursor-default tracking-wide">
                     {s}
                   </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C58A38] shrink-0 select-none opacity-70" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0 select-none opacity-70" />
                 </div>
               ))}
 
               {/* Duplicate List for Seamless Loop */}
               {segments.map((s) => (
                 <div key={`${s}-clone`} aria-hidden="true" className="flex items-center gap-8 whitespace-nowrap">
-                  <span className="text-[15px] font-semibold text-tx-secondary font-medium transition-colors duration-200 hover:text-black cursor-default tracking-wide">
+                  <span className="text-[15px] font-semibold text-[var(--text-on-light-muted)] transition-colors duration-200 hover:text-black cursor-default tracking-wide">
                     {s}
                   </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C58A38] shrink-0 select-none opacity-70" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0 select-none opacity-70" />
                 </div>
               ))}
 

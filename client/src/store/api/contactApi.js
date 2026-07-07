@@ -7,10 +7,18 @@ export const contactApi = apiSlice.injectEndpoints({
       invalidatesTags: ['ContactMessage'],
     }),
     getContactMessages: builder.query({
-      query: () => '/contact',
+      query: ({ status } = {}) => {
+        const params = new URLSearchParams();
+        if (status) params.set('status', status);
+        return `/contact?${params.toString()}`;
+      },
       providesTags: ['ContactMessage'],
+    }),
+    updateContactMessageStatus: builder.mutation({
+      query: ({ id, status }) => ({ url: `/contact/${id}`, method: 'PATCH', body: { status } }),
+      invalidatesTags: ['ContactMessage'],
     }),
   }),
 });
 
-export const { useSubmitContactMessageMutation, useGetContactMessagesQuery } = contactApi;
+export const { useSubmitContactMessageMutation, useGetContactMessagesQuery, useUpdateContactMessageStatusMutation } = contactApi;

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createContactMessage, getContactMessages } from '../controllers/contact.controller.js';
+import { createContactMessage, getContactMessages, updateContactMessageStatus } from '../controllers/contact.controller.js';
 import { protect } from '../middleware/auth.js';
 
 const router = Router();
@@ -9,5 +9,6 @@ router.post('/', createContactMessage);
 
 // Protected routes
 router.get('/', protect, getContactMessages);
+router.patch('/:id', protect, updateContactMessageStatus);
 
 export default router;

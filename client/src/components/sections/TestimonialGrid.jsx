@@ -42,7 +42,7 @@ function TestimonialCard({ quote, author, role, society, initials, stars }) {
   return (
     <motion.div
       variants={cardVariants}
-      className="flex flex-col gap-5 rounded-2xl border border-bd-subtle/60 bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl p-8 shadow-lg shadow-slate-200/40 hover:shadow-xl transition-all duration-300"
+      className="flex flex-col gap-5 rounded-2xl border-[var(--line-on-light)]/60 bg-gradient-to-br from-white via-slate-50 to-slate-100 shadow-sm border-[var(--line-on-light)] backdrop-blur-xl p-8 shadow-lg shadow-slate-200/40 hover:shadow-xl hover:to-indigo-50/30 transition-all duration-300"
     >
       {/* Stars */}
       <div className="flex gap-1 mb-2">
@@ -54,19 +54,19 @@ function TestimonialCard({ quote, author, role, society, initials, stars }) {
       {/* Quote */}
       <div className="relative mb-4">
         <Quote size={24} className="text-bd-subtle absolute -top-2 -left-2" />
-        <p className="text-[16px] leading-relaxed text-tx-primary pl-4 relative z-10">
+        <p className="text-[16px] leading-relaxed text-[var(--text-on-light)] pl-4 relative z-10">
           {quote}
         </p>
       </div>
 
       {/* Author */}
-      <div className="flex items-center gap-4 pt-5 border-t border-bd-subtle/60 mt-auto">
-        <div className="w-11 h-11 rounded-full bg-bg-subtle flex items-center justify-center text-tx-primary font-mono text-[13px] font-bold shrink-0">
+      <div className="flex items-center gap-4 pt-5 border-t border-[var(--line-on-light)]/60 mt-auto">
+        <div className="w-11 h-11 rounded-full bg-[var(--surface-light-alt)] flex items-center justify-center text-[var(--text-on-light)] font-mono text-[13px] font-bold shrink-0">
           {initials}
         </div>
         <div>
-          <p className="font-bold text-[15px] text-tx-secondary font-medium leading-tight">{author}</p>
-          <p className="text-[13px] text-tx-secondary font-medium mt-0.5">{role}</p>
+          <p className="font-bold text-[15px] text-[var(--text-on-light-muted)] leading-tight">{author}</p>
+          <p className="text-[13px] text-[var(--text-on-light-muted)] mt-0.5">{role}</p>
           <p className="font-mono text-[11px] text-primary mt-1 uppercase tracking-wider">{society}</p>
         </div>
       </div>

@@ -3,22 +3,22 @@ import { cn } from "@/utils/cn";
 
 const variants = {
   primary:
-    "bg-gradient-to-b from-primary-light to-primary-dark text-white border-t border-white/20 border-b border-black/20 shadow-[0_4px_14px_rgba(37,99,235,0.4)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.6)] hover:-translate-y-0.5",
+    "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-bg-hover)] hover:shadow-[var(--btn-primary-shadow-hover)] hover:-translate-y-0.5",
 
   brass:
-    "bg-gradient-to-b from-[#D4A35B] to-primary text-white border-t border-white/20 border-b border-black/20 shadow-[0_4px_14px_rgba(197,138,56,0.4)] hover:shadow-[0_6px_20px_rgba(197,138,56,0.6)] hover:-translate-y-0.5",
+    "relative overflow-hidden bg-gradient-to-b from-[var(--brass-300)] to-[var(--brass-500)] text-[var(--navy-950)] shadow-[var(--shadow-accent),inset_0_1px_0_rgba(255,255,255,0.4)] hover:shadow-[0_12px_24px_rgba(192,138,62,0.45),inset_0_1px_0_rgba(255,255,255,0.6)] hover:-translate-y-1 transition-all duration-300",
 
   ink:
-    "bg-gradient-to-b from-slate-700 to-slate-900 text-white border-t border-white/10 border-b border-black/40 shadow-[0_4px_14px_rgba(15,23,42,0.4)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.6)] hover:-translate-y-0.5",
+    "bg-[var(--btn-dark-bg)] text-[var(--btn-dark-text)] hover:-translate-y-0.5",
 
   outline:
-    "bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl text-tx-secondary font-medium border border-bd-subtle/80 hover:bg-bg-surface hover:border-bd-strong shadow-sm hover:shadow-md hover:-translate-y-0.5",
+    "bg-transparent text-[var(--text-on-light)] border border-[var(--btn-outline-on-light-border)] hover:border-[var(--btn-outline-on-light-hover-border)] hover:-translate-y-0.5",
 
   ghost:
-    "bg-transparent text-tx-primary border border-transparent hover:bg-bg-subtle hover:text-tx-primary",
+    "bg-transparent text-[var(--btn-ghost-on-dark-text)] border border-[var(--btn-ghost-on-dark-border)] hover:border-[var(--btn-ghost-on-dark-hover-border)] hover:-translate-y-0.5",
 
   "outline-light":
-    "bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl text-white border border-white/20 hover:bg-bg-surface shadow-sm border border-bd-subtle hover:border-white/40 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:-translate-y-0.5",
+    "bg-transparent text-[var(--text-on-dark)] border border-[var(--line-on-dark)] hover:border-[var(--text-on-dark)] hover:-translate-y-0.5",
 };
 
 const sizes = {

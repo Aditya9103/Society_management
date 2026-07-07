@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, User, Mail, Phone, Building2 } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import Button from './Button';
 import { useSubmitLeadMutation } from '../../store/api/leadsApi';
@@ -53,26 +53,30 @@ export default function LeadForm({ source = 'book-demo', className }) {
   return (
     <form 
       onSubmit={handleSubmit(onSubmit)} 
-      className={cn("bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl border border-bd-subtle/60 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 relative overflow-hidden", className)}
+      className={cn("bg-white border border-[var(--line-on-light)] p-6 sm:p-8 rounded-3xl shadow-[var(--shadow-lg)] space-y-6 relative overflow-hidden", className)}
     >
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] z-0 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
       
       <div className="space-y-4">
         {/* Row 1: Name & Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Full Name *</label>
-            <input
-              type="text"
-              placeholder="Jane Doe"
-              {...register('name', { required: 'Name is required' })}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
-                errors.name 
-                  ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
-              )}
-            />
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Full Name *</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <User size={18} className="text-[var(--text-on-light-faint)]" />
+              </div>
+              <input
+                type="text"
+                placeholder="Jane Doe"
+                {...register('name', { required: 'Name is required' })}
+                className={cn(
+                  "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
+                  errors.name 
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
+                )}
+              />
+            </div>
             <AnimatePresence>
               {errors.name && (
                 <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-xs mt-1.5 ml-1 font-medium">
@@ -83,24 +87,29 @@ export default function LeadForm({ source = 'book-demo', className }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Work Email *</label>
-            <input
-              type="email"
-              placeholder="jane@society.com"
-              {...register('workEmail', { 
-                required: 'Email is required',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "invalid email address"
-                }
-              })}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
-                errors.workEmail 
-                  ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
-              )}
-            />
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Work Email *</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Mail size={18} className="text-[var(--text-on-light-faint)]" />
+              </div>
+              <input
+                type="email"
+                placeholder="jane@society.com"
+                {...register('workEmail', { 
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "invalid email address"
+                  }
+                })}
+                className={cn(
+                  "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
+                  errors.workEmail 
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
+                )}
+              />
+            </div>
             <AnimatePresence>
               {errors.workEmail && (
                 <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-xs mt-1.5 ml-1 font-medium">
@@ -114,18 +123,23 @@ export default function LeadForm({ source = 'book-demo', className }) {
         {/* Row 2: Society & Phone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Society Name *</label>
-            <input
-              type="text"
-              placeholder="Lotus Panache"
-              {...register('societyName', { required: 'Society Name is required' })}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl border bg-bg-app/50 focus:bg-bg-surface transition-all outline-none",
-                errors.societyName 
-                  ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/10" 
-                  : "border-bd-subtle focus:border-primary focus:ring-4 focus:ring-primary/10"
-              )}
-            />
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Society Name *</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Building2 size={18} className="text-[var(--text-on-light-faint)]" />
+              </div>
+              <input
+                type="text"
+                placeholder="Lotus Panache"
+                {...register('societyName', { required: 'Society Name is required' })}
+                className={cn(
+                  "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
+                  errors.societyName 
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
+                )}
+              />
+            </div>
             <AnimatePresence>
               {errors.societyName && (
                 <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-xs mt-1.5 ml-1 font-medium">
@@ -136,23 +150,40 @@ export default function LeadForm({ source = 'book-demo', className }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Phone Number (Optional)</label>
-            <input
-              type="tel"
-              placeholder="+91 98765 43210"
-              {...register('phone')}
-              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none"
-            />
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Phone Number *</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Phone size={18} className="text-[var(--text-on-light-faint)]" />
+              </div>
+              <input
+                type="tel"
+                placeholder="+91 98765 43210"
+                {...register('phone', { required: 'Phone Number is required' })}
+                className={cn(
+                  "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
+                  errors.phone 
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                    : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
+                )}
+              />
+            </div>
+            <AnimatePresence>
+              {errors.phone && (
+                <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-xs mt-1.5 ml-1 font-medium">
+                  {errors.phone.message}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
         {/* Row 3: Units & Date */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Total Units</label>
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Total Units</label>
             <select
               {...register('unitCount')}
-              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none appearance-none"
+              className="w-full px-4 py-3 rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] text-[var(--input-text)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)] transition-all outline-none appearance-none"
             >
               <option value="">Select size...</option>
               <option value="50">1 - 50</option>
@@ -163,11 +194,11 @@ export default function LeadForm({ source = 'book-demo', className }) {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-tx-primary mb-1.5 ml-1">Preferred Date</label>
+            <label className="block text-sm font-semibold text-[var(--text-on-light)] mb-1.5 ml-1">Preferred Date</label>
             <input
               type="date"
               {...register('preferredDate')}
-              className="w-full px-4 py-3 rounded-xl border border-bd-subtle bg-bg-app/50 focus:bg-bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-tx-primary"
+              className="w-full px-4 py-3 rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] text-[var(--input-text)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)] transition-all outline-none"
             />
           </div>
         </div>
@@ -205,7 +236,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
         {isLoading && <span className="absolute inset-0 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin" /></span>}
       </Button>
 
-      <p className="text-center text-xs font-medium text-tx-secondary font-medium mt-4">
+      <p className="text-center text-xs font-medium text-[var(--text-on-light-muted)] mt-4">
         By submitting, you agree to our Privacy Policy and Terms of Service.
       </p>
     </form>

@@ -19,14 +19,14 @@ export default function Blog() {
       title="Blog | Parapet"
       description="Insights, updates, and best practices for modern society management."
     >
-      <div className="pt-32 pb-24 bg-transparent min-h-screen">
+      <div className="pt-32 pb-24 bg-surface-light text-text-primary-on-light min-h-screen">
         <div className="container">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-tx-primary mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-on-light)] mb-6"
             >
               The Parapet <span className="text-[var(--brass)]">Journal</span>.
             </motion.h1>
@@ -34,7 +34,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-tx-primary leading-relaxed font-medium"
+              className="text-xl text-[var(--text-on-light)] leading-relaxed font-medium"
             >
               Latest news, product updates, and deep-dives into modern real estate management.
             </motion.p>
@@ -50,7 +50,7 @@ export default function Blog() {
                   "px-5 py-2.5 rounded-full text-sm font-bold transition-all",
                   (category === cat || (!category && cat === 'All'))
                     ? "bg-[var(--ink)] text-white shadow-lg"
-                    : "bg-bg-surface text-tx-primary border border-bd-subtle hover:border-bd-strong hover:text-tx-primary"
+                    : "bg-white text-[var(--text-on-light)] border border-[var(--line-on-light)] hover:border-[var(--line-on-light)] hover:text-[var(--text-on-light)]"
                 )}
               >
                 {cat}
@@ -60,13 +60,13 @@ export default function Blog() {
 
           {/* Blog Grid */}
           {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-24 text-tx-secondary font-medium">
+            <div className="flex flex-col items-center justify-center py-24 text-[var(--text-on-light-muted)] font-medium">
               <Loader2 className="w-8 h-8 animate-spin mb-4" />
               <p className="font-medium">Loading posts...</p>
             </div>
           ) : postsData?.data?.length === 0 ? (
             <div className="text-center py-24">
-              <p className="text-xl text-tx-secondary font-medium font-medium">No posts found for this category.</p>
+              <p className="text-xl text-[var(--text-on-light-muted)] font-medium font-medium">No posts found for this category.</p>
               <button onClick={() => setCategory('')} className="mt-4 text-[var(--brass)] font-bold hover:underline">
                 View all posts
               </button>
@@ -80,9 +80,9 @@ export default function Blog() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group bg-bg-surface rounded-3xl border border-bd-subtle shadow-sm overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="group bg-white rounded-3xl border border-[var(--line-on-light)] shadow-sm overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <Link to={`/blog/${post.slug}`} className="block relative h-56 overflow-hidden bg-bg-subtle">
+                  <Link to={`/blog/${post.slug}`} className="block relative h-56 overflow-hidden bg-[var(--surface-light-alt)]">
                     <img 
                       src={post.coverImage} 
                       alt={post.title} 
@@ -92,35 +92,35 @@ export default function Blog() {
                       }}
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-md rounded-full text-xs font-bold text-tx-primary shadow-sm">
+                      <span className="px-3 py-1 bg-white shadow-sm border border-[var(--line-on-light)] backdrop-blur-md rounded-full text-xs font-bold text-[var(--text-on-light)] shadow-sm">
                         {post.category}
                       </span>
                     </div>
                   </Link>
                   
                   <div className="p-8 flex-1 flex flex-col">
-                    <div className="flex items-center gap-4 text-xs font-bold text-tx-secondary font-medium uppercase tracking-wider mb-4">
+                    <div className="flex items-center gap-4 text-xs font-bold text-[var(--text-on-light-muted)] font-medium uppercase tracking-wider mb-4">
                       <time dateTime={post.createdAt}>{format(new Date(post.createdAt), 'MMM d, yyyy')}</time>
                       <span className="flex items-center gap-1.5"><Clock size={14} /> {post.readTime}</span>
                     </div>
                     
                     <Link to={`/blog/${post.slug}`}>
-                      <h2 className="text-2xl font-bold text-tx-primary mb-3 group-hover:text-[var(--brass)] transition-colors leading-tight">
+                      <h2 className="text-2xl font-bold text-[var(--text-on-light)] mb-3 group-hover:text-[var(--brass)] transition-colors leading-tight">
                         {post.title}
                       </h2>
                     </Link>
                     
-                    <p className="text-tx-primary leading-relaxed font-medium mb-8 flex-1">
+                    <p className="text-[var(--text-on-light)] leading-relaxed font-medium mb-8 flex-1">
                       {post.excerpt}
                     </p>
                     
-                    <div className="mt-auto flex items-center justify-between pt-6 border-t border-bd-subtle">
+                    <div className="mt-auto flex items-center justify-between pt-6 border-t border-[var(--line-on-light)]">
                       <div className="flex items-center gap-3">
                         <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full object-cover bg-bd-subtle" 
                              onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(post.author.name) + '&background=random' }}/>
-                        <span className="text-sm font-bold text-tx-primary">{post.author.name}</span>
+                        <span className="text-sm font-bold text-[var(--text-on-light)]">{post.author.name}</span>
                       </div>
-                      <Link to={`/blog/${post.slug}`} className="w-10 h-10 rounded-full bg-bg-app flex items-center justify-center group-hover:bg-[var(--brass)] group-hover:text-white transition-colors">
+                      <Link to={`/blog/${post.slug}`} className="w-10 h-10 rounded-full bg-[var(--surface-light)] flex items-center justify-center group-hover:bg-[var(--brass)] group-hover:text-white transition-colors">
                         <ArrowRight size={18} />
                       </Link>
                     </div>

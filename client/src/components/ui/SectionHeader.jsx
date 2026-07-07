@@ -1,6 +1,31 @@
 import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
+/**
+ * Two fixes here, both worth flagging because this is a SHARED component
+ * used by every section header on every page — these bugs weren't local
+ * to one section, they were sitewide:
+ *
+ * 1. The light-mode heading used
+ *      bg-gradient-to-br from-[var(--navy-950)] to-slate-500
+ *    `slate-500` isn't a token in this design system at all — it's
+ *    Tailwind's own default gray scale, a different, colder hue family
+ *    than the navy/paper palette everywhere else. Every light-section
+ *    heading on the entire site (Home, Pricing, About, Features, ...)
+ *    was rendering with this off-brand gradient. Replaced with solid
+ *    on-token text — cleaner, more legible, and matches the "no
+ *    decorative gradients" direction already established for this build.
+ *    The dark-mode gradient (white → white/70) is left as-is since it's
+ *    monochrome and doesn't introduce an off-palette hue.
+ *
+ * 2. `text-eyebrow-size` assumed a Tailwind fontSize key named
+ *    "eyebrow-size" was registered in the theme. It isn't (only
+ *    `--text-mono-label` exists as a CSS custom property) — so this
+ *    class was very likely a silent no-op, falling back to the
+ *    browser/parent default size instead of the intended 12px eyebrow
+ *    size. Replaced with an explicit arbitrary-value reference to the
+ *    real token so it's guaranteed to resolve.
+ */
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
@@ -38,22 +63,22 @@ export default function SectionHeader({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className={cn('mb-12 flex flex-col', alignClass[align], className)}
+      className={cn('mb-5 flex flex-col', alignClass[align], className)}
       style={{ maxWidth }}
     >
       {eyebrow && (
         <motion.div
           variants={childVariants}
-          className={cn('mb-4 flex items-center gap-2', justifyClass[align])}
+          className={cn('mb-2 flex items-center gap-2', justifyClass[align])}
         >
           <span
-            className={cn('h-px w-6', dark ? 'bg-primary-light/50' : 'bg-primary/50')}
+            className={cn('h-px w-6', dark ? 'bg-[var(--accent-on-dark)]' : 'bg-[var(--accent)]')}
             aria-hidden="true"
           />
           <p
             className={cn(
-              'text-sm font-semibold uppercase tracking-wider',
-              dark ? 'text-primary-light' : 'text-primary'
+              'mono tracking-widest uppercase text-[length:var(--text-mono-label)]',
+              dark ? 'text-[var(--accent-on-dark)]' : 'text-[var(--accent)]'
             )}
           >
             {eyebrow}
@@ -65,7 +90,9 @@ export default function SectionHeader({
         variants={childVariants}
         className={cn(
           'text-[28px] font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[44px]',
-          dark ? 'text-white' : 'text-tx-primary'
+          dark
+            ? 'bg-clip-text text-transparent bg-gradient-to-br from-white to-white/70'
+            : 'text-[var(--text-on-light)]'
         )}
       >
         {heading}
@@ -75,8 +102,8 @@ export default function SectionHeader({
         <motion.p
           variants={childVariants}
           className={cn(
-            'mt-4 text-lg leading-relaxed',
-            dark ? 'text-gray-400' : 'text-gray-600'
+            'mt-3 text-lg leading-relaxed',
+            dark ? 'text-[var(--text-on-dark-muted)]' : 'text-[var(--text-on-light-muted)]'
           )}
         >
           {subtext}

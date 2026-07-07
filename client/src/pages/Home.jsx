@@ -11,7 +11,8 @@ import CompareSection from './home/components/CompareSection';
 import PricingPreviewSection from './home/components/PricingPreviewSection';
 import SecuritySection from './home/components/SecuritySection';
 import TestimonialsSection from './home/components/TestimonialsSection';
-import FAQSection from './home/components/FAQSection';
+import FAQSection from '../components/sections/FAQSection';
+import { faqData } from '../data/faqData';
 
 export default function Home() {
   return (
@@ -29,19 +30,12 @@ export default function Home() {
       <PricingPreviewSection />
       <SecuritySection />
       <TestimonialsSection />
-      <FAQSection />
+      <FAQSection faqs={faqData.home} />
 
       {/* ═══════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════ */}
-      <CTASection
-        heading="Ready to Digitize Your Society?"
-        subtext="Book a free demo today. We'll walk you through setup and answer every question — no sales pressure."
-        primaryLabel="Book a Free Demo"
-        primaryHref="/book-demo"
-        secondaryLabel="See all Features"
-        secondaryHref="/features"
-      />
+      <CTASection />
     </PageWrapper>
   );
 }

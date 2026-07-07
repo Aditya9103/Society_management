@@ -2,77 +2,315 @@
 
 @import "tailwindcss";
 
-/* ─── Design Tokens ─────────────────────────────────────────── */
+/* ─── 0. Tailwind Config Mapping (Tailwind v4 @theme) ─── */
 @theme {
-  /* Core Colors */
-  --color-primary: #2563EB; /* Vibrant Blue 600 */
-  --color-primary-light: #60A5FA; /* Blue 400 */
-  --color-primary-dark: #1D4ED8; /* Blue 700 */
+  --color-navy-950: #0B111F;
+  --color-navy-900: #10182B;
+  --color-navy-800: #1A2338;
+  --color-navy-700: #26314B;
 
-  --color-success: #10B981; /* Emerald 500 */
-  --color-alert: #EF4444; /* Red 500 */
+  --color-paper-100: #FFFFFF;
+  --color-paper-200: #F4F5F1;
+  --color-paper-300: #EBEDE7;
+  --color-paper-400: #E2E4DC;
 
-  /* Semantic Centralized Theme Variables */
-  --color-bg-app: #F8FAFC;       /* App Background (slate-50) */
-  --color-bg-surface: #FFFFFF;   /* Cards/Modals (white) */
-  --color-bg-subtle: #F1F5F9;    /* Hover States (slate-100) */
-  
-  --color-tx-primary: #0F172A;   /* Main Text/Headings (slate-900) */
-  --color-tx-secondary: #475569; /* Body Text (slate-600) */
-  --color-tx-muted: #64748B;     /* Icons/Meta (slate-500) */
-  
-  --color-bd-subtle: #E2E8F0;    /* Card Borders (slate-200) */
-  --color-bd-strong: #CBD5E1;    /* Divider/Input Borders (slate-300) */
+  --color-brass-300: #E4B876;
+  --color-brass-400: #C08A3E;
+  --color-brass-500: #A5732F;
 
-  /* Inverted Theme (Dark components in light mode) */
-  --color-bg-inverted: #0F172A;  /* slate-900 */
-  --color-tx-inverted: #FFFFFF;  /* white */
+  --color-status-live: #2F9E6E;
+  --color-status-alert: #C24C3D;
 
-  /* Fonts */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Inter', system-ui, monospace;
 
-  /* Layout */
-  --container: 1180px;
-  --pad-x: 32px;
-  --section-y: 112px;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Radius */
-  --radius-card: 18px;
+
   --radius-sm: 10px;
-  --radius-btn: 100px;
-}
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
 
-@media (max-width: 768px) {
-  :root {
-    --pad-x: 20px;
-    --section-y: 76px;
-  }
-}
+  --shadow-sm: 0 2px 8px rgba(16, 24, 43, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 24, 43, 0.10);
+  --shadow-lg: 0 20px 48px rgba(16, 24, 43, 0.16);
+  --shadow-accent: 0 8px 22px rgba(192, 138, 62, 0.35);
 
+  --spacing-18: 72px;
+  --spacing-28: 112px;
 
-@theme {
+  --animate-marquee: marquee 35s linear infinite;
 
-  /* Define custom marquee animation keyframes */
   @keyframes marquee {
     from {
-      transform: translateX(0%);
+      transform: translateX(0);
     }
 
     to {
       transform: translateX(-50%);
     }
   }
-
-  /* Bind the keyframes to a utility class name */
-  --animate-marquee: marquee 30s linear infinite;
 }
 
+/* ─── 1. Blueprint Dark Design Tokens ─── */
+:root {
+  /* 1.1 Core palette (raw values) */
+  --navy-950: #0B111F;
+  --navy-900: #10182B;
+  --navy-800: #1A2338;
+  --navy-700: #26314B;
+
+  --paper-100: #FFFFFF;
+  --paper-200: #F4F5F1;
+  --paper-300: #EBEDE7;
+  --paper-400: #E2E4DC;
+
+  --brass-300: #E4B876;
+  --brass-400: #C08A3E;
+  --brass-500: #A5732F;
+  --brass-600: #8C5F27;
+  --brass-tint-10: rgba(192, 138, 62, 0.10);
+  --brass-tint-06: rgba(192, 138, 62, 0.06);
+
+  --status-live: #2F9E6E;
+  --status-alert: #C24C3D;
+  --status-warn: #8F5F0C;
+
+  --text-on-light: #0B111F; /* --navy-950 */
+  --text-on-light-muted: #1A2338; /* --navy-800 (Solid, high contrast) */
+  --text-on-light-faint: #3B4B6E; /* High-contrast slate/navy for faint text */
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.75);
+  --text-on-dark-faint: rgba(255, 255, 255, 0.55);
+
+  --line-on-light: rgba(22, 28, 44, 0.12);
+  --line-on-light-strong: rgba(22, 28, 44, 0.22);
+  --line-on-dark: rgba(244, 245, 241, 0.14);
+  --line-on-dark-strong: rgba(244, 245, 241, 0.26);
+
+  --grid-line-on-dark: rgba(244, 245, 241, 0.06);
+  --grid-line-on-dark-strong: rgba(228, 184, 118, 0.10);
+  --grid-line-on-light: rgba(22, 28, 44, 0.05);
+
+  /* 1.2 Semantic aliases */
+  --surface-dark: var(--navy-900);
+  --surface-dark-raised: var(--navy-800);
+  --surface-dark-deepest: var(--navy-950);
+
+  --surface-light: var(--paper-200);
+  --surface-light-alt: var(--paper-300);
+  --surface-light-card: var(--paper-100);
+
+  --accent: var(--brass-400);
+  --accent-hover: var(--brass-500);
+  --accent-on-dark: var(--brass-300);
+  --accent-tint: var(--brass-tint-10);
+
+  --text-primary-on-light: var(--text-on-light);
+  --text-secondary-on-light: var(--text-on-light-muted);
+  --text-primary-on-dark: var(--text-on-dark);
+  --text-secondary-on-dark: var(--text-on-dark-muted);
+
+  --border-subtle-on-light: var(--line-on-light);
+  --border-subtle-on-dark: var(--line-on-dark);
+
+  /* ─── 2. Typography Tokens ─── */
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Inter', sans-serif;
+
+  --text-hero: clamp(2.375rem, 1.6rem + 3.2vw, 3.625rem);
+  --text-h1: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+  --text-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.625rem);
+  --text-h3: 1.375rem;
+  --text-h4: 1.1875rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.9375rem;
+  --text-caption: 0.8125rem;
+  --text-mono-label: 0.75rem;
+  --text-mono-label-sm: 0.6875rem;
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em;
+  --tracking-widest: 0.14em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ─── 3. Spacing Scale ─── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-28: 112px;
+  --space-32: 128px;
+
+  --container-max: 1180px;
+  --container-padding: var(--space-8);
+  --container-padding-mobile: var(--space-5);
+  --section-padding-y: var(--space-28);
+  --section-padding-y-mobile: var(--space-14);
+
+  --card-padding: var(--space-6) var(--space-6);
+  --grid-gap: var(--space-5);
+  --grid-gap-lg: var(--space-8);
+
+  /* ─── 4. Radius & 5. Elevation ─── */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(16, 24, 43, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 24, 43, 0.10);
+  --shadow-lg: 0 20px 48px rgba(16, 24, 43, 0.16);
+  --shadow-accent: 0 8px 22px rgba(192, 138, 62, 0.35);
+  --shadow-dark-panel: 0 24px 56px rgba(0, 0, 0, 0.35);
+
+  /* ─── 7. Component Tokens ─── */
+  /* Buttons */
+  --btn-primary-bg: var(--accent);
+  --btn-primary-text: var(--navy-900);
+  --btn-primary-bg-hover: var(--accent-hover);
+  --btn-primary-shadow-hover: var(--shadow-accent);
+
+  --btn-dark-bg: var(--navy-900);
+  --btn-dark-text: var(--text-on-dark);
+
+  --btn-ghost-on-dark-border: var(--line-on-dark);
+  --btn-ghost-on-dark-text: var(--text-on-dark);
+  --btn-ghost-on-dark-hover-border: var(--accent-on-dark);
+
+  --btn-outline-on-light-border: var(--line-on-light);
+  --btn-outline-on-light-hover-border: var(--navy-900);
+
+  --btn-radius: var(--radius-full);
+  --btn-padding: 12px 22px;
+  --btn-padding-sm: 9px 16px;
+  --btn-font: var(--font-body);
+  --btn-weight: var(--weight-semibold);
+  --btn-transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  /* Cards */
+  --card-light-bg: var(--surface-light-card);
+  --card-light-border: var(--line-on-light);
+  --card-light-hover-bg: var(--surface-light-alt);
+
+  --card-dark-bg: var(--surface-dark-raised);
+  --card-dark-border: var(--line-on-dark);
+  --card-dark-hover-bg: var(--navy-700);
+
+  --card-radius: var(--radius-lg);
+
+  /* Navigation */
+  --nav-bg-top: var(--surface-dark-deepest);
+  --nav-bg-scrolled: rgba(16, 24, 43, 0.92);
+  /* navy-900 with opacity for blur */
+  --nav-blur: blur(10px);
+  --nav-border-scrolled: var(--line-on-dark);
+  --nav-link-color: var(--text-on-dark-muted);
+  --nav-link-color-hover: var(--text-on-dark);
+  --nav-link-color-active: var(--accent-on-dark);
+
+  /* Badges / Eyebrows */
+  --eyebrow-color: var(--accent);
+  --eyebrow-color-on-dark: var(--accent-on-dark);
+  --eyebrow-font: var(--font-mono);
+  --eyebrow-size: var(--text-mono-label);
+  --eyebrow-tracking: var(--tracking-widest);
+  --eyebrow-rule-width: 16px;
+  --eyebrow-rule-color: currentColor;
+
+  --badge-bg: var(--brass-tint-10);
+  --badge-text: var(--brass-600);
+  --badge-radius: var(--radius-full);
+  --badge-padding: 4px 10px;
+
+  --status-dot-live: var(--status-live);
+  --status-dot-alert: var(--status-alert);
+
+  /* Forms */
+  --input-bg: var(--paper-100);
+  --input-border: var(--line-on-light);
+  --input-border-focus: var(--accent);
+  --input-radius: var(--radius-sm);
+  --input-text: var(--text-on-light);
+  --input-placeholder: var(--text-on-light-faint);
+  --input-error-border: var(--status-alert);
+  --input-error-text: var(--status-alert);
+  --input-label-size: var(--text-caption);
+  --input-label-weight: var(--weight-medium);
+
+  /* Tables */
+  --table-header-bg: var(--surface-light-alt);
+  --table-header-text: var(--text-on-light-muted);
+  --table-header-font: var(--font-mono);
+  --table-row-border: var(--line-on-light);
+  --table-cell-padding: var(--space-4) var(--space-5);
+  --table-highlight-col-bg: var(--brass-tint-06);
+  --table-yes-color: var(--status-live);
+  --table-partial-color: var(--brass-600);
+  --table-no-color: var(--text-on-light-faint);
+
+  /* ─── 8. Motion Tokens ─── */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-reveal: 600ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: ease-in-out;
+  --reveal-offset-y: 16px;
+  --pulse-duration: 2.4s;
+  --travel-duration: 6s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: var(--container-padding-mobile);
+    --section-padding-y: var(--section-padding-y-mobile);
+  }
+}
+
+/* ─── 8. Reduced Motion Override ─── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  :root {
+    --duration-fast: 0.001ms;
+    --duration-base: 0.001ms;
+    --duration-slow: 0.001ms;
+    --duration-reveal: 0.001ms;
+  }
+}
 
 @layer base {
 
-  /* ─── Base Reset ────────────────────────────────────────────── */
   *,
   *::before,
   *::after {
@@ -86,139 +324,106 @@
   }
 
   body {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-tx-secondary);
-    background: var(--color-bg-app);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
+    /* Note: Background color will be set per section, falling back to light mode default */
+    background-color: var(--surface-light);
+    color: var(--text-primary-on-light);
   }
 
-  /* ─── Typography ────────────────────────────────────────────── */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--color-tx-primary);
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
   }
 
   h1 {
-    font-size: clamp(38px, 5.2vw, 58px);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-h1);
   }
 
   h2 {
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: var(--text-h2);
   }
 
   h3 {
-    font-size: clamp(19px, 2vw, 22px);
+    font-size: var(--text-h3);
   }
 
-  /* ─── Focus ring ────────────────────────────────────────────── */
   :focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 4px;
-  }
-
-  /* ─── Scrollbar (subtle) ────────────────────────────────────── */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--line);
-    border-radius: 10px;
-  }
-
-  /* ─── Reduced motion ────────────────────────────────────────── */
-  @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* ─── Selection ─────────────────────────────────────────────── */
-  ::selection {
-    background: var(--color-primary);
-    color: white;
   }
 }
 
 @layer components {
 
-  .mono,
-  .eyebrow {
-    font-family: var(--font-mono), monospace;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 500;
-  }
-
-  /* ─── Container ─────────────────────────────────────────────── */
+  /* Utility */
   .container {
-    max-width: var(--container);
+    max-width: var(--container-max);
     width: 100%;
     margin-inline: auto;
-    padding-inline: var(--pad-x);
+    padding-inline: var(--container-padding);
   }
 
-  /* ─── Section rhythm ────────────────────────────────────────── */
   .section {
-    padding-block: var(--section-y);
+    padding-block: var(--section-padding-y);
   }
 
-  /* ─── Surface colors ────────────────────────────────────────── */
-  .bg-ink {
-    background-color: var(--color-ink);
+  .mono {
+    font-family: var(--font-mono);
   }
 
-  .bg-ink-2 {
-    background-color: var(--color-ink-light);
-  }
-
-  .bg-paper {
-    background-color: var(--color-paper);
-  }
-
-  .bg-paper-2 {
-    background-color: var(--color-paper-dark);
-  }
-
-  /* ─── Background Patterns ───────────────────────────────────── */
-  .bg-standard-dots {
-    background-image: radial-gradient(var(--color-bd-strong) 1px, transparent 1px);
-    background-size: 32px 32px;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
-  }
-
-  .bg-grid-pattern {
+  /* ─── 6. Blueprint Grid Texture ─── */
+  .bp-grid-dark {
+    background-color: var(--surface-dark);
+    color: var(--text-primary-on-dark);
     background-image:
-      linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+      linear-gradient(var(--grid-line-on-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line-on-dark) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    position: relative;
+  }
+
+  .bp-grid-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 800px 500px at 50% 0%, transparent 0%, var(--surface-dark) 85%);
+    pointer-events: none;
+  }
+
+  .bp-grid-light {
+    background-color: var(--surface-light);
+    color: var(--text-primary-on-light);
+    background-image:
+      linear-gradient(var(--grid-line-on-light) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line-on-light) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
-  .bg-dot-pattern {
-    background-image: radial-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px);
-    background-size: 22px 22px;
+  /* Section Color Helpers */
+  .bg-surface-dark {
+    background-color: var(--surface-dark);
+    color: var(--text-primary-on-dark);
+  }
+
+  .bg-surface-light {
+    background-color: var(--surface-light);
+    color: var(--text-primary-on-light);
+  }
+
+  .bg-surface-light-alt {
+    background-color: var(--surface-light-alt);
+    color: var(--text-primary-on-light);
   }
 }

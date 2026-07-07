@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Play, ShieldCheck, Building2, Smartphone, Zap, ChevronDown } from 'lucide-react';
 import Button from '../../../components/ui/Button';
 import HeroBlueprint from '../../../components/sections/HeroBlueprint';
@@ -27,7 +27,7 @@ const gridItem = {
 
 const FEATURES = [
   { icon: ShieldCheck, iconBg: 'bg-emerald-500/10 border-emerald-500/20', iconColor: 'text-emerald-400', title: 'Secure & Reliable', desc: 'Enterprise-grade security' },
-  { icon: Building2, iconBg: 'bg-[#C58A38]/10 border-[#C58A38]/20', iconColor: 'text-[#D4A35B]', title: 'Multi-Society Ready', desc: 'Built for enterprise scale' },
+  { icon: Building2, iconBg: 'bg-[var(--accent)]/10 border-[var(--accent)]/20', iconColor: 'text-[var(--accent-on-dark)]', title: 'Multi-Society Ready', desc: 'Built for enterprise scale' },
   { icon: Smartphone, iconBg: 'bg-blue-500/10 border-blue-500/20', iconColor: 'text-blue-400', title: 'Mobile First', desc: 'Android • iOS • PWA' },
   { icon: Zap, iconBg: 'bg-purple-500/10 border-purple-500/20', iconColor: 'text-purple-400', title: 'Live in Days', desc: 'Fast onboarding process' },
 ];
@@ -48,10 +48,10 @@ function StatCounter({ end, suffix = '', label }) {
   }, [end]);
   return (
     <div className="text-center">
-      <p className="font-mono font-bold text-[32px] leading-none text-tx-primary">
+      <p className="font-mono font-bold text-[32px] leading-none text-[var(--text-on-dark)]">
         {count.toLocaleString('en-IN')}{suffix}
       </p>
-      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-tx-secondary font-medium">
+      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-on-dark-muted)] font-medium">
         {label}
       </p>
     </div>
@@ -61,8 +61,9 @@ function StatCounter({ end, suffix = '', label }) {
 function TiltPanel({ children }) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), { stiffness: 150, damping: 20 });
+  const prefersReducedMotion = useReducedMotion();
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], prefersReducedMotion ? [0, 0] : [6, -6]), { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], prefersReducedMotion ? [0, 0] : [-6, 6]), { stiffness: 150, damping: 20 });
   const glowX = useTransform(mx, [-0.5, 0.5], ['20%', '80%']);
   const glowY = useTransform(my, [-0.5, 0.5], ['20%', '80%']);
 
@@ -98,12 +99,16 @@ function TiltPanel({ children }) {
 }
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section
-      className="relative flex min-h-screen items-center overflow-hidden bg-transparent pt-12 pb-20  lg:pt-16 lg:pb-24"
+      className="relative flex min-h-screen items-center overflow-hidden bg-surface-dark bp-grid-dark pt-12 pb-20 lg:pt-16 lg:pb-24 text-text-primary-on-dark"
       aria-labelledby="hero-heading"
+      style={{ '--grid-line-on-dark': 'rgba(244,245,241,0.02)' }}
     >
-      <div className="container relative z-10 px-6 lg:px-8">
+      <div className="container relative z-10 px-6 lg:px-8 py-8 ">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left: copy */}
           <motion.div
@@ -114,40 +119,40 @@ export default function HeroSection() {
           >
             {/* Eyebrow badge — floats gently once revealed */}
             <motion.div variants={fadeUp}>
-              <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+              <motion.div animate={{ y: prefersReducedMotion ? 0 : [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                 <Link
                   to="/features"
-                  className="group inline-flex items-center gap-3.5 rounded-full border border-[#D4A35B]/20 bg-slate-900/5 p-1.5 pr-5 backdrop-blur-xl transition-all duration-300 hover:border-[#D4A35B]/40 hover:bg-slate-900/10 hover:shadow-[0_8px_32px_rgba(197,138,56,0.15)]"
+                  className="group inline-flex items-center gap-3.5 rounded-full border border-[var(--accent-on-dark)]/20 bg-slate-900/5 p-1.5 pr-5 backdrop-blur-xl transition-all duration-300 hover:border-[var(--accent-on-dark)]/40 hover:bg-slate-900/10 hover:shadow-[0_8px_32px_rgba(197,138,56,0.15)]"
                 >
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#D4A35B]/20 px-3 py-1">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent-on-dark)]/20 px-3 py-1">
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D4A35B] opacity-75" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#D4A35B]" />
+                      <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-[var(--accent-on-dark)] opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent-on-dark)]" />
                     </span>
-                    <span className="select-none text-[10px] font-bold uppercase leading-none tracking-[0.2em] text-[#D4A35B] antialiased">
+                    <span className="select-none text-[10px] font-bold uppercase leading-none tracking-[0.2em] text-[var(--accent-on-dark)] antialiased">
                       LIVE
                     </span>
                   </span>
-                  <span className="text-sm font-medium text-tx-primary transition-colors duration-300 group-hover:text-tx-primary">
+                  <span className="text-sm font-medium text-[var(--text-on-dark)] transition-colors duration-300 group-hover:text-[var(--accent)]">
                     Enterprise Society ERP
-                    <span className="mx-2 select-none text-[#D4A35B]/60">•</span>
+                    <span className="mx-2 select-none text-[var(--accent-on-dark)]/60">•</span>
                     PWA
                   </span>
-                  <ArrowRight size={15} className="text-[#D4A35B] transition-transform duration-300 ease-out group-hover:translate-x-1" />
+                  <ArrowRight size={15} className="text-[var(--accent-on-dark)] transition-transform duration-300 ease-out group-hover:translate-x-1" />
                 </Link>
               </motion.div>
             </motion.div>
 
             {/* Heading + subhead */}
             <motion.div variants={fadeUp} className="space-y-5">
-              <h1 id="hero-heading" className="text-4xl font-bold leading-[1.05] tracking-tight text-tx-primary sm:text-5xl lg:text-[3.4rem]">
+              <h1 id="hero-heading" className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.4rem] bg-gradient-to-br from-white to-white/70 bg-clip-text text-transparent">
                 <span className="block">Run Your Entire</span>
-                <span className="block bg-gradient-to-r from-[#E4B876] via-[#D4A35B] to-[#C58A38] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[var(--accent)] via-[var(--accent-on-dark)] to-[var(--accent)] bg-clip-text text-transparent">
                   Housing Society
                 </span>
                 <span className="block">From One Intelligent Platform</span>
               </h1>
-              <p className="max-w-md text-base leading-relaxed text-tx-primary sm:text-lg">
+              <p className="max-w-md text-base leading-relaxed text-[var(--text-on-dark-muted)] sm:text-lg">
                 Billing, visitor entry, complaints, and communication — unified
                 in one platform your committee and residents actually use.
               </p>
@@ -160,7 +165,7 @@ export default function HeroSection() {
                 to="/book-demo"
                 variant="brass"
                 size="xl"
-                className="group relative isolate justify-center overflow-hidden tracking-wide shadow-2xl shadow-[#C58A38]/30 hover:scale-[1.03] active:scale-[0.98] sm:min-w-[220px]"
+                className="group relative isolate justify-center overflow-hidden tracking-wide shadow-2xl shadow-[var(--accent)]/30 hover:scale-[1.03] active:scale-[0.98] sm:min-w-[220px]"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
                 <span className="relative flex items-center gap-2.5">
@@ -172,11 +177,11 @@ export default function HeroSection() {
               <Button
                 as={Link}
                 to="/features"
-                variant="outline"
+                variant="outline-light"
                 size="xl"
-                className="group justify-center backdrop-blur-md hover:scale-[1.03] hover:bg-bg-surface shadow-sm border border-bd-subtle active:scale-[0.98] sm:min-w-[220px]"
+                className="group justify-center backdrop-blur-md hover:scale-[1.03] shadow-[var(--shadow-dark-panel)] border-[var(--line-on-dark)] active:scale-[0.98] sm:min-w-[220px]"
               >
-                <Play size={16} className="fill-slate-900 transition-transform duration-300 group-hover:scale-110" />
+                <Play size={16} className="fill-[var(--text-on-dark)] transition-transform duration-300 group-hover:scale-110" />
                 Watch Product Tour
               </Button>
             </motion.div>
@@ -184,7 +189,7 @@ export default function HeroSection() {
             {/* Features — staggered individually */}
             <motion.div
               variants={fadeUp}
-              className="border-t border-bd-subtle pt-8"
+              className="border-t border-[var(--line-on-dark)] pt-8"
             >
               <motion.div
                 variants={staggerGrid}
@@ -198,8 +203,8 @@ export default function HeroSection() {
                       <Icon className={`h-5 w-5 ${iconColor}`} />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-tx-primary">{title}</p>
-                      <p className="text-sm text-tx-primary">{desc}</p>
+                      <p className="text-sm font-semibold text-[var(--text-on-dark)]">{title}</p>
+                      <p className="text-sm text-[var(--text-on-dark-muted)]">{desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -214,7 +219,6 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
             className="relative -translate-y-8 lg:-translate-y-24"
           >
-            <div className="absolute -inset-10 rounded-full bg-[#C58A38]/10 blur-[120px]" />
             <div className="absolute -left-6 top-10 h-24 w-24 rounded-full bg-emerald-500/10 blur-3xl" />
             <TiltPanel>
               <HeroBlueprint />
@@ -225,7 +229,7 @@ export default function HeroSection() {
 
       {/* Scroll cue */}
       <motion.div
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-tx-secondary font-medium lg:flex"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[var(--text-on-dark-muted)] font-medium lg:flex"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >

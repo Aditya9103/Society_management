@@ -30,7 +30,7 @@ export default function Register() {
   };
 
   return (
-    <PageWrapper title="Admin Setup | Parapet" className="bg-[var(--paper)]">
+    <PageWrapper title="Admin Setup | Parapet" className="bg-[var(--surface-light-alt)]">
       <div className="min-h-screen flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,18 +40,18 @@ export default function Register() {
           {/* Logo & Header */}
           <div className="text-center mb-10">
             <Link to="/" className="inline-flex items-center gap-2 mb-8 group">
-              <div className="w-10 h-10 bg-[var(--ink)] text-[var(--brass-light)] rounded-xl flex items-center justify-center font-bold text-xl transition-transform group-hover:scale-105">
+              <div className="w-10 h-10 bg-[var(--surface-dark)] text-[var(--brass-300)] rounded-xl flex items-center justify-center font-bold text-xl transition-transform group-hover:scale-105">
                 P
               </div>
-              <span className="text-2xl font-bold tracking-tight text-[var(--ink)]">Parapet</span>
+              <span className="text-2xl font-bold tracking-tight text-[var(--text-on-light)]">Parapet</span>
             </Link>
 
-            <h1 className="text-3xl font-bold text-[var(--ink)] mb-2">Admin Setup</h1>
-            <p className="text-[var(--text-muted)] font-medium">Initialize your secure platform access.</p>
+            <h1 className="text-3xl font-bold text-[var(--text-on-light)] mb-2">Admin Setup</h1>
+            <p className="text-[var(--text-on-light-muted)] font-medium">Initialize your secure platform access.</p>
           </div>
 
           {/* Registration Card */}
-          <div className="bg-bg-surface rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-bd-subtle relative overflow-hidden">
+          <div className="bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[var(--line-on-light)] relative overflow-hidden">
             {/* Top decorative gradient */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--brass)] to-[var(--brass-light)]" />
 
@@ -72,54 +72,54 @@ export default function Register() {
             <form onSubmit={handleSubmit} className="space-y-5">
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-tx-secondary font-medium">Full Name</label>
+                <label className="text-sm font-bold text-[var(--text-on-light-muted)] font-medium">Full Name</label>
                 <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-on-light-faint)]" />
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     autoComplete="name"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-[var(--surface-light)] border border-[var(--line-on-light)] focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-[var(--text-on-light-faint)]"
                     placeholder="Jane Doe"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-tx-secondary font-medium">Work Email</label>
+                <label className="text-sm font-bold text-[var(--text-on-light-muted)] font-medium">Work Email</label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-on-light-faint)]" />
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     autoComplete="username"
-                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl bg-[var(--surface-light)] border border-[var(--line-on-light)] focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-[var(--text-on-light-faint)]"
                     placeholder="admin@parapet.com"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-tx-secondary font-medium">Secure Password</label>
+                <label className="text-sm font-bold text-[var(--text-on-light-muted)] font-medium">Secure Password</label>
                 <div className="relative">
-                  <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
+                  <Key className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-on-light-faint)]" />
                   <input
                     type={showPassword ? "text" : "password"}
                     required
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     autoComplete="new-password"
-                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted"
+                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-[var(--surface-light)] border border-[var(--line-on-light)] focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-[var(--text-on-light-faint)]"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-tx-muted hover:text-tx-secondary transition-colors"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-on-light-faint)] hover:text-[var(--text-on-light-muted)] transition-colors"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -127,23 +127,23 @@ export default function Register() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-bold text-tx-secondary font-medium">Setup Secret Key</label>
-                <p className="text-xs text-tx-muted mb-2">Check your .env file for ADMIN_REGISTRATION_SECRET</p>
+                <label className="text-sm font-bold text-[var(--text-on-light-muted)] font-medium">Setup Secret Key</label>
+                <p className="text-xs text-[var(--text-on-light-faint)] mb-2">Check your .env file for ADMIN_REGISTRATION_SECRET</p>
                 <div className="relative">
-                  <Shield className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-tx-muted" />
+                  <Shield className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-on-light-faint)]" />
                   <input
                     type={showSecret ? "text" : "password"}
                     required
                     value={formData.secretKey}
                     onChange={(e) => setFormData({ ...formData, secretKey: e.target.value })}
                     autoComplete="off"
-                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-bg-app border border-bd-subtle focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-tx-muted mono text-sm"
+                    className="w-full pl-11 pr-12 py-3 rounded-xl bg-[var(--surface-light)] border border-[var(--line-on-light)] focus:border-[var(--brass)] focus:ring-1 focus:ring-[var(--brass)] outline-none transition-all font-medium placeholder:text-[var(--text-on-light-faint)] mono text-sm"
                     placeholder="Secret Key"
                   />
                   <button
                     type="button"
                     onClick={() => setShowSecret(!showSecret)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-tx-muted hover:text-tx-secondary transition-colors"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-on-light-faint)] hover:text-[var(--text-on-light-muted)] transition-colors"
                   >
                     {showSecret ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -169,7 +169,7 @@ export default function Register() {
             </form>
 
             <div className="mt-8 text-center">
-              <p className="text-sm font-medium text-tx-muted">
+              <p className="text-sm font-medium text-[var(--text-on-light-faint)]">
                 Already have access? <Link to="/admin/login" className="text-[var(--brass)] font-bold hover:underline">Sign In</Link>
               </p>
             </div>

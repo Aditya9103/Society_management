@@ -16,6 +16,8 @@ const contactMessageSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
+      required: [true, 'Phone Number is required'],
+      match: [/^\d{10}$/, 'Please fill a valid phone number'],
       trim: true,
     },
     societyName: {

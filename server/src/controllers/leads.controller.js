@@ -9,7 +9,7 @@ export const createLead = async (req, res, next) => {
 
     // Fire & forget email notifications (do not block the response)
     const salesEmail = config.notifications.sales;
-    
+
     // Notify internal sales team
     sendEmail(
       salesEmail,
@@ -35,7 +35,12 @@ export const createLead = async (req, res, next) => {
 
 export const getLeads = async (req, res, next) => {
   try {
-    const leads = await Lead.find().sort({ createdAt: -1 });
+    const { status, source } = req.query;
+    const filter = {};
+    if (status) filter.status = status;
+    if (source) filter.source = source;
+
+    const leads = await Lead.find(filter).sort({ createdAt: -1 });
     res.json({ success: true, count: leads.length, data: leads });
   } catch (error) {
     next(error);
@@ -44,11 +49,12 @@ export const getLeads = async (req, res, next) => {
 
 export const updateLeadStatus = async (req, res, next) => {
   try {
+    console.log('Hitting updateLeadStatus:', req.params.id, req.body);
     const { status } = req.body;
     const lead = await Lead.findByIdAndUpdate(
       req.params.id,
       { status },
-      { new: true, runValidators: true }
+      { new: true }
     );
     if (!lead) {
       return res.status(404).json({ success: false, error: 'Lead not found' });

@@ -35,8 +35,29 @@ export const createContactMessage = async (req, res, next) => {
 
 export const getContactMessages = async (req, res, next) => {
   try {
-    const messages = await ContactMessage.find().sort({ createdAt: -1 });
+    const { status } = req.query;
+    const filter = {};
+    if (status) filter.status = status;
+
+    const messages = await ContactMessage.find(filter).sort({ createdAt: -1 });
     res.json({ success: true, count: messages.length, data: messages });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateContactMessageStatus = async (req, res, next) => {
+  try {
+    const { status } = req.body;
+    const message = await ContactMessage.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+    if (!message) {
+      return res.status(404).json({ success: false, error: 'Message not found' });
+    }
+    res.json({ success: true, data: message });
   } catch (error) {
     next(error);
   }

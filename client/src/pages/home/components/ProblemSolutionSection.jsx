@@ -3,12 +3,17 @@ import ProblemSolutionGrid from '../../../components/sections/ProblemSolutionGri
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="relative overflow-hidden bg-transparent py-24 lg:py-32">
-      {/* Soft depth, matches hero's mesh without competing with it */}
-      <div className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full bg-[#C58A38]/[0.04] blur-[100px]" />
-      <div className="pointer-events-none absolute -bottom-24 left-0 h-72 w-72 rounded-full bg-emerald-500/[0.03] blur-[100px]" />
-
-      <div className="container relative px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-surface-light-alt py-24 lg:py-32 text-text-primary-on-light">
+      {/*
+        Removed the stray `px-6 lg:px-8` that used to sit on this
+        container below — `.container` already sets `padding-inline`
+        from the shared `--container-padding` token (32px desktop /
+        20px mobile). Adding a second Tailwind padding utility on the
+        same physical property didn't add to it, it silently overrode
+        it, so this section's horizontal padding was quietly different
+        from every other section on the site. Let `.container` own it.
+      */}
+      <div className="container relative">
         <SectionHeader
           eyebrow="Why Societies Switch"
           heading="Replace the chaos. Run on structure."

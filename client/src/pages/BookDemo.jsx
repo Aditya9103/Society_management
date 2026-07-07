@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Building2, Users2, ShieldCheck, Zap } from 'lucide-react';
 import PageWrapper from '../components/layout/PageWrapper';
 import LeadForm from '../components/ui/LeadForm';
+import FAQSection from '../components/sections/FAQSection';
+import { faqData } from '../data/faqData';
 
 const features = [
   {
@@ -32,20 +34,19 @@ export default function BookDemo() {
       title="Book a Demo | Parapet"
       description="Schedule a personalized walkthrough of the Parapet Society Management platform."
     >
-      <div className="min-h-screen pt-32 pb-24 bg-[var(--paper)] relative overflow-hidden">
+      <div className="min-h-screen pt-32 pb-24 bg-surface-light text-text-primary-on-light relative overflow-hidden">
         {/* Background Gradients */}
-        <div className="absolute top-0 left-0 w-full min-h-[150vh] bg-[var(--ink)] -skew-y-3 origin-top-left z-0" />
-
+        
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
             {/* Left Column: Value Prop */}
-            <div className="text-tx-primary pt-8 lg:pt-0">
+            <div className="text-[var(--text-on-light)] pt-8 lg:pt-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-md border border-white/10 text-sm font-medium text-[var(--brass-light)] mb-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-sm border border-[var(--line-on-light)] backdrop-blur-md border border-white/10 text-sm font-medium text-[var(--brass-light)] mb-8">
                   <Zap size={14} className="fill-[var(--brass-light)]" />
                   Free 30-Minute Consultation
                 </div>
@@ -55,7 +56,7 @@ export default function BookDemo() {
                   <span className="text-[var(--brass)]">action</span>.
                 </h1>
 
-                <p className="text-xl text-tx-primary mb-12 max-w-lg leading-relaxed font-medium">
+                <p className="text-xl text-[var(--text-on-light)] mb-12 max-w-lg leading-relaxed font-medium">
                   Join 500+ premium societies running their operations on autopilot. Book a demo to see how we can digitize your entire society management.
                 </p>
 
@@ -74,8 +75,8 @@ export default function BookDemo() {
                           <Icon size={24} className="text-[var(--brass-light)]" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-tx-primary mb-1.5">{feat.title}</h3>
-                          <p className="text-tx-primary leading-relaxed font-medium">{feat.desc}</p>
+                          <h3 className="text-xl font-bold text-[var(--text-on-light)] mb-1.5">{feat.title}</h3>
+                          <p className="text-[var(--text-on-light)] leading-relaxed font-medium">{feat.desc}</p>
                         </div>
                       </motion.div>
                     );
@@ -92,15 +93,15 @@ export default function BookDemo() {
               className="relative"
             >
               {/* Decorative blobs */}
-              <div className="absolute -top-12 -right-12 w-64 h-64 bg-[var(--brass)]/20 rounded-full blur-[100px] pointer-events-none" />
-              <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-[var(--ink)]/20 rounded-full blur-[100px] pointer-events-none" />
-
+                            
               <LeadForm source="book-demo" className="relative z-10" />
             </motion.div>
 
           </div>
         </div>
       </div>
+
+      <FAQSection faqs={faqData.demo} title="Demo FAQs" subtitle="Common questions about our demo process." dark={true} />
     </PageWrapper>
   );
 }

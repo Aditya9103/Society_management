@@ -62,26 +62,26 @@ const modules = [
 function ModuleCard({ icon: Icon, name, desc, features, href, accent }) {
   return (
     <StaggerItem>
-      <BaseCard className="group flex flex-col h-full border-bd-subtle" hover={true} padding="p-0">
-        <div className={`absolute inset-0 bg-gradient-to-br ${accent.glow} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0`} />
+      <BaseCard className="group flex flex-col h-full" hover={true} dark={true} padding="p-0">
+        <div className={`absolute inset-0 bg-gradient-to-br ${accent.glow.replace('from-', 'from-[var(--surface-dark-raised)]')} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0`} />
 
         <div className="relative z-10 flex flex-1 flex-col p-8">
           {/* Icon + name */}
           <div className="mb-5 flex items-start gap-4">
-            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${accent.border} ${accent.bg}`}>
-              <Icon size={22} className={accent.text} />
+            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-[var(--line-on-dark)]`}>
+              <Icon size={22} className="text-[var(--accent)]" />
             </div>
             <div>
-              <p className="text-lg font-bold text-tx-primary">{name}</p>
-              <p className="mt-1 text-sm leading-relaxed text-tx-primary-light">{desc}</p>
+              <p className="text-lg font-bold text-[var(--text-on-dark)]">{name}</p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--text-on-dark-muted)]">{desc}</p>
             </div>
           </div>
 
           {/* Feature list */}
           <ul className="mb-6 flex-1 space-y-2.5">
             {features.map((f) => (
-              <li key={f} className="flex items-center gap-2.5 text-sm text-tx-primary-light">
-                <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accent.text.replace('text-', 'bg-')}`} />
+              <li key={f} className="flex items-center gap-2.5 text-sm text-[var(--text-on-dark-muted)]">
+                <span className={`h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-on-dark)]`} />
                 {f}
               </li>
             ))}
@@ -90,7 +90,7 @@ function ModuleCard({ icon: Icon, name, desc, features, href, accent }) {
           {/* Link */}
           <Link
             to={href}
-            className={`inline-flex items-center gap-2 text-sm font-semibold ${accent.text} transition-all hover:gap-3 mt-auto`}
+            className={`inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-all hover:gap-3 mt-auto`}
           >
             Explore module <ArrowRight size={14} />
           </Link>

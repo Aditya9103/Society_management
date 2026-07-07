@@ -61,17 +61,17 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-white/90 backdrop-blur-md border-b border-bd-subtle py-3 shadow-sm'
-            : 'bg-transparent py-5'
+            ? 'bg-[var(--nav-bg-scrolled)] backdrop-blur-md border-b border-[var(--nav-border-scrolled)] py-3'
+            : 'bg-[var(--nav-bg-top)] py-5'
         )}
       >
         <div className="container flex items-center gap-6">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0 mr-4" aria-label="Parapet home">
-            <div className="w-8 h-8 rounded-lg bg-primary shadow-lg">
-              <Zap size={16} className="text-white fill-white" />
+            <div className="w-8 h-8 rounded-lg bg-[var(--accent)] shadow-[var(--shadow-accent)] flex items-center justify-center">
+              <Zap size={16} className="text-[var(--navy-900)] fill-[var(--navy-900)]" />
             </div>
-            <span className="font-heading font-700 text-[18px] tracking-[-0.02em] text-tx-primary">
+            <span className="font-display font-bold text-[18px] tracking-tight text-[var(--text-on-dark)]">
               Parapet
             </span>
           </Link>
@@ -87,8 +87,8 @@ export default function Navbar() {
               className={cn(
                 'flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-colors',
                 megaOpen
-                  ? 'bg-bg-surface shadow-sm border border-bd-subtle text-tx-primary'
-                  : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
+                  ? 'bg-[var(--surface-dark-raised)] border border-[var(--line-on-dark)] text-[var(--nav-link-color-active)]'
+                  : 'text-[var(--nav-link-color)] hover:text-[var(--nav-link-color-hover)] hover:bg-[var(--surface-dark-raised)]'
               )}
             >
               Features
@@ -104,8 +104,8 @@ export default function Navbar() {
                 className={({ isActive }) => cn(
                   'px-4 py-2 rounded-full text-sm font-medium transition-colors',
                   isActive
-                    ? 'text-tx-primary bg-bg-surface shadow-sm border border-bd-subtle'
-                    : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
+                    ? 'text-[var(--nav-link-color-active)] bg-[var(--surface-dark-raised)] border border-[var(--line-on-dark)]'
+                    : 'text-[var(--nav-link-color)] hover:text-[var(--nav-link-color-hover)] hover:bg-[var(--surface-dark-raised)]'
                 )}
               >
                 {item.label}
@@ -117,7 +117,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 ml-auto">
             <Link
               to="/admin/login"
-              className="text-tx-secondary hover:text-tx-primary text-sm transition-colors"
+              className="text-[var(--nav-link-color)] hover:text-[var(--nav-link-color-hover)] text-sm font-medium transition-colors"
             >
               Sign in
             </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden ml-auto text-tx-primary p-2 rounded-lg hover:bg-bg-surface shadow-sm border border-bd-subtle transition-colors"
+            className="lg:hidden ml-auto text-[var(--text-on-dark)] p-2 rounded-lg hover:bg-[var(--surface-dark-raised)] border border-[var(--line-on-dark)] transition-colors"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
@@ -146,13 +146,13 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="absolute top-full left-0 right-0 bg-white/90 backdrop-blur-md border-b border-bd-subtle shadow-lg"
+              className="absolute top-full left-0 right-0 bg-[var(--surface-dark)] border-b border-[var(--line-on-dark)] shadow-[var(--shadow-dark-panel)]"
             >
               <div className="container py-8">
                 <div className="flex gap-8">
                   {/* Department tabs (left sidebar) */}
-                  <div className="w-44 shrink-0 flex flex-col gap-1 border-r border-bd-subtle pr-6">
-                    <p className="mono text-tx-primary mb-3">Departments</p>
+                  <div className="w-44 shrink-0 flex flex-col gap-1 border-r border-[var(--line-on-dark)] pr-6">
+                    <p className="mono text-[var(--text-on-dark-muted)] mb-3">Departments</p>
                     {navigation.departments.map((dept) => (
                       <button
                         key={dept.id}
@@ -161,8 +161,8 @@ export default function Navbar() {
                         className={cn(
                           'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-left transition-colors',
                           activeTab === dept.id
-                            ? 'bg-bg-subtle text-tx-primary'
-                            : 'text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle'
+                            ? 'bg-[var(--surface-dark-raised)] text-[var(--accent-on-dark)]'
+                            : 'text-[var(--text-on-dark-muted)] hover:text-[var(--text-on-dark)] hover:bg-[var(--surface-dark-raised)]'
                         )}
                       >
                         <span>{deptIcons[dept.id]}</span>
@@ -181,7 +181,7 @@ export default function Navbar() {
                         exit={{ opacity: 0, x: -8 }}
                         transition={{ duration: 0.15 }}
                       >
-                        <p className="mono text-tx-primary mb-4">
+                        <p className="mono tracking-widest uppercase text-[var(--accent-on-dark)] text-[11px] mb-4">
                           {activeDept?.label} Module
                         </p>
                         <div className="grid grid-cols-3 gap-2">
@@ -190,9 +190,9 @@ export default function Navbar() {
                               key={feat.slug}
                               to={`/features/${feat.slug}`}
                               onClick={() => setMegaOpen(false)}
-                              className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-tx-secondary hover:text-tx-primary hover:bg-bg-subtle transition-colors group"
+                              className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-[var(--text-on-dark)] hover:text-[var(--accent-on-dark)] hover:bg-[var(--surface-dark-raised)] transition-colors group"
                             >
-                              <ArrowRight size={12} className="text-primary opacity-0 group-hover:opacity-100 -ml-1 group-hover:ml-0 transition-all" />
+                              <ArrowRight size={12} className="text-[var(--accent-on-dark)] opacity-0 group-hover:opacity-100 -ml-1 group-hover:ml-0 transition-all" />
                               {feat.name}
                             </Link>
                           ))}
@@ -202,11 +202,11 @@ export default function Navbar() {
                   </div>
 
                   {/* View all CTA */}
-                  <div className="w-40 shrink-0 border-l border-bd-subtle pl-6 flex flex-col justify-center gap-3">
+                  <div className="w-40 shrink-0 border-l border-[var(--line-on-light)] pl-6 flex flex-col justify-center gap-3">
                     <Link
                       to="/features"
                       onClick={() => setMegaOpen(false)}
-                      className="flex items-center gap-2 text-sm text-tx-primary hover:text-primary font-medium transition-colors"
+                      className="flex items-center gap-2 text-sm text-[var(--text-on-dark)] hover:text-[var(--accent-on-dark)] font-medium transition-colors"
                     >
                       View all features <ArrowRight size={14} />
                     </Link>

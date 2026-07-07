@@ -3,8 +3,7 @@ import CompareTable from '../../../components/sections/CompareTable';
 
 export default function CompareSection() {
   return (
-    <section className="py-32 lg:py-40 bg-transparent relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+    <section className="py-32 lg:py-40 bg-surface-dark bp-grid-dark relative overflow-hidden text-text-primary-on-dark">
       <div className="container relative z-10">
         <SectionHeader
           eyebrow="Why Parapet"
@@ -12,8 +11,15 @@ export default function CompareSection() {
           subtext="Most platforms solve one problem. Parapet is the only platform that covers security, finance, and operations in one integrated system."
           align="center"
           maxWidth="580px"
+          dark={true}
         />
-        <div className="max-w-[700px] mx-auto">
+        {/*
+          Widened from 700px to 760px — the table's feature-name column
+          now gets more room than the two value columns (was an even
+          three-way split), so it benefits from slightly more breathing
+          room than before.
+        */}
+        <div className="max-w-[760px] mx-auto">
           <CompareTable />
         </div>
       </div>

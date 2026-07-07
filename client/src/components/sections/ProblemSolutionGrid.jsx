@@ -1,13 +1,27 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, X, Check, FileText, Calculator, MessagesSquare, PhoneCall, LineChart, Siren } from 'lucide-react';
 
+/**
+ * Full rewrite. The previous version used six different rainbow accent
+ * hues (emerald/blue/purple/amber/indigo/rose) and heavy glassmorphism
+ * (backdrop-blur-2xl, glossy overlays, colored shadows) — the opposite
+ * of this site's "Blueprint Dark" direction, which is explicitly one
+ * accent hue (brass), restrained shadows, and no decorative glass/mesh.
+ * This version uses only tokens already defined in index.css: brass for
+ * the connector/accent, the semantic status colors for their actual
+ * semantic purpose (alert for "before", live/teal for "after" — not as
+ * decoration), and the same card recipe (white surface, hairline border,
+ * hover lift + top accent line) used by FeatureCard elsewhere on the
+ * site, so this section feels like part of the same product rather than
+ * a visually distinct one-off.
+ */
 const problems = [
-  { icon: FileText, color: 'emerald', problem: 'Paper Visitor Register', solution: 'Digital QR Check-in' },
-  { icon: Calculator, color: 'blue', problem: 'Manual Billing & Excel', solution: 'Auto Invoice Generation' },
-  { icon: MessagesSquare, color: 'purple', problem: 'WhatsApp Complaints', solution: 'Helpdesk Ticket System' },
-  { icon: PhoneCall, color: 'amber', problem: 'Gate Phone Calls', solution: 'QR Visitor Entry Pass' },
-  { icon: LineChart, color: 'indigo', problem: 'Excel Accounting', solution: 'Complete Finance ERP' },
-  { icon: Siren, color: 'rose', problem: 'No Emergency System', solution: 'One-Tap SOS Alert' },
+  { icon: FileText, problem: 'Paper visitor register', solution: 'Digital QR check-in' },
+  { icon: Calculator, problem: 'Manual billing & Excel', solution: 'Auto invoice generation' },
+  { icon: MessagesSquare, problem: 'WhatsApp complaints', solution: 'Helpdesk ticket system' },
+  { icon: PhoneCall, problem: 'Gate phone calls', solution: 'QR visitor entry pass' },
+  { icon: LineChart, problem: 'Excel accounting', solution: 'Complete finance ERP' },
+  { icon: Siren, problem: 'No emergency system', solution: 'One-tap SOS alert' },
 ];
 
 const containerVariants = {
@@ -16,76 +30,65 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] } },
 };
 
-function ProblemCard({ icon: Icon, color, problem, solution }) {
-  // Map colors for Tailwind to avoid purge issues
-  const colorMap = {
-    emerald: 'from-emerald-500/10 to-emerald-500/5 hover:border-emerald-500/30 shadow-emerald-500/10',
-    blue: 'from-blue-500/10 to-blue-500/5 hover:border-blue-500/30 shadow-blue-500/10',
-    purple: 'from-purple-500/10 to-purple-500/5 hover:border-purple-500/30 shadow-purple-500/10',
-    amber: 'from-amber-500/10 to-amber-500/5 hover:border-amber-500/30 shadow-amber-500/10',
-    indigo: 'from-indigo-500/10 to-indigo-500/5 hover:border-indigo-500/30 shadow-indigo-500/10',
-    rose: 'from-rose-500/10 to-rose-500/5 hover:border-rose-500/30 shadow-rose-500/10',
-  };
-  const iconMap = {
-    emerald: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
-    blue: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
-    purple: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-    amber: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-    indigo: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20',
-    rose: 'bg-rose-500/10 text-rose-600 border-rose-500/20',
-  };
-
+function ProblemCard({ icon: Icon, problem, solution }) {
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-      className={`group relative overflow-hidden rounded-[24px] border border-white/60 bg-gradient-to-br ${colorMap[color]} bg-white/60 backdrop-blur-xl shadow-xl transition-all duration-300`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+      className="group relative rounded-[18px] border border-[var(--line-on-light)] bg-[var(--surface-light-card)] shadow-sm hover:shadow-md hover:border-[var(--accent)]/30 transition-shadow duration-300 overflow-hidden"
     >
+      {/* Top accent line, reveals on hover — same motif as FeatureCard */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
       {/* Category icon */}
-      <div className="flex items-center gap-3 px-6 pt-6 md:px-8 md:pt-8">
-        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${iconMap[color]}`}>
-          <Icon size={20} className="font-bold" />
+      <div className="px-7 pt-7">
+        <div className="w-11 h-11 rounded-xl bg-[var(--accent-tint)] flex items-center justify-center text-[var(--accent)]">
+          <Icon size={20} strokeWidth={2} aria-hidden="true" />
         </div>
-        <span className="h-px flex-1 bg-white/40" aria-hidden="true" />
       </div>
 
-      {/* Problem */}
-      <div className="px-6 pb-6 pt-4 md:px-8">
+      {/* Before */}
+      <div className="px-7 pt-5">
         <div className="mb-2 flex items-center gap-2">
-          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500/10">
-            <X size={11} className="text-red-500" />
+          <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[var(--status-alert)]/10">
+            <X size={10} className="text-[var(--status-alert)]" strokeWidth={3} aria-hidden="true" />
           </div>
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-red-500">
+          <span className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--text-on-light-faint)]">
             Before
           </span>
         </div>
-        <p className="text-[16px] font-bold text-tx-secondary font-medium">{problem}</p>
+        <p className="text-[15px] font-medium text-[var(--text-on-light-muted)] line-through decoration-[var(--line-on-light-strong)]">
+          {problem}
+        </p>
       </div>
 
       {/* Connector */}
-      <div className="relative flex items-center justify-center py-2">
-        <span className="absolute left-1/2 h-full w-px -translate-x-1/2 bg-white/40" aria-hidden="true" />
-        <div className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/60 bg-white/80 shadow-md backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-1">
-          <ArrowDown size={14} className="text-tx-muted" />
+      <div className="relative flex items-center justify-center py-3">
+        <span
+          className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-[var(--line-on-light)]"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full border border-[var(--brass-500)]/40 bg-[var(--surface-light-card)] transition-transform duration-300 group-hover:translate-y-0.5">
+          <ArrowDown size={13} className="text-[var(--brass-500)]" aria-hidden="true" />
         </div>
       </div>
 
       {/* Solution */}
-      <div className="bg-white/40 px-6 pb-6 pt-4 md:px-8 md:pb-8">
+      <div className="px-7 pb-7 pt-2">
         <div className="mb-2 flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 shadow-inner">
-            <Check size={12} className="text-emerald-600 font-bold" />
+          <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[var(--status-live)]/10">
+            <Check size={10} className="text-[var(--status-live)]" strokeWidth={3} aria-hidden="true" />
           </div>
-          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-emerald-600">
+          <span className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--text-on-light-faint)]">
             With Parapet
           </span>
         </div>
-        <p className="text-[17px] font-bold text-tx-primary">{solution}</p>
+        <p className="text-[17px] font-bold text-[var(--text-on-light)]">{solution}</p>
       </div>
     </motion.div>
   );
@@ -98,7 +101,7 @@ export default function ProblemSolutionGrid() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16"
     >
       {problems.map((item) => (
         <ProblemCard key={item.problem} {...item} />

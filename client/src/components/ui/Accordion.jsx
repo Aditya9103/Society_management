@@ -9,7 +9,7 @@ export function AccordionItem({ question, answer, dark = false }) {
   return (
     <div className={cn(
       'border-b last:border-b-0 transition-colors duration-300',
-      dark ? 'border-[#334155]/60' : 'border-bd-subtle/60'
+      dark ? 'border-[#334155]/60' : 'border-[var(--line-on-light)]/60'
     )}>
       <button
         onClick={() => setOpen((o) => !o)}
@@ -19,7 +19,7 @@ export function AccordionItem({ question, answer, dark = false }) {
           'font-semibold text-[16px] transition-colors',
           dark
             ? 'text-white hover:text-primary'
-            : 'text-tx-primary hover:text-primary'
+            : 'text-[var(--text-on-light)] hover:text-primary'
         )}
       >
         <span>{question}</span>
@@ -44,7 +44,7 @@ export function AccordionItem({ question, answer, dark = false }) {
           >
             <p className={cn(
               'pb-6 text-[15px] leading-relaxed',
-              dark ? 'text-tx-primary' : 'text-tx-primary'
+              dark ? 'text-[var(--text-on-dark)]' : 'text-[var(--text-on-light)]'
             )}>
               {answer}
             </p>
@@ -59,7 +59,7 @@ export default function Accordion({ items = [], dark = false, className = '' }) 
   return (
     <div className={cn(
       'rounded-2xl overflow-hidden transition-all duration-300',
-      dark ? 'bg-ink/80 backdrop-blur-xl px-8 shadow-xl shadow-slate-900/20' : 'bg-bg-surface shadow-sm border border-bd-subtle backdrop-blur-xl border border-bd-subtle/60 px-8 shadow-lg shadow-slate-200/40',
+      dark ? 'bg-[var(--surface-dark-raised)] backdrop-blur-xl px-8 shadow-xl shadow-slate-900/20' : 'bg-white shadow-sm border-[var(--line-on-light)] backdrop-blur-xl border border-[var(--line-on-light)]/60 px-8 shadow-lg shadow-slate-200/40',
       className
     )}>
       {items.map((item, i) => (

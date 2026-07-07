@@ -19,6 +19,7 @@ const BookDemo       = lazy(() => import('./pages/BookDemo'));
 const Privacy        = lazy(() => import('./pages/Privacy'));
 const Terms          = lazy(() => import('./pages/Terms'));
 const NotFound       = lazy(() => import('./pages/NotFound'));
+const FAQ            = lazy(() => import('./pages/FAQ'));
 
 // Admin (lazy)
 const AdminLogin     = lazy(() => import('./admin/Login'));
@@ -55,10 +56,11 @@ export default function App() {
           <Route path="/industries"           element={<Industries />} />
           <Route path="/about"               element={<About />} />
           <Route path="/blog"                element={<Blog />} />
-          <Route path="/blog/:slug"          element={<BlogPost />} />
-          <Route path="/contact"             element={<Contact />} />
-          <Route path="/book-demo"           element={<BookDemo />} />
-          <Route path="/privacy"             element={<Privacy />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/book-demo" element={<BookDemo />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms"               element={<Terms />} />
 
           {/* Admin */}
