@@ -18,6 +18,10 @@ import uploadRoutes from './routes/upload.routes.js';
 
 const app = express();
 
+// Trust the first proxy (e.g. Render, Vercel, Heroku, NGINX)
+// This is required for express-rate-limit to accurately identify user IPs.
+app.set('trust proxy', 1);
+
 // ─── Security & Rate Limiting ──────────────────────────────────
 app.use(helmet());
 
