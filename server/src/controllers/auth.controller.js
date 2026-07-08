@@ -30,6 +30,7 @@ const sendTokenResponse = (admin, statusCode, res) => {
         name: admin.name,
         email: admin.email,
         role: admin.role,
+        token: token,
       }
     });
 };

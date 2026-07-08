@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const USER_KEY  = 'parapet_admin_user';
+const TOKEN_KEY = 'parapet_admin_token';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem(USER_KEY) || 'null'),
-  isAuthenticated: !!localStorage.getItem(USER_KEY),
+  token: localStorage.getItem(TOKEN_KEY) || null,
+  isAuthenticated: !!localStorage.getItem(TOKEN_KEY),
 };
 
 const authSlice = createSlice({
@@ -12,16 +14,19 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials(state, { payload: { user } }) {
-      state.user = user;
+      const { token, ...userData } = user;
+      state.user = userData;
+      state.token = token;
       state.isAuthenticated = true;
-      localStorage.setItem(USER_KEY, JSON.stringify(user));
+      localStorage.setItem(USER_KEY, JSON.stringify(userData));
+      if (token) localStorage.setItem(TOKEN_KEY, token);
     },
     logout(state) {
       state.user = null;
+      state.token = null;
       state.isAuthenticated = false;
       localStorage.removeItem(USER_KEY);
-      // Clean up legacy token from previous version if it exists
-      localStorage.removeItem('parapet_admin_token');
+      localStorage.removeItem(TOKEN_KEY);
     },
   },
 });
@@ -31,4 +36,5 @@ export default authSlice.reducer;
 
 // Selectors
 export const selectCurrentUser  = (state) => state.auth.user;
+export const selectCurrentToken = (state) => state.auth.token;
 export const selectIsAdmin      = (state) => state.auth.isAuthenticated;
