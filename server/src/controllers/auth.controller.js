@@ -12,11 +12,12 @@ const generateToken = (id) => {
 const sendTokenResponse = (admin, statusCode, res) => {
   const token = generateToken(admin._id);
 
+  const isProd = config.env === 'production';
   const options = {
     expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
     httpOnly: true,
-    secure: config.env === 'production',
-    sameSite: 'strict',
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
   };
 
   res
@@ -116,9 +117,12 @@ export const getMe = async (req, res, next) => {
 // @access  Private
 export const logoutAdmin = async (req, res, next) => {
   try {
+    const isProd = config.env === 'production';
     res.cookie('token', 'none', {
       expires: new Date(Date.now() + 10 * 1000),
       httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
     });
 
     res.status(200).json({
