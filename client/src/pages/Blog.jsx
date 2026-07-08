@@ -49,8 +49,8 @@ export default function Blog() {
                 className={cn(
                   "px-5 py-2.5 rounded-full text-sm font-bold transition-all",
                   (category === cat || (!category && cat === 'All'))
-                    ? "bg-[var(--ink)] text-white shadow-lg"
-                    : "bg-white text-[var(--text-on-light)] border border-[var(--line-on-light)] hover:border-[var(--line-on-light)] hover:text-[var(--text-on-light)]"
+                    ? "bg-[var(--surface-dark)] text-[var(--text-on-dark)] shadow-lg"
+                    : "bg-white text-[var(--text-on-light-muted)] border border-[var(--line-on-light)] hover:border-[var(--brass)] hover:text-[var(--brass)]"
                 )}
               >
                 {cat}

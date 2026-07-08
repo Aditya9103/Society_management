@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Loader2, CheckCircle2, AlertCircle, User, Building2, MessageSquare } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedinIn, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 import { cn } from '../utils/cn';
 import PageWrapper from '../components/layout/PageWrapper';
 import Button from '../components/ui/Button';
@@ -98,6 +99,36 @@ export default function Contact() {
                     <h3 className="text-lg font-bold text-[var(--text-on-light)] mb-1">Support</h3>
                     <a href="mailto:support@parapet.com" className="text-lg font-medium text-[var(--text-on-light)] hover:text-[var(--brass)] transition-colors break-all">support@parapet.com</a>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-white via-slate-50 to-slate-100 rounded-3xl p-8 border border-[var(--line-on-light)] shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-bold text-[var(--text-on-light)] mb-6">Connect With Us</h3>
+                <div className="flex flex-wrap items-center gap-4">
+                  {/* Facebook */}
+                  <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-[#1877F2] text-white flex items-center justify-center shadow-sm transition-all hover:bg-[#166FE5] hover:-translate-y-1 hover:shadow-md hover:shadow-blue-500/20">
+                    <FaFacebook className="w-6 h-6" />
+                  </a>
+                  {/* Instagram */}
+                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-500 via-pink-500 to-purple-500 text-white flex items-center justify-center shadow-sm transition-all hover:brightness-110 hover:-translate-y-1 hover:shadow-md hover:shadow-pink-500/20">
+                    <FaInstagram className="w-6 h-6" />
+                  </a>
+                  {/* Twitter (X) */}
+                  <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-black text-white flex items-center justify-center shadow-sm transition-all hover:bg-slate-800 hover:-translate-y-1 hover:shadow-md hover:shadow-black/20">
+                    <FaXTwitter className="w-5 h-5" />
+                  </a>
+                  {/* LinkedIn */}
+                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-[#0A66C2] text-white flex items-center justify-center shadow-sm transition-all hover:bg-[#084e96] hover:-translate-y-1 hover:shadow-md hover:shadow-[#0A66C2]/20">
+                    <FaLinkedinIn className="w-6 h-6" />
+                  </a>
+                  {/* YouTube */}
+                  <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-[#FF0000] text-white flex items-center justify-center shadow-sm transition-all hover:bg-[#CC0000] hover:-translate-y-1 hover:shadow-md hover:shadow-[#FF0000]/20">
+                    <FaYoutube className="w-6 h-6" />
+                  </a>
+                  {/* WhatsApp */}
+                  <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-xl bg-[#25D366] text-white flex items-center justify-center shadow-sm transition-all hover:bg-[#1DA851] hover:-translate-y-1 hover:shadow-md hover:shadow-[#25D366]/20">
+                    <FaWhatsapp className="w-6 h-6" />
+                  </a>
                 </div>
               </div>
 

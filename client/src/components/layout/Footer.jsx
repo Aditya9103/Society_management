@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Zap, Globe, AtSign, ExternalLink, ArrowRight } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedinIn, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 import { navigation } from '../../data/navigation';
 
 export default function Footer() {
@@ -23,20 +24,24 @@ export default function Footer() {
             </p>
             {/* Social links */}
             <div className="flex items-center gap-3">
-              {[
-                { icon: <Globe size={16} />, href: '#', label: 'Website' },
-                { icon: <AtSign size={16} />, href: '#', label: 'Email' },
-                { icon: <ExternalLink size={16} />, href: '#', label: 'LinkedIn' },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-[var(--text-on-dark)] hover:border-[var(--accent)] transition-colors"
-                >
-                  {s.icon}
-                </a>
-              ))}
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-colors" aria-label="Facebook">
+                <FaFacebook size={16} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-[#E4405F] hover:border-[#E4405F] transition-colors" aria-label="Instagram">
+                <FaInstagram size={16} />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-black hover:border-black transition-colors" aria-label="Twitter">
+                <FaXTwitter size={15} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-[#0A66C2] hover:border-[#0A66C2] transition-colors" aria-label="LinkedIn">
+                <FaLinkedinIn size={16} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-colors" aria-label="YouTube">
+                <FaYoutube size={16} />
+              </a>
+              <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-9 h-9 rounded-full border border-[var(--line-on-dark)] flex items-center justify-center text-[var(--text-on-dark-muted)] hover:text-white hover:bg-[#25D366] hover:border-[#25D366] transition-colors" aria-label="WhatsApp">
+                <FaWhatsapp size={16} />
+              </a>
             </div>
           </div>
 

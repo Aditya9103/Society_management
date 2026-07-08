@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Zap } from 'lucide-react';
+import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedinIn, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 import Button from '../ui/Button';
 import { navigation } from '../../data/navigation';
 

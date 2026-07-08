@@ -9,7 +9,7 @@ const features = [
   {
     icon: ShieldCheck,
     title: 'Enterprise Security',
-    desc: 'Bank-grade data protection and encrypted access controls.'
+    desc: 'Secure data protection and encrypted access controls.'
   },
   {
     icon: Zap,
@@ -36,7 +36,7 @@ export default function BookDemo() {
     >
       <div className="min-h-screen pt-32 pb-24 bg-surface-light text-text-primary-on-light relative overflow-hidden">
         {/* Background Gradients */}
-        
+
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -93,7 +93,7 @@ export default function BookDemo() {
               className="relative"
             >
               {/* Decorative blobs */}
-                            
+
               <LeadForm source="book-demo" className="relative z-10" />
             </motion.div>
 
