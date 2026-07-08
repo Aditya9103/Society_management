@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, Zap, LayoutDashboard, Users, MessageSquare, Search, Filter } from 'lucide-react';
@@ -8,13 +8,22 @@ import { logout, selectCurrentUser } from '../store/slices/authSlice';
 import { useLogoutMutation } from '../store/api/authApi';
 import { useGetLeadsQuery, useUpdateLeadStatusMutation } from '../store/api/leadsApi';
 import { useGetContactMessagesQuery, useUpdateContactMessageStatusMutation } from '../store/api/contactApi';
+import BlogManager from './components/BlogManager';
+import { PenTool } from 'lucide-react';
 
 export default function LeadsDashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectCurrentUser);
 
-  const [activeTab, setActiveTab] = useState('leads'); // leads, messages
+  const [activeTab, setActiveTab] = useState(() => {
+    return sessionStorage.getItem('admin_active_tab') || 'leads';
+  }); // leads, messages, blogs
+
+  useEffect(() => {
+    sessionStorage.setItem('admin_active_tab', activeTab);
+  }, [activeTab]);
+
   const [statusFilter, setStatusFilter] = useState('all');
 
   const { data: leadsData, isLoading: leadsLoading } = useGetLeadsQuery(
@@ -79,6 +88,15 @@ export default function LeadsDashboard() {
           >
             <MessageSquare size={18} /> Contact Messages
           </button>
+          <button
+            onClick={() => { setActiveTab('blogs'); setStatusFilter('all'); }}
+            className={cn(
+              "w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors text-sm",
+              activeTab === 'blogs' ? "bg-[var(--brass-400)] text-[var(--navy-950)] shadow-sm" : "text-white/70 hover:bg-white/5 hover:text-white"
+            )}
+          >
+            <PenTool size={18} /> Blog Posts
+          </button>
         </nav>
 
         <div className="p-4 border-t border-white/10">
@@ -107,9 +125,11 @@ export default function LeadsDashboard() {
           <div>
             <h1 className="text-2xl font-bold text-[var(--text-on-light)] flex items-center gap-2">
               <LayoutDashboard size={24} className="text-[var(--brass-400)]" />
-              {activeTab === 'leads' ? 'Demo Requests ' : 'Contact Messages'}
+              {activeTab === 'leads' ? 'Demo Requests ' : activeTab === 'messages' ? 'Contact Messages' : 'Blog Management'}
             </h1>
-            <p className="text-[var(--text-on-light-faint)] text-sm mt-1">Manage and track your incoming requests.</p>
+            <p className="text-[var(--text-on-light-faint)] text-sm mt-1">
+              {activeTab === 'blogs' ? 'Create, edit, and publish blog articles.' : 'Manage and track your incoming requests.'}
+            </p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -125,7 +145,7 @@ export default function LeadsDashboard() {
                 <option value="converted">Converted</option>
                 <option value="lost">Lost</option>
               </select>
-            ) : (
+            ) : activeTab === 'messages' ? (
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
@@ -136,7 +156,7 @@ export default function LeadsDashboard() {
                 <option value="replied">Replied</option>
                 <option value="closed">Closed</option>
               </select>
-            )}
+            ) : null}
           </div>
         </header>
 
@@ -253,6 +273,10 @@ export default function LeadsDashboard() {
               </div>
             )}
           </div>
+        )}
+
+        {activeTab === 'blogs' && (
+          <BlogManager />
         )}
 
       </main>

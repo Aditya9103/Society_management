@@ -128,7 +128,10 @@ export default function Register() {
 
               <div className="space-y-1.5">
                 <label className="text-sm font-bold text-[var(--text-on-light-muted)] font-medium">Setup Secret Key</label>
-                <p className="text-xs text-[var(--text-on-light-faint)] mb-2">Check your .env file for ADMIN_REGISTRATION_SECRET</p>
+                <p className="text-xs text-[var(--text-on-light-faint)] mb-2">
+                  Enter the secure registration key provided by your system administrator to verify your access.
+                </p>
+
                 <div className="relative">
                   <Shield className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-on-light-faint)]" />
                   <input

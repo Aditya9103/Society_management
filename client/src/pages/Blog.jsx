@@ -11,26 +11,26 @@ import { useGetPostsQuery } from '../store/api/contentApi';
 export default function Blog() {
   const [category, setCategory] = useState('');
   const { data: postsData, isLoading } = useGetPostsQuery(category ? { category } : undefined);
-  
-  const categories = ['All', 'Product Updates', 'Best Practices', 'Company News', 'Case Studies'];
+
+  const categories = ['All', 'Guides & Tutorials', 'Best Practices', 'Case Studies', 'Product Updates', 'Industry Insights', 'Company News', 'Customer Stories', 'Technology'];
 
   return (
-    <PageWrapper 
+    <PageWrapper
       title="Blog | Parapet"
       description="Insights, updates, and best practices for modern society management."
     >
       <div className="pt-32 pb-24 bg-surface-light text-text-primary-on-light min-h-screen">
         <div className="container">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-on-light)] mb-6"
             >
               The Parapet <span className="text-[var(--brass)]">Journal</span>.
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -82,42 +82,45 @@ export default function Blog() {
                   transition={{ delay: idx * 0.1 }}
                   className="group bg-white rounded-3xl border border-[var(--line-on-light)] shadow-sm overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <Link to={`/blog/${post.slug}`} className="block relative h-56 overflow-hidden bg-[var(--surface-light-alt)]">
-                    <img 
-                      src={post.coverImage} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  <Link to={`/blog/${post.slug}`} className="block relative aspect-video w-full overflow-hidden bg-[var(--navy-950)] flex items-center justify-center group/img">
+                    {/* Blurred backdrop layer */}
+                    <div className="absolute inset-0 bg-cover bg-center blur-2xl opacity-60 scale-125" style={{ backgroundImage: `url(${post.coverImage || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab'})` }}></div>
+                    
+                    <img
+                      src={post.coverImage}
+                      alt={post.title}
+                      className="w-full h-full object-contain object-center relative z-10 transition-transform duration-500 group-hover/img:scale-105 drop-shadow-2xl"
                       onError={(e) => {
                         e.target.src = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop';
                       }}
                     />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-4 left-4 z-20">
                       <span className="px-3 py-1 bg-white shadow-sm border border-[var(--line-on-light)] backdrop-blur-md rounded-full text-xs font-bold text-[var(--text-on-light)] shadow-sm">
                         {post.category}
                       </span>
                     </div>
                   </Link>
-                  
+
                   <div className="p-8 flex-1 flex flex-col">
                     <div className="flex items-center gap-4 text-xs font-bold text-[var(--text-on-light-muted)] font-medium uppercase tracking-wider mb-4">
                       <time dateTime={post.createdAt}>{format(new Date(post.createdAt), 'MMM d, yyyy')}</time>
                       <span className="flex items-center gap-1.5"><Clock size={14} /> {post.readTime}</span>
                     </div>
-                    
+
                     <Link to={`/blog/${post.slug}`}>
                       <h2 className="text-2xl font-bold text-[var(--text-on-light)] mb-3 group-hover:text-[var(--brass)] transition-colors leading-tight">
                         {post.title}
                       </h2>
                     </Link>
-                    
+
                     <p className="text-[var(--text-on-light)] leading-relaxed font-medium mb-8 flex-1">
                       {post.excerpt}
                     </p>
-                    
+
                     <div className="mt-auto flex items-center justify-between pt-6 border-t border-[var(--line-on-light)]">
                       <div className="flex items-center gap-3">
-                        <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full object-cover bg-bd-subtle" 
-                             onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(post.author.name) + '&background=random' }}/>
+                        <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full object-cover bg-bd-subtle"
+                          onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(post.author.name) + '&background=random' }} />
                         <span className="text-sm font-bold text-[var(--text-on-light)]">{post.author.name}</span>
                       </div>
                       <Link to={`/blog/${post.slug}`} className="w-10 h-10 rounded-full bg-[var(--surface-light)] flex items-center justify-center group-hover:bg-[var(--brass)] group-hover:text-white transition-colors">
@@ -131,7 +134,7 @@ export default function Blog() {
           )}
         </div>
       </div>
-      
+
       <CTASection />
     </PageWrapper>
   );

@@ -14,6 +14,7 @@ import leadsRoutes from './routes/leads.routes.js';
 import contactRoutes from './routes/contact.routes.js';
 import contentRoutes from './routes/content.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import uploadRoutes from './routes/upload.routes.js';
 
 const app = express();
 
@@ -55,8 +56,8 @@ if (config.env === 'development') {
 }
 
 // ─── Body parsing ───────────────────────────────────────────────
-app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
 
 // ─── Health check ───────────────────────────────────────────────
@@ -67,6 +68,7 @@ app.use('/api/leads', leadsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // ─── 404 handler ───────────────────────────────────────────────
 app.use((req, res) => res.status(404).json({ error: 'Route not found' }));

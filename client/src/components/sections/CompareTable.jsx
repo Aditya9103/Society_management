@@ -2,47 +2,7 @@ import { motion } from 'framer-motion';
 import { Check, X, Minus } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
-/**
- * Fixes vs. the previous version:
- *
- * 1. `Minus` was imported from lucide-react but never actually used
- *    anywhere in the component — every "partial support" row (the
- *    string values: 'partial', 'limited', 'basic', 'some') rendered as
- *    plain text with no icon at all, while true/false got a Check/X.
- *    That's an inconsistent hierarchy: two of the three states got a
- *    glyph, one didn't. Wired `Minus` in properly for that state.
- * 2. The header used `bg-black/20` and rows alternated
- *    `bg-black/10` / `bg-transparent`, plus a `hover:bg-white/[0.03]`
- *    on top — all raw black/white opacity values instead of this
- *    project's actual navy tokens. Replaced with `--surface-dark-deepest`
- *    for the header and a navy-based `color-mix` for zebra striping.
- * 3. `backdrop-blur-xl` on the outer wrapper was a no-op: the panel
- *    sits on `--surface-dark-raised`, an opaque solid color, over an
- *    opaque `--surface-dark` section — there's no translucency for a
- *    backdrop blur to act on, so it was pure dead weight. Removed.
- * 4. The header's "Parapet" label correctly used `--accent-on-dark`,
- *    but the checkmark icon two lines below it used plain `--accent`
- *    instead — same dark context, two different brass variants for
- *    what should be one consistent treatment. Standardized on
- *    `--accent-on-dark` throughout.
- * 5. This design system has dedicated `--table-*` tokens
- *    (`--table-highlight-col-bg` etc.), but they were authored assuming
- *    a table on a LIGHT background (`--table-header-bg: var(--surface-
- *    light-alt)`), and this table actually renders on a dark section.
- *    Rather than force light-table tokens into a dark card, this
- *    version hand-colors for the dark context directly — worth
- *    knowing that the existing `--table-*` tokens are effectively
- *    unused/reserved for a hypothetical light-context table elsewhere
- *    (e.g. a printable/exportable report), not this one.
- *
- * Visual changes: the feature-name column now gets more width than the
- * two value columns (was an even three-way split, wasting space
- * centering a single icon in the same width as a long label). Added a
- * continuous, subtle brass-tinted band down the "Parapet" column the
- * same way most comparison tables highlight "your" column — the token
- * built for exactly this (`--table-highlight-col-bg`) existed but
- * wasn't being used anywhere.
- */
+
 const rows = [
   { feature: 'Visitor Management', parapet: true, others: true },
   { feature: 'Complete Accounting', parapet: true, others: 'partial' },
@@ -92,7 +52,7 @@ const rowVariants = {
 };
 
 const GRID_COLS = 'grid grid-cols-[1.6fr_1fr_1fr]';
-const PARAPET_COL_BG = 'bg-[color-mix(in_srgb,var(--accent)_7%,transparent)]';
+const PARAPET_COL_BG = 'bg-[color-mix(in_srgb,var(--accent)_10%,var(--navy-900))] border-x border-[color-mix(in_srgb,var(--accent)_20%,transparent)] shadow-[0_0_30px_rgba(0,0,0,0.15)] relative z-10';
 
 export default function CompareTable() {
   return (

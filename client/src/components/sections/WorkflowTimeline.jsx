@@ -1,37 +1,6 @@
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-/**
- * Fixes vs. the previous version — three real bugs, not just style
- * opinions:
- *
- * 1. `color: 'var(--teal)'` and `color: 'var(--alert)'` reference CSS
- *    custom properties that don't exist anywhere in this project's
- *    index.css — the real tokens are `--status-live` and
- *    `--status-alert`. An undefined custom property resolves to
- *    nothing, so the Maintenance and Emergency SOS columns' dot,
- *    eyebrow, connector line, and badge ring were very likely rendering
- *    uncolored (default/inherited text color) rather than teal/red.
- * 2. `background: 'var(--paper)'` — same issue, the real token is
- *    `--surface-light-card` (or raw `--paper-100`/`--paper-200`).
- * 3. Colors were alpha-blended by string concatenation, e.g.
- *    `border: \`1px solid ${color}50\`` — since `color` is the JS
- *    string `'var(--accent)'`, this produces the literal CSS text
- *    `1px solid var(--accent)50`, which is not valid CSS (you can only
- *    append a two-digit alpha suffix to a literal hex color, not to a
- *    var() function call). The browser drops declarations it can't
- *    parse, so every "tinted" border and connector-line gradient in
- *    this component was silently invalid. Fixed with `color-mix()`,
- *    which is the correct modern-CSS way to blend a custom property
- *    with transparency.
- *
- * Visual changes: each workflow now sits in its own card (white surface,
- * hairline border, hover shadow) instead of relying on a `border-left`
- * divider that only appeared at the md breakpoint — on mobile, the three
- * workflows previously had zero visual separation from each other, just
- * a stacked list of text. Added a small step-count pill per card and a
- * subtle tinted highlight behind the final ("done") step.
- */
 const workflows = [
   {
     id: 'visitor',
@@ -156,11 +125,25 @@ function WorkflowColumn({ eyebrow, title, steps, color }) {
               </div>
 
               <div
-                className={isLast ? '-mt-1 -ml-1 rounded-xl p-2' : ''}
-                style={isLast ? { background: `color-mix(in srgb, ${color} 7%, transparent)` } : undefined}
+                className={isLast ? '-mt-2 -ml-2 rounded-xl p-4 shadow-sm border transition-all hover:shadow-md hover:-translate-y-0.5 relative overflow-hidden group/step' : ''}
+                style={isLast ? { 
+                  background: `color-mix(in srgb, ${color} 10%, var(--surface-light-card))`,
+                  borderColor: `color-mix(in srgb, ${color} 25%, transparent)`
+                } : undefined}
               >
-                <p className="mb-1 text-[15px] font-bold leading-tight text-[var(--text-on-light)]">{step.label}</p>
-                <p className="text-[13.5px] leading-relaxed text-[var(--text-on-light-muted)] font-medium">
+                {isLast && (
+                  <div className="absolute inset-0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent to-white/40 pointer-events-none" />
+                )}
+                <p 
+                  className="mb-1 text-[15px] font-bold leading-tight transition-colors"
+                  style={isLast ? { color: `color-mix(in srgb, ${color} 90%, black)` } : { color: 'var(--text-on-light)' }}
+                >
+                  {step.label}
+                </p>
+                <p 
+                  className="text-[13.5px] leading-relaxed font-medium transition-colors"
+                  style={isLast ? { color: `color-mix(in srgb, ${color} 70%, black)` } : { color: 'var(--text-on-light-muted)' }}
+                >
                   {step.detail}
                 </p>
               </div>

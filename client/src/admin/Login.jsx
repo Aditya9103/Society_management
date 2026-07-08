@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,13 +38,13 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-[var(--surface-dark)] flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background blobs */}
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-md"
       >
         <div className="bg-[var(--surface-dark-raised)] backdrop-blur-xl border border-[var(--line-on-dark)] p-8 rounded-3xl shadow-2xl relative">
-          
+
           <div className="flex flex-col items-center mb-8">
             <div className="w-12 h-12 rounded-xl bg-[var(--brass)] flex items-center justify-center shadow-[0_4px_16px_rgba(192,138,62,0.4)] mb-4">
               <Zap size={24} className="text-white fill-white" />
@@ -86,7 +86,7 @@ export default function AdminLogin() {
 
             <AnimatePresence>
               {errorMsg && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -97,9 +97,9 @@ export default function AdminLogin() {
               )}
             </AnimatePresence>
 
-            <Button 
-              type="submit" 
-              variant="brass" 
+            <Button
+              type="submit"
+              variant="brass"
               className="w-full relative"
               size="lg"
               disabled={isLoading}
@@ -107,6 +107,12 @@ export default function AdminLogin() {
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : "Sign in to Dashboard"}
             </Button>
           </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm font-medium text-[var(--text-on-dark-faint)]">
+              Don't have an account? <Link to="/admin/register" className="text-[var(--brass)] font-bold hover:underline">Register</Link>
+            </p>
+          </div>
 
           <div className="mt-6 flex items-center justify-center gap-2 text-xs text-[rgba(244,245,241,0.4)]">
             <ShieldCheck size={14} />

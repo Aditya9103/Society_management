@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ─── 0. Tailwind Config Mapping (Tailwind v4 @theme) ─── */
 @theme {
@@ -75,9 +76,12 @@
   --status-alert: #C24C3D;
   --status-warn: #8F5F0C;
 
-  --text-on-light: #0B111F; /* --navy-950 */
-  --text-on-light-muted: #1A2338; /* --navy-800 (Solid, high contrast) */
-  --text-on-light-faint: #3B4B6E; /* High-contrast slate/navy for faint text */
+  --text-on-light: #000000;
+  /* Pure Black for maximum contrast */
+  --text-on-light-muted: #0B111F;
+  /* --navy-950 */
+  --text-on-light-faint: #1A2338;
+  /* --navy-800 */
   --text-on-dark: #FFFFFF;
   --text-on-dark-muted: rgba(255, 255, 255, 0.75);
   --text-on-dark-faint: rgba(255, 255, 255, 0.55);

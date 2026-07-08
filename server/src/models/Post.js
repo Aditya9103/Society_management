@@ -33,8 +33,8 @@ const postSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['Product Updates', 'Best Practices', 'Company News', 'Case Studies'],
-      default: 'Best Practices',
+      enum: ['Guides & Tutorials', 'Best Practices', 'Case Studies', 'Product Updates', 'Industry Insights', 'Company News', 'Customer Stories', 'Technology'],
+      default: 'Product Updates',
     },
     readTime: {
       type: String,
