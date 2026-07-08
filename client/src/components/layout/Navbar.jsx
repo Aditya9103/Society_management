@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight, Zap } from 'lucide-react';
-import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedinIn, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 import { cn } from '../../utils/cn';
 import Button from '../ui/Button';
 import { navigation } from '../../data/navigation';
