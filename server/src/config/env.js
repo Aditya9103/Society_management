@@ -28,6 +28,12 @@ const config = {
   notifications: {
     sales: process.env.SALES_NOTIFICATION_EMAIL || 'sales@parapet.com',
     support: process.env.SUPPORT_NOTIFICATION_EMAIL || 'support@parapet.com',
+  },
+
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
   }
 };
 
@@ -41,10 +47,28 @@ if (missingVars.length > 0) {
   process.exit(1);
 }
 
-// Additional validations
-if (config.env === 'production' && config.jwt.secret === 'fallback_secret_key_123') {
-  console.warn(`\n⚠️ WARNING: You are running in PRODUCTION using the fallback JWT_SECRET.`);
-  console.warn(`   Please set a strong JWT_SECRET in your .env file.\n`);
+// Additional production security validations
+if (config.env === 'production') {
+  const prodErrors = [];
+  
+  if (config.jwt.secret === 'fallback_secret_key_123') {
+    prodErrors.push('JWT_SECRET must be explicitly set to a secure string in production.');
+  }
+  
+  if (config.adminRegistrationSecret === 'parapet_admin_setup_2026') {
+    prodErrors.push('ADMIN_REGISTRATION_SECRET must be explicitly set to a secure string in production.');
+  }
+
+  if (config.clientUrl === 'http://localhost:5173') {
+    prodErrors.push('CLIENT_URL must point to your production frontend domain (e.g., https://parapet.com).');
+  }
+
+  if (prodErrors.length > 0) {
+    console.error(`\n🛑 SECURITY ERROR: Production Environment Check Failed:\n`);
+    prodErrors.forEach((err) => console.error(`   - ${err}`));
+    console.error(`\nPlease update your production environment variables before starting the server.\n`);
+    process.exit(1);
+  }
 }
 
 export default config;
