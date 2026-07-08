@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const USER_KEY  = 'parapet_admin_user';
+const USER_KEY = 'parapet_admin_user';
 const TOKEN_KEY = 'parapet_admin_token';
 
 const initialState = {
@@ -35,6 +35,6 @@ export const { setCredentials, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 // Selectors
-export const selectCurrentUser  = (state) => state.auth.user;
+export const selectCurrentUser = (state) => state.auth.user;
 export const selectCurrentToken = (state) => state.auth.token;
-export const selectIsAdmin      = (state) => state.auth.isAuthenticated;
+export const selectIsAdmin = (state) => state.auth.isAuthenticated;
