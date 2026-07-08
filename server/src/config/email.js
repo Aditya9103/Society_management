@@ -11,6 +11,8 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
+console.log(`📧 SMTP Configured: Host=${config.smtp.host} | Port=${config.smtp.port} | Secure=${config.smtp.port === 465}`);
+
 export const sendEmail = async (to, subject, html) => {
   try {
     // Only send if credentials are provided, otherwise just log (useful for dev)
