@@ -101,7 +101,7 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
 
       <div className={`p-8 md:p-10 flex flex-col flex-1 ${highlighted ? '' : ''}`}>
         {/* Tier */}
-        <p className={`font-mono text-[12px] font-bold uppercase tracking-[0.12em] mb-3 ${highlighted ? 'text-primary-light' : 'text-primary'}`}>
+        <p className={`font-mono text-[12px] font-bold uppercase tracking-[0.12em] mb-3 ${highlighted ? 'text-[var(--accent-on-dark)]' : 'text-[var(--accent)]'}`}>
           {tier}
         </p>
 
@@ -126,7 +126,7 @@ export function PricingCard({ tier, price, unitLimit, description, features, cta
           </p>
         )}
 
-        <p className={`font-mono text-[12px] font-bold uppercase tracking-[0.08em] mb-5 ${highlighted ? 'text-primary-light' : 'text-primary'}`}>
+        <p className={`font-mono text-[12px] font-bold uppercase tracking-[0.08em] mb-5 ${highlighted ? 'text-[var(--accent-on-dark)]' : 'text-[var(--accent)]'}`}>
           {unitLimit}
         </p>
 
