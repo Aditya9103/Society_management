@@ -8,7 +8,7 @@ export const diagrams = {
 
     R->>S: Create visitor invite
     S->>S: Generate QR code
-    S->>V: Send QR via WhatsApp
+    S->>V: Send QR via Email
     S->>G: Pre-approve notification
     V->>G: Arrives at gate, shows QR
     G->>S: Scan QR
@@ -37,30 +37,36 @@ export const diagrams = {
   preApprovedVisitors: `sequenceDiagram
     participant R as Resident
     participant A as Parapet App
-    participant WA as WhatsApp API
+    participant EM as Email API
     participant V as Guest
     
     R->>A: Select Guest from Contacts
     A->>A: Generate secure deep link & QR
-    A->>WA: Trigger WhatsApp message
-    WA->>V: Deliver Invite with Location & QR
+    A->>EM: Trigger Email message
+    EM->>V: Deliver Invite with Location & QR
     V->>A: Clicks link to get driving directions
     Note over V,A: Invite valid only for specified date/time`,
 
-  deliveryStaffEntry: `flowchart TD
-    A[Delivery Agent or Staff Arrives] --> B{Entry Type?}
+  domesticStaff: `flowchart TD
+    A[Staff arrives at gate] --> B[Guard scans staff QR card]
+    B --> C{Registered & within allowed time?}
+    C -->|Yes| D[Auto-allow & Log entry]
+    C -->|No| E[Flag & require resident approval]
+    D --> F[Send entry notification to resident]
+    E -->|Approved| D
+    E -->|Denied| G[Entry Denied]
+    F --> H[At exit: Guard scans QR again]
+    H --> I[Log exit & send exit notification]`,
+
+  deliveryManagement: `flowchart TD
+    A[Delivery Agent Arrives] --> B{Entry Type?}
     B -->|Swiggy Zomato Amazon| C[Enter phone or company ID]
     C --> D[API checks active order for society]
     D --> E{Order Verified?}
     E -->|Yes| F[Auto-approve Entry]
     E -->|No| G[Trigger Intercom App approval to Resident]
-    B -->|Daily Staff Maid Driver| H[Biometric or Passcode Scan]
-    H --> I{Matched?}
-    I -->|Yes| J[Mark Attendance Present]
-    I -->|No| K[Escalate to Guard]
-    J --> L[Push notification to employers]
-    F --> M[Log Entry]
-    G --> M`,
+    F --> H[Log Entry]
+    G --> H`,
 
   emergencySos: `sequenceDiagram
     participant R as Resident
@@ -85,7 +91,7 @@ export const diagrams = {
     D --> F[Index by Date/Flat/Name]
     E --> F
     F --> G[Committee Dashboard]
-    G --> H[Search Records (1 second)]
+    G --> H["Search Records (1 second)"]
     G --> I[Export Compliance Reports]
     G --> J[Analyze Peak Traffic Times]`,
 
@@ -122,7 +128,7 @@ export const diagrams = {
     H --> I[If parked in wrong slot -> Instant notification sent]`,
 
   documentVault: `flowchart LR
-    A[Upload Document] --> B[Select Category (Bylaws, Financials, Personal)]
+    A[Upload Document] --> B["Select Category (Bylaws, Financials, Personal)"]
     B --> C[Set Role-based Access]
     C --> D{Access Level}
     D -->|Public| E[All Residents]
@@ -131,7 +137,7 @@ export const diagrams = {
     E --> H[Secure Cloud Storage]
     F --> H
     G --> H
-    H --> I[Version Control (Track changes)]
+    H --> I["Version Control (Track changes)"]
     I --> J[Shareable Secure Link generation]`,
 
   // COMMUNITY
@@ -172,7 +178,7 @@ export const diagrams = {
     F --> G[Apply any credits or adjustments]
     G --> H[Generate invoice record]
     H --> I[Set due date = billing date + grace days]
-    I --> J[Send invoice via Email WhatsApp Push]
+    I --> J[Send invoice via Email Push]
     J --> K[Monitor payment]
     K --> L{Paid before due date?}
     L -->|Yes| M[Mark paid, send receipt]
@@ -202,10 +208,10 @@ export const diagrams = {
     B->>P: Webhook: Settlement Complete`,
 
   autoReceiptsDueTracking: `flowchart TD
-    A[Payment Received (Online or Offline)] --> B[System logs transaction]
+    A["Payment Received (Online or Offline)"] --> B[System logs transaction]
     B --> C[Match against outstanding invoices]
     C --> D[Generate PDF Receipt automatically]
-    D --> E[Email / WhatsApp receipt to Resident]
+    D --> E[Email receipt to Resident]
     E --> F[Update Master Society Ledger]
     F --> G{Any balance remaining?}
     G -->|Yes| H[Carry forward to next billing cycle]

@@ -9,7 +9,7 @@ import { useSubmitLeadMutation } from '../../store/api/leadsApi';
 export default function LeadForm({ source = 'book-demo', className }) {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [submitLead, { isLoading }] = useSubmitLeadMutation();
-  
+
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -39,8 +39,8 @@ export default function LeadForm({ source = 'book-demo', className }) {
         <p className="text-emerald-700 max-w-sm">
           Thank you for your interest in Parapet. One of our product specialists will reach out to you within 24 hours.
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="mt-6"
           onClick={() => setStatus('idle')}
         >
@@ -51,11 +51,11 @@ export default function LeadForm({ source = 'book-demo', className }) {
   }
 
   return (
-    <form 
-      onSubmit={handleSubmit(onSubmit)} 
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       className={cn("bg-white border border-[var(--line-on-light)] p-6 sm:p-8 rounded-3xl shadow-[var(--shadow-lg)] space-y-6 relative overflow-hidden", className)}
     >
-      
+
       <div className="space-y-4">
         {/* Row 1: Name & Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -67,12 +67,15 @@ export default function LeadForm({ source = 'book-demo', className }) {
               </div>
               <input
                 type="text"
-                placeholder="Jane Doe"
-                {...register('name', { required: 'Name is required' })}
+                placeholder="Your Name"
+                {...register('name', {
+                  required: 'Name is required',
+                  minLength: { value: 3, message: "Name must be at least 3 characters long" }
+                })}
                 className={cn(
                   "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
-                  errors.name 
-                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                  errors.name
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
                 )}
               />
@@ -95,7 +98,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
               <input
                 type="email"
                 placeholder="jane@society.com"
-                {...register('workEmail', { 
+                {...register('workEmail', {
                   required: 'Email is required',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -104,8 +107,8 @@ export default function LeadForm({ source = 'book-demo', className }) {
                 })}
                 className={cn(
                   "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
-                  errors.workEmail 
-                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                  errors.workEmail
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
                 )}
               />
@@ -134,8 +137,8 @@ export default function LeadForm({ source = 'book-demo', className }) {
                 {...register('societyName', { required: 'Society Name is required' })}
                 className={cn(
                   "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
-                  errors.societyName 
-                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                  errors.societyName
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
                 )}
               />
@@ -157,12 +160,17 @@ export default function LeadForm({ source = 'book-demo', className }) {
               </div>
               <input
                 type="tel"
-                placeholder="+91 98765 43210"
-                {...register('phone', { required: 'Phone Number is required' })}
+                placeholder="98765 43210"
+                {...register('phone', {
+                  required: 'Phone Number is required',
+                  minLength: { value: 10, message: "Phone Number must be at least 10 digits long" },
+                  maxLength: { value: 10, message: "Phone Number must be at most 10 digits long" },
+                  pattern: { value: /^[6-9]\d{9}$/, message: "Invalid Phone Number" }
+                })}
                 className={cn(
                   "w-full pl-11 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] transition-all outline-none placeholder-[var(--input-placeholder)]",
-                  errors.phone 
-                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500" 
+                  errors.phone
+                    ? "border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     : "border-[var(--input-border)] focus:border-[var(--input-border-focus)] focus:ring-1 focus:ring-[var(--input-border-focus)]"
                 )}
               />
@@ -206,7 +214,7 @@ export default function LeadForm({ source = 'book-demo', className }) {
 
       <AnimatePresence>
         {status === 'error' && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -218,10 +226,10 @@ export default function LeadForm({ source = 'book-demo', className }) {
         )}
       </AnimatePresence>
 
-      <Button 
-        type="submit" 
-        variant="brass" 
-        size="lg" 
+      <Button
+        type="submit"
+        variant="brass"
+        size="lg"
         className="w-full relative shadow-lg shadow-primary/20"
         disabled={isLoading}
       >

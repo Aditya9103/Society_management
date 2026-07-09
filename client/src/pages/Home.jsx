@@ -31,10 +31,6 @@ export default function Home() {
       <SecuritySection />
       <TestimonialsSection />
       <FAQSection faqs={faqData.home} />
-
-      {/* ═══════════════════════════════════════════════
-          FINAL CTA
-      ═══════════════════════════════════════════════ */}
       <CTASection />
     </PageWrapper>
   );

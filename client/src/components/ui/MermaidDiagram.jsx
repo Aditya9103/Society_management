@@ -2,21 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 import { cn } from '../../utils/cn';
 
-/**
- * Fixes vs. the previous version:
- * - The theme was hardcoded to generic Tailwind slate hex values
- *   (#F8FAFC, #0F172A, #94A3B8, #F1F5F9, #64748B, #E2E8F0) instead of the
- *   app's own navy/paper/brass tokens. Every other panel on the site is
- *   warm ink-navy and brass; the diagrams were rendering in a colder,
- *   unrelated blue-grey that didn't match anything else on the page.
- *   Now points at the real CSS variables, so diagrams stay on-brand
- *   automatically if the tokens are ever tuned.
- * - Added a lightweight loading placeholder — previously the container
- *   was just blank until the (async) mermaid.render() call resolved,
- *   which reads as a layout glitch on slower connections.
- * - Error state now uses the design system's alert token instead of a
- *   raw Tailwind red, so it doesn't look like an unrelated component.
- */
+
 export default function MermaidDiagram({ chart, className }) {
   const containerRef = useRef(null);
   const [svgContent, setSvgContent] = useState('');

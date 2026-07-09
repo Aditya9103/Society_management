@@ -62,6 +62,7 @@ const Button = forwardRef(function Button(
         "font-bold",
         "cursor-pointer",
         "leading-none",
+        "whitespace-nowrap",
         "transition-all duration-300 ease-out",
         "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
         "disabled:opacity-50 disabled:pointer-events-none",

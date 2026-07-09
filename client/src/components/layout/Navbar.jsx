@@ -116,26 +116,7 @@ export default function Navbar() {
           {/* Right CTAs */}
           <div className="hidden lg:flex items-center gap-4 ml-auto">
             {/* Social Icons */}
-            <div className="flex items-center gap-3 pr-4 border-r border-[var(--line-on-dark)]">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-[#1877F2] transition-colors" aria-label="Facebook">
-                <FaFacebook size={16} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-[#E4405F] transition-colors" aria-label="Instagram">
-                <FaInstagram size={16} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-white transition-colors" aria-label="Twitter">
-                <FaXTwitter size={15} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
-                <FaLinkedinIn size={16} />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-[#FF0000] transition-colors" aria-label="YouTube">
-                <FaYoutube size={16} />
-              </a>
-              <a href="https://wa.me/" target="_blank" rel="noreferrer" className="text-[var(--nav-link-color)] hover:text-[#25D366] transition-colors" aria-label="WhatsApp">
-                <FaWhatsapp size={16} />
-              </a>
-            </div>
+
             <Link
               to="/admin/login"
               className="text-[var(--nav-link-color)] hover:text-[var(--nav-link-color-hover)] text-sm font-medium transition-colors"

@@ -96,10 +96,13 @@ export const faqData = {
     { question: "Can pre-approvals be cancelled?", answer: "Yes. Residents can easily cancel or revoke a pre-approval from their app at any time before the visitor arrives." },
     { question: "Do pre-approvals expire?", answer: "Yes, pre-approvals are time-bound. You can set them to expire after a specific number of hours or at the end of the day." }
   ],
-  "delivery-staff-entry": [
-    { question: "Can delivery personnel be managed?", answer: "Yes. Delivery executives can be recorded separately from regular visitors. Residents receive notifications when deliveries arrive, improving convenience while maintaining security records." },
+  "domestic-staff": [
     { question: "Can frequent visitors be managed efficiently?", answer: "Yes. Frequently visiting relatives, domestic helpers, drivers, tutors, and service providers can be registered for quicker verification while maintaining complete entry and exit history." },
-    { question: "Can blacklisted visitors be blocked?", answer: "Yes. Administrators can maintain a blacklist of restricted visitors. If a blocked individual attempts entry, guards receive an immediate alert to prevent unauthorized access." },
+    { question: "Do domestic staff need smartphones?", answer: "No. Domestic staff can be given a printed QR code or use passcode/biometric entry at the gate." },
+    { question: "Can residents track staff attendance?", answer: "Yes. Residents are notified the moment their domestic help enters and exits the society gate, acting as a digital attendance register." }
+  ],
+  "delivery-management": [
+    { question: "Can delivery personnel be managed?", answer: "Yes. Delivery executives can be recorded separately from regular visitors. Residents receive notifications when deliveries arrive, improving convenience while maintaining security records." },
     { question: "Do delivery boys need to leave their ID?", answer: "This depends on society rules, but the app allows guards to capture a photo of the ID digitally, so physical IDs don't need to be retained." },
     { question: "Can residents leave instructions for delivery?", answer: "Yes. Residents can specify if the delivery should be left at the gate, handed to a neighbor, or brought directly to the door." },
     { question: "Is delivery tracking real-time?", answer: "Yes. Residents are notified the moment the delivery executive enters and exits the society gate." }

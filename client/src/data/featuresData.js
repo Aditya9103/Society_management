@@ -26,7 +26,7 @@ export const featuresData = {
       'qr-vehicle-gate-pass': {
         diagram: diagrams.qrVehicleGatePass,
         title: 'QR Vehicle & Gate Pass',
-        previewImage: '/features/security/qr-vehicle-gate-pass.png',
+        // previewImage: '/features/security/qr-vehicle-gate-pass.png',
         description: 'Seamless vehicle tracking and automated boom barrier integration.',
         benefits: [
           { title: 'Fast Lanes', desc: 'Dedicated fast lanes for residents with RFID/QR.' },
@@ -42,10 +42,10 @@ export const featuresData = {
       'pre-approved-visitors': {
         diagram: diagrams.preApprovedVisitors,
         title: 'Pre-Approved Visitors',
-        previewImage: '/features/security/pre-approved-visitors.png',
-        description: 'Send digital invites via WhatsApp for seamless guest entry.',
+        // previewImage: '/features/security/pre-approved-visitors.png',
+        description: 'Send digital invites via Email for seamless guest entry.',
         benefits: [
-          { title: 'WhatsApp Integration', desc: 'Guests receive passes directly on WhatsApp.' },
+          { title: 'Email Integration', desc: 'Guests receive passes directly on Email.' },
           { title: 'Validity Controls', desc: 'Set expiry times for digital passes.' },
           { title: 'Event Invites', desc: 'Bulk generate passes for parties and events.' }
         ],
@@ -55,22 +55,39 @@ export const featuresData = {
           'Share link'
         ]
       },
-      'delivery-staff-entry': {
-        diagram: diagrams.deliveryStaffEntry,
-        title: 'Delivery & Staff Entry',
-        previewImage: '/features/security/delivery-staff-entry.png',
-        description: 'Streamlined verification for Swiggy, Zomato, Amazon, and daily help.',
+      'domestic-staff': {
+        diagram: diagrams.domesticStaff,
+        title: 'Domestic Staff',
+        description: 'Track entry, exit, and attendance of maids, drivers, and cooks.',
         benefits: [
-          { title: 'Company Verification', desc: 'Auto-verify delivery partners via API.' },
-          { title: 'Daily Staff Attendance', desc: 'Track entry/exit of maids, drivers, and cooks.' },
-          { title: 'Leave Management', desc: 'Notify residents if staff takes leave.' }
+          { title: 'Daily Attendance', desc: 'Biometric or passcode entry for staff.' },
+          { title: 'Leave Management', desc: 'Notify residents if staff takes leave.' },
+          { title: 'Multiple Employers', desc: 'Staff can work in multiple flats seamlessly.' }
         ],
         steps: [
-          'Register daily staff',
-          'Biometric or passcode entry',
-          'Auto-notify residents'
+          'Staff arrives at gate',
+          'Guard scans QR card',
+          'System verifies validity',
+          'Auto-allow or request approval',
+          'Log entry & notify resident',
+          'Scan at exit & notify resident'
         ]
       },
+      // 'delivery-management': {
+      //   diagram: diagrams.deliveryManagement,
+      //   title: 'Delivery Management',
+      //   description: 'Streamlined verification for Swiggy, Zomato, Amazon, and others.',
+      //   benefits: [
+      //     { title: 'Company Verification', desc: 'Auto-verify delivery partners via API.' },
+      //     { title: 'Zero Intercom', desc: 'Pre-approved deliveries do not disturb residents.' },
+      //     { title: 'Gate Drop-off', desc: 'Option to leave parcels securely at the gate.' }
+      //   ],
+      //   steps: [
+      //     'Delivery agent arrives',
+      //     'Auto-verified via API or Resident',
+      //     'Entry logged instantly'
+      //   ]
+      // },
       'emergency-sos': {
         diagram: diagrams.emergencySos,
         title: 'Emergency SOS',
@@ -90,7 +107,7 @@ export const featuresData = {
       'digital-gate-register': {
         diagram: diagrams.digitalGateRegister,
         title: 'Digital Gate Register',
-        previewImage: '/features/security/digital-gate-register.png',
+        // previewImage: '/features/security/digital-gate-register.png',
         description: 'Replace paper registers with a secure, searchable cloud database.',
         benefits: [
           { title: 'Cloud Backup', desc: 'Data never lost, damaged, or stolen.' },
@@ -137,7 +154,7 @@ export const featuresData = {
       'vehicle-records': {
         diagram: diagrams.vehicleRecords,
         title: 'Vehicle Records',
-        previewImage: '/features/residents/vehicle-records.png',
+        // previewImage: '/features/residents/vehicle-records.png',
         description: 'Maintain a central database of all resident vehicles and parking slots.',
         benefits: [
           { title: 'QR Sticker Management', desc: 'Track physical vehicle QR stickers.' },
@@ -149,7 +166,7 @@ export const featuresData = {
       'document-vault': {
         diagram: diagrams.documentVault,
         title: 'Document Vault',
-        previewImage: '/features/residents/document-vault.png',
+        // previewImage: '/features/residents/document-vault.png',
         description: 'Secure cloud storage for society bylaws, meeting minutes, and flat papers.',
         benefits: [
           { title: 'Role-based Access', desc: 'Only owners see specific financial docs.' },
@@ -199,7 +216,7 @@ export const featuresData = {
       'maintenance-billing': {
         diagram: diagrams.maintenanceBilling,
         title: 'Maintenance Billing',
-        previewImage: '/features/finance/maintenance-billing.png',
+        // previewImage: '/features/finance/maintenance-billing.png',
         description: 'Automate invoice generation with complex calculation rules.',
         benefits: [
           { title: 'Flexible Formulas', desc: 'By sq.ft, fixed, or hybrid billing.' },
@@ -211,7 +228,7 @@ export const featuresData = {
       'online-payments': {
         diagram: diagrams.onlinePayments,
         title: 'Online Payments',
-        previewImage: '/features/finance/online-payments.png',
+        // previewImage: '/features/finance/online-payments.png',
         description: 'UPI, Credit Cards, and Net Banking integrated directly.',
         benefits: [
           { title: 'Zero Setup', desc: 'Pre-integrated payment gateway.' },
@@ -223,7 +240,7 @@ export const featuresData = {
       'auto-receipts-due-tracking': {
         diagram: diagrams.autoReceiptsDueTracking,
         title: 'Auto Receipts & Due Tracking',
-        previewImage: '/features/finance/auto-receipts-due-tracking.png',
+        // previewImage: '/features/finance/auto-receipts-due-tracking.png',
         description: 'Eliminate manual reconciliation with automated ledgers.',
         benefits: [
           { title: 'Instant Receipts', desc: 'Generated immediately upon payment.' },
@@ -235,7 +252,7 @@ export const featuresData = {
       'expense-tracking': {
         diagram: diagrams.expenseTracking,
         title: 'Expense Tracking',
-        previewImage: '/features/finance/expense-tracking.png',
+        // previewImage: '/features/finance/expense-tracking.png',
         description: 'Track vendor payments, petty cash, and staff salaries.',
         benefits: [
           { title: 'Budget vs Actuals', desc: 'Monitor society spending in real-time.' },
@@ -247,7 +264,7 @@ export const featuresData = {
       'financial-reports-audit': {
         diagram: diagrams.financialReportsAudit,
         title: 'Financial Reports & Audit',
-        previewImage: '/features/finance/financial-reports-audit.png',
+        // previewImage: '/features/finance/financial-reports-audit.png',
         description: 'Ready-to-export balance sheets, P&L, and trial balances.',
         benefits: [
           { title: 'Auditor Ready', desc: 'Tally-compatible exports.' },
@@ -266,7 +283,7 @@ export const featuresData = {
       'complaint-helpdesk': {
         diagram: diagrams.complaintHelpdesk,
         title: 'Complaint Helpdesk',
-        previewImage: '/features/maintenance/complaint-helpdesk.png',
+        // previewImage: '/features/maintenance/complaint-helpdesk.png',
         description: 'Track resident complaints from ticket creation to resolution.',
         benefits: [
           { title: 'Photo Attachments', desc: 'Residents can upload photos of the issue.' },
@@ -278,7 +295,7 @@ export const featuresData = {
       'vendor-sla-management': {
         diagram: diagrams.vendorSlaManagement,
         title: 'Vendor & SLA Management',
-        previewImage: '/features/maintenance/vendor-sla-management.png',
+        // previewImage: '/features/maintenance/vendor-sla-management.png',
         description: 'Track AMC contracts, lift maintenance schedules, and SLA breaches.',
         benefits: [
           { title: 'AMC Reminders', desc: 'Never miss a service date.' },
@@ -297,7 +314,7 @@ export const featuresData = {
       'amenities-booking': {
         diagram: diagrams.amenitiesBooking,
         title: 'Amenities Booking',
-        previewImage: '/features/amenities/amenities-booking.png',
+        // previewImage: '/features/amenities/amenities-booking.png',
         description: 'Book the clubhouse, tennis court, or party hall digitally.',
         benefits: [
           { title: 'Slot Management', desc: 'Prevent double bookings.' },
@@ -328,7 +345,7 @@ export const featuresData = {
       'role-based-access-control': {
         diagram: diagrams.roleBasedAccessControl,
         title: 'Role-Based Access Control',
-        previewImage: '/features/administration/role-based-access-control.png',
+        // previewImage: '/features/administration/role-based-access-control.png',
         description: 'Granular permissions for committee members, accountants, and guards.',
         benefits: [
           { title: 'Custom Roles', desc: 'Create a specific "Auditor" role.' },
@@ -352,7 +369,7 @@ export const featuresData = {
       'analytics-reports': {
         diagram: diagrams.analyticsReports,
         title: 'Analytics & Reports',
-        previewImage: '/features/administration/analytics-reports.png',
+        // previewImage: '/features/administration/analytics-reports.png',
         description: 'Data-driven insights into society operations.',
         benefits: [
           { title: 'Visitor Trends', desc: 'Peak hours for gate traffic.' },
@@ -364,7 +381,7 @@ export const featuresData = {
       'polls-voting': {
         diagram: diagrams.pollsVoting,
         title: 'Polls & Society Voting',
-        previewImage: '/features/administration/polls-voting.png',
+        // previewImage: '/features/administration/polls-voting.png',
         description: 'Conduct democratic, transparent elections and opinion polls.',
         benefits: [
           { title: 'Secret Ballot', desc: 'Maintain voting privacy.' },
